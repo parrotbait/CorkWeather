@@ -1,0 +1,42 @@
+{
+    "base": "stations",
+    "clouds": {
+        "all": 75
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 51.899999999999999,
+        "lon": -8.4700000000000006
+    },
+    "dt": 1501849800,
+    "id": 2965140,
+    "main": {
+        "humidity": 67,
+        "pressure": 1013,
+        "temp": 16,
+        "temp_max": 16,
+        "temp_min": 16
+    },
+    "name": "Cork",
+    "sys": {
+        "country": "IE",
+        "id": 5236,
+        "message": 0.002,
+        "sunrise": 1501822905,
+        "sunset": 1501877820,
+        "type": 1
+    },
+    "visibility": 10000,
+    "weather": [
+                {
+                "description": "broken clouds",
+                "icon": "04d",
+                "id": 803,
+                "main": "Clouds"
+                }
+                ],
+    "wind": {
+        "deg": 320,
+        "speed": 4.0999999999999996
+    }
+}

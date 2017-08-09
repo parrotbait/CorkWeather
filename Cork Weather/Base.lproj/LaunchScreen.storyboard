@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cork Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cM1-qO-5Vn">
+                                <rect key="frame" x="0.0" y="88" width="375" height="37.5"/>
+                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Because no other weather really matters..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwA-gz-Jcj">
+                                <rect key="frame" x="56" y="175.5" width="263" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KAc-CV-F5c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cork" translatesAutoresizingMaskIntoConstraints="NO" id="9mj-F6-6xM" userLabel="Cork">
+                                <rect key="frame" x="87" y="275.5" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Rud-Ep-mH9"/>
+                                    <constraint firstAttribute="height" constant="200" id="amU-TG-46n"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.0064315885610000002" blue="0.027581133309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="UwA-gz-Jcj" firstAttribute="top" secondItem="cM1-qO-5Vn" secondAttribute="bottom" constant="50" id="3h6-ky-oed"/>
+                            <constraint firstItem="cM1-qO-5Vn" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="E7T-Cf-qBs"/>
+                            <constraint firstItem="9mj-F6-6xM" firstAttribute="top" secondItem="UwA-gz-Jcj" secondAttribute="bottom" constant="50" id="U6x-g3-mKi"/>
+                            <constraint firstItem="9mj-F6-6xM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Zef-nI-jga"/>
+                            <constraint firstItem="cM1-qO-5Vn" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="68" id="fCX-im-ehW"/>
+                            <constraint firstItem="cM1-qO-5Vn" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="gBj-Ve-ieB"/>
+                            <constraint firstItem="UwA-gz-Jcj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="40" id="kph-ud-Th4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UwA-gz-Jcj" secondAttribute="trailing" constant="40" id="svd-7R-V0f"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cork" width="16" height="16"/>
+    </resources>
+</document>
