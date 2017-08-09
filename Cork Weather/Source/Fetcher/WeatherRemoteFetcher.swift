@@ -10,7 +10,7 @@ import Foundation
 
 struct WeatherRemoteFetcher : WeatherFetcherProtocol {
     
-    private let key : String = "7befbe91c82feed9d53af306ca9deb64"
+    private let key : String = ""
     private let weatherUrl : String =  "https://api.openweathermap.org/data/2.5/weather?q=%@&APPID=%@%@"
     
     public func fetch(location : String, unit : TemperatureUnit, completion: @escaping WeatherCallback){
