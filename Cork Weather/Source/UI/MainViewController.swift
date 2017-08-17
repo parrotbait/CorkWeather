@@ -104,6 +104,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 100.0;
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            weatherData.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
     // MARK: UITableViewDelegate
     
     // MARK: WeatherViewProtocol
