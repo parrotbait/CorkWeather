@@ -16,7 +16,7 @@ struct WeatherFetcher : WeatherFetcherProtocol {
     
     public var fetchType : FetcherType = .remote (WeatherRemoteFetcher())
     
-    public func fetch(location : String, unit : TemperatureUnit, completion: @escaping WeatherFetcherProtocol.WeatherCallback) {
+    public func fetch(location : WeatherLocation, unit : TemperatureUnit, completion: @escaping WeatherFetcherProtocol.WeatherCallback) {
         switch fetchType {
         case .remote(let fetcher):
             fetcher.fetch(location: location, unit: unit, completion: completion);

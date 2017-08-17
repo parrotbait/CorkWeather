@@ -9,19 +9,19 @@
 import UIKit
 import SDWebImage
 import MBProgressHUD
+import GoogleMaps
 
-class MainViewController: UIViewController, WeatherViewProtocol {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WeatherViewProtocol {
 
-    @IBOutlet weak var weatherDescription: UILabel!
-    @IBOutlet weak var weatherTemp: UILabel!
-    @IBOutlet weak var weatherMinTemp: UILabel!
-    @IBOutlet weak var weatherMaxTemp: UILabel!
-    @IBOutlet weak var windSpeed: UILabel!
-    @IBOutlet weak var weatherIcon: UIImageView!;
-    @IBOutlet weak var weatherView: UIView!;
+    @IBOutlet weak var weatherList : UITableView!;
+    
     var progressView = MBProgressHUD()
+    var geocoder : GMSGeocoder! = nil
+    var weatherData = [Weather]()
     
     let weatherBase = "https://openweathermap.org/img/w/%@.png"
+    
+    fileprivate let WeatherCellIdentifier = "WeatherListCell"
     
     var presenter : WeatherPresenter! = nil;
     
@@ -29,7 +29,10 @@ class MainViewController: UIViewController, WeatherViewProtocol {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher());
-        weatherView.alpha = 0.0
+        //(self.weatherList!.collectionViewLayout as! UITableViewFlowLayout).itemSize = CGSize.init(width: UIScreen.main.bounds.width, height: 110)
+        
+        initialiseMaps()
+        //self.weatherList.register(WeatherListCell.self, forCellWithReuseIdentifier: WeatherCellIdentifier)
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,30 +41,78 @@ class MainViewController: UIViewController, WeatherViewProtocol {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        presenter.fetch("Cork,IE")
+        //
+        /*self.pickLocation(location: CLLocationCoordinate2D.init(latitude: 51.8960902, longitude: -8.5330897)) { [weak self] result in
+                self!.addressObtained(result: result)
+        }*/
+        
         progressView = MBProgressHUD.showAdded(to: self.view, animated: true)
         progressView.mode = MBProgressHUDMode.indeterminate
         progressView.label.text = Strings.get("Loading")
+        progressView.hide(animated: false)
     }
 
     func weatherLoadFailed() {
-        weatherDescription.text = "Load Failed";
+        //weatherDescription.text = "Load Failed";
         progressView.hide(animated: true)
     }
     
-    func weatherLoaded(weather: Weather) {
-        let property = UIViewPropertyAnimator(duration: 0.3, dampingRatio: 0.6, animations: { [weak self] in
-            self?.weatherView.alpha = 1.0
-        })
-        property.startAnimation()
-        progressView.hide(animated: true)
-        weatherDescription.text = weather.description;
+    func addressObtained(result : Result<GMSAddress, PickError>) {
+        switch result {
+        case .success(let address):
+            // Add address to list
+            let weather = WeatherLocation.init(coordinate: address.coordinate, address: address)
+            self.presenter.fetch(weather)
+            break
+        default:
+            break
+        }
+    }
+    
+    // MARK: UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.weatherData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: WeatherCellIdentifier, for: indexPath) as! WeatherListCell
+        let weather : Weather = self.weatherData[indexPath.row]
+        print ("row \(indexPath.row) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)")
+        cell.weatherDescription.text = weather.description;
+        cell.weatherLocation.text = weather.location.address.lines.flatMap({$0})?.joined(separator: ", ");
+        cell.weatherTemp.text = String(format: "%@", presenter.getUnitAsString(weather.temperature));
+        cell.weatherMaxTemp.text = String(format: Strings.get("Max_Temp"), presenter.getUnitAsString(weather.maxTemperature));
+        cell.windSpeed.text = String(format: Strings.get("Wind_Speed"), weather.windSpeed);
+        cell.weatherIcon.sd_setImage(with: URL(string: String(format: weatherBase, weather.icon)), placeholderImage: nil)
         
-        weatherTemp.text = String(format: "%@", presenter.getUnitAsString(weather.temperature));
-        weatherMinTemp.text = String(format: Strings.get("Min_Temp"), presenter.getUnitAsString(weather.minTemperature));
-        weatherMaxTemp.text = String(format: Strings.get("Max_Temp"), presenter.getUnitAsString(weather.maxTemperature));
-        windSpeed.text = String(format: Strings.get("Wind_Speed"), weather.windSpeed);
-        weatherIcon.sd_setImage(with: URL(string: String(format: weatherBase, weather.icon)), placeholderImage: nil)
+        return cell
+    }
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return self.weatherData.count > 0 ? 1 : 0
+    }
+
+    @IBAction func addClicked(sender : UIBarButtonItem) {
+        showPicker()
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0;
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0;
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    // MARK: WeatherViewProtocol
+    
+    func weatherLoaded(weather: Weather) {
+        progressView.hide(animated: true)
+        weatherData.append(weather)
+        print ("sizew \(weatherData.count) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)")
+        self.weatherList.reloadData()
     }
 }
 

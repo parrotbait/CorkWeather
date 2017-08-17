@@ -8,4 +8,6 @@ target 'Cork Weather' do
   # Pods for Cork Weather
   pod 'SDWebImage', '4.1.0'
   pod 'MBProgressHUD'
+  pod 'GoogleMaps'
+  pod 'GooglePlacePicker'
 end

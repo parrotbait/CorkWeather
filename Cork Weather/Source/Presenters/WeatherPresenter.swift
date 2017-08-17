@@ -10,8 +10,8 @@ import Foundation
 
 class WeatherPresenterImpl : WeatherPresenter {
     
-    var fetcher : WeatherFetcherProtocol!;
-    var view : WeatherViewProtocol? = nil;
+    var fetcher : WeatherFetcherProtocol;
+    weak var view : WeatherViewProtocol?;
     var desiredTemperature = TemperatureUnit.Celsius
     let dateFormatter = DateFormatter()
     
@@ -22,14 +22,22 @@ class WeatherPresenterImpl : WeatherPresenter {
         dateFormatter.timeStyle = .medium
         dateFormatter.timeZone = TimeZone.init(identifier: "Europe/Dublin")
     }
-    public func fetch(_ location : String) {
+    public func fetch(_ location : WeatherLocation) {
         //fetcher.fetchType = WeatherFetcher.FetcherType.local(WeatherLocalFetcher())
         fetcher.fetch(location: location, unit: desiredTemperature) { [weak self] (result : Bool, weather : Weather?) in
-            DispatchQueue.main.async {
-                if (result) {
-                    self?.view?.weatherLoaded(weather: weather!);
-                } else {
-                    self?.view?.weatherLoadFailed();
+            var isOk = false;
+            if result && weather != nil {
+                DispatchQueue.main.async { [weather] in
+                    if let weatherIn : Weather = weather {
+                        self?.view!.weatherLoaded(weather: weatherIn);
+                    }
+                }
+                isOk = true
+            }
+            
+            if !isOk {
+                DispatchQueue.main.async {
+                    self?.view!.weatherLoadFailed();
                 }
             }
         }

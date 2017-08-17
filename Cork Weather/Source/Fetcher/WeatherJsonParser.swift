@@ -9,7 +9,7 @@
 import Foundation
 
 struct WeatherJsonParser {
-    public func parse(jsonData : NSData) -> Weather! {
+    public func parse(location: WeatherLocation, jsonData : NSData) -> Weather! {
         do {
             if let jsonResult = try JSONSerialization.jsonObject(with: jsonData as Data, options: .allowFragments) as? NSDictionary {
                 var weather : NSDictionary!
@@ -44,7 +44,7 @@ struct WeatherJsonParser {
                 if let mainJson : NSDictionary = jsonResult["main"] as? NSDictionary {
                     main = mainJson;
                 }
-                return Weather(description: weather["description"] as! String, icon: weather["icon"] as! String, id: weather["id"] as! Int, main: weather["main"] as! String, temperature: main["temp"] as! Int, maxTemperature: main["temp_max"] as! Int,minTemperature: main["temp_min"] as! Int, windSpeed: windSpeed);
+                return Weather.init(description: weather["description"] as! String, icon: weather["icon"] as! String, id: weather["id"] as! Int, main: weather["main"] as! String, temperature: main["temp"] as! Int, maxTemperature: main["temp_max"] as! Int,minTemperature: main["temp_min"] as! Int, windSpeed: windSpeed, location: location);
             }
         } catch {
             print("Error!! Unable to parse json")

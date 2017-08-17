@@ -9,7 +9,7 @@
 import Foundation
 
 protocol WeatherPresenter {
-    func fetch(_ location : String)
+    func fetch(_ location : WeatherLocation)
     func getTime() -> String;
     func getUnitAsString(_ value : Int) -> String;
 }

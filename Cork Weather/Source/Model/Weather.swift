@@ -9,12 +9,13 @@
 import Foundation
 
 struct Weather {
-    var description : String; // Weather condition within the group
-    var icon : String; // Weather icon id
-    var id : Int; // Weather condition id
-    var main : String; // Group of weather parameters (Rain, Snow, Extreme etc.)
-    var temperature : Int; // Celsius
-    var maxTemperature : Int; // Celsius
-    var minTemperature : Int; // Celsius
-    var windSpeed : Double; // m/s
+    let description : String; // Weather condition within the group
+    let icon : String; // Weather icon id
+    let id : Int; // Weather condition id
+    let main : String; // Group of weather parameters (Rain, Snow, Extreme etc.)
+    let temperature : Int; // Celsius
+    let maxTemperature : Int; // Celsius
+    let minTemperature : Int; // Celsius
+    let windSpeed : Double; // m/s
+    let location : WeatherLocation;
 }

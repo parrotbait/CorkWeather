@@ -11,11 +11,11 @@ import Foundation
 struct WeatherRemoteFetcher : WeatherFetcherProtocol {
     
     private let key : String = ""
-    private let weatherUrl : String =  "https://api.openweathermap.org/data/2.5/weather?q=%@&APPID=%@%@"
+    private let weatherUrl : String =  "https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&APPID=%@%@"
     
-    public func fetch(location : String, unit : TemperatureUnit, completion: @escaping WeatherCallback){
+    public func fetch(location : WeatherLocation, unit : TemperatureUnit, completion: @escaping WeatherCallback){
         let unitStr = unit.rawValue.isEmpty ? "" : String(format: "&units=%@", unit.rawValue)
-        let finalUrl : String = String(format:weatherUrl, location, key, unitStr)
+        let finalUrl : String = String(format:weatherUrl, location.coordinate.latitude, location.coordinate.longitude, key, unitStr)
         guard let url = URL(string: finalUrl) else {
             print("Error: cannot create URL")
             return
@@ -32,8 +32,7 @@ struct WeatherRemoteFetcher : WeatherFetcherProtocol {
                 completion(false, nil);
             } else {
                 let parser = WeatherJsonParser();
-                if let weather : Weather = parser.parse(jsonData: data! as NSData) {
-                    
+                if let weather : Weather = parser.parse(location: location, jsonData: data! as NSData) {
                     completion(true, weather);
                 } else {
                     completion(false, nil);

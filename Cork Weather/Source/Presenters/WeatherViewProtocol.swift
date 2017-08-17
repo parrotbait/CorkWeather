@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol WeatherViewProtocol {
+protocol WeatherViewProtocol : class {
     func weatherLoaded(weather : Weather);
     func weatherLoadFailed();
 }
