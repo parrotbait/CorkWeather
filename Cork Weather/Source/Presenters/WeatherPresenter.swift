@@ -22,6 +22,7 @@ class WeatherPresenterImpl : WeatherPresenter {
         dateFormatter.timeStyle = .medium
         dateFormatter.timeZone = TimeZone.init(identifier: "Europe/Dublin")
     }
+    
     public func fetch(_ location : WeatherLocation) {
         //fetcher.fetchType = WeatherFetcher.FetcherType.local(WeatherLocalFetcher())
         fetcher.fetch(location: location, unit: desiredTemperature) { [weak self] (result : Bool, weather : Weather?) in

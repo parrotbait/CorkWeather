@@ -18,6 +18,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var progressView = MBProgressHUD()
     var geocoder : GMSGeocoder! = nil
     var weatherData = [Weather]()
+    var database : DatabaseFirebase? = nil
     
     let weatherBase = "https://openweathermap.org/img/w/%@.png"
     
@@ -28,10 +29,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        database = DatabaseFirebase();
         presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher());
         //(self.weatherList!.collectionViewLayout as! UITableViewFlowLayout).itemSize = CGSize.init(width: UIScreen.main.bounds.width, height: 110)
         
         initialiseMaps()
+        database?.load { (result : Bool, resultWeather : [Weather]) in
+            DispatchQueue.main.async {
+                [weak self] in
+                self?.weatherData = resultWeather
+                self?.weatherList.reloadData()
+            }
+        }
         //self.weatherList.register(WeatherListCell.self, forCellWithReuseIdentifier: WeatherCellIdentifier)
     }
 
@@ -61,7 +70,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch result {
         case .success(let address):
             // Add address to list
-            let weather = WeatherLocation.init(coordinate: address.coordinate, address: address)
+            let coordinate = WeatherCoordinate.init(latitude: address.coordinate.latitude, longitude: address.coordinate.longitude)
+            let weather = WeatherLocation.init(coordinate: coordinate, addressLines: address.lines, postcode: address.postalCode)
             self.presenter.fetch(weather)
             break
         default:
@@ -80,7 +90,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let weather : Weather = self.weatherData[indexPath.row]
         print ("row \(indexPath.row) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)")
         cell.weatherDescription.text = weather.description;
-        cell.weatherLocation.text = weather.location.address.lines.flatMap({$0})?.joined(separator: ", ");
+        cell.weatherLocation.text = weather.location.addressLines.flatMap({$0})?.joined(separator: ", ");
         cell.weatherTemp.text = String(format: "%@", presenter.getUnitAsString(weather.temperature));
         cell.weatherMaxTemp.text = String(format: Strings.get("Max_Temp"), presenter.getUnitAsString(weather.maxTemperature));
         cell.windSpeed.text = String(format: Strings.get("Wind_Speed"), weather.windSpeed);
@@ -126,6 +136,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func weatherLoaded(weather: Weather) {
         progressView.hide(animated: true)
         weatherData.append(weather)
+        database?.save(weatherList: weatherData)
+        
         print ("sizew \(weatherData.count) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)")
         self.weatherList.reloadData()
     }

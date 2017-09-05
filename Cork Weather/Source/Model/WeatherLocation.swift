@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import CoreLocation
-import GoogleMaps
 
 struct WeatherLocation {
-    let coordinate : CLLocationCoordinate2D
-    let address : GMSAddress
+    var coordinate : WeatherCoordinate
+    var addressLines: [String]?
+    var postcode : String?
 }
