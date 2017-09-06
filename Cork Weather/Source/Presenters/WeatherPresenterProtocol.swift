@@ -12,4 +12,10 @@ protocol WeatherPresenter {
     func fetch(_ location : WeatherLocation)
     func getTime() -> String;
     func getUnitAsString(_ value : Int) -> String;
+    
+    // Weather data
+    func removeWeatherAtIndex(index : Int)
+    func numberOfWeatherItems() -> Int
+    func getWeatherAtIndex(index : Int) -> Weather?
+    func load()
 }

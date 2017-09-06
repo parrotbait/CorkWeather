@@ -14,5 +14,5 @@ protocol MapsProtocol {
     func initialiseMaps()
     func showPicker()
 
-    func pickLocation(location : CLLocationCoordinate2D, callback : @escaping ((_ result : Result<GMSAddress, PickError>) -> Void))
+    func pickLocation(location : CLLocationCoordinate2D, callback : @escaping ((_ result : Result<WeatherLocation, PickError>) -> Void))
 }

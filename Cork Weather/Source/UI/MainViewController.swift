@@ -17,8 +17,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var progressView = MBProgressHUD()
     var geocoder : GMSGeocoder! = nil
-    var weatherData = [Weather]()
-    var database : DatabaseFirebase? = nil
     
     let weatherBase = "https://openweathermap.org/img/w/%@.png"
     
@@ -29,18 +27,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        database = DatabaseFirebase();
-        presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher());
+        presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher(), database: DatabaseFirebase());
         //(self.weatherList!.collectionViewLayout as! UITableViewFlowLayout).itemSize = CGSize.init(width: UIScreen.main.bounds.width, height: 110)
         
+        presenter.load()
+        
         initialiseMaps()
-        database?.load { (result : Bool, resultWeather : [Weather]) in
-            DispatchQueue.main.async {
-                [weak self] in
-                self?.weatherData = resultWeather
-                self?.weatherList.reloadData()
-            }
-        }
         //self.weatherList.register(WeatherListCell.self, forCellWithReuseIdentifier: WeatherCellIdentifier)
     }
 
@@ -61,18 +53,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         progressView.hide(animated: false)
     }
 
-    func weatherLoadFailed() {
-        //weatherDescription.text = "Load Failed";
-        progressView.hide(animated: true)
-    }
     
-    func addressObtained(result : Result<GMSAddress, PickError>) {
+    func weatherLocationObtained(result : Result<WeatherLocation, PickError>) {
         switch result {
-        case .success(let address):
+        case .success(let location):
             // Add address to list
-            let coordinate = WeatherCoordinate.init(latitude: address.coordinate.latitude, longitude: address.coordinate.longitude)
-            let weather = WeatherLocation.init(coordinate: coordinate, addressLines: address.lines, postcode: address.postalCode)
-            self.presenter.fetch(weather)
+            self.presenter.fetch(location)
             break
         default:
             break
@@ -82,12 +68,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.weatherData.count
+        return self.presenter.numberOfWeatherItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WeatherCellIdentifier, for: indexPath) as! WeatherListCell
-        let weather : Weather = self.weatherData[indexPath.row]
+        let weather : Weather = self.presenter.getWeatherAtIndex(index: indexPath.row)!
         print ("row \(indexPath.row) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)")
         cell.weatherDescription.text = weather.description;
         cell.weatherLocation.text = weather.location.addressLines.flatMap({$0})?.joined(separator: ", ");
@@ -99,7 +85,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return self.weatherData.count > 0 ? 1 : 0
+        return self.presenter.numberOfWeatherItems() > 0 ? 1 : 0
     }
 
     @IBAction func addClicked(sender : UIBarButtonItem) {
@@ -121,8 +107,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            weatherData.remove(at: indexPath.row)
-            if (weatherData.isEmpty) {
+            self.presenter.removeWeatherAtIndex(index: indexPath.row)
+            if (self.presenter.numberOfWeatherItems() == 0) {
                 tableView.deleteSections([indexPath.section], with: .fade)
             } else {
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -133,13 +119,30 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: WeatherViewProtocol
     
-    func weatherLoaded(weather: Weather) {
-        progressView.hide(animated: true)
-        weatherData.append(weather)
-        database?.save(weatherList: weatherData)
-        
-        print ("sizew \(weatherData.count) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)")
-        self.weatherList.reloadData()
+    func  weatherLoaded(result: WeatherViewProtocol.WeatherCallback) {
+        switch result {
+        case .success(let weather):
+            progressView.hide(animated: true)
+            
+            self.weatherList.reloadData()
+            break;
+        case .failure(let error):
+            print("Failed to load weather with error: \(error)")
+            progressView.hide(animated: true)
+            break;
+        }
+    }
+    
+    func loaded(result: WeatherViewProtocol.WeatherListResult) {
+        switch result {
+        case .success(let weatherArray):
+            progressView.hide(animated: true)
+            self.weatherList.reloadData()
+            break;
+        case .failure(let errorType):
+            print("Failed to load weather with error: \(errorType)")
+            break;
+        }
     }
 }
 

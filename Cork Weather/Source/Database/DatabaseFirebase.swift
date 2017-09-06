@@ -21,6 +21,7 @@ class DatabaseFirebase : Database {
     
     func save(weatherList: [Weather]) {
         for weather in weatherList {
+            self.ref.child(weatherKey).removeValue()
             let newChild = self.ref.child(weatherKey).child("\(weather.id)");
             newChild.setValue(weather.toArray())
         }

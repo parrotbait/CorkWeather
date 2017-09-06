@@ -29,11 +29,17 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
         let config = GMSPlacePickerConfig(viewport: viewport)
         let placePicker = GMSPlacePickerViewController(config: config)
         
+        // TODO: Move this elsewhere
+        let searchBarTextAttributes: [String : AnyObject] = [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: UIFont.systemFontSize)]
+
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.classForCoder() as! UIAppearanceContainer.Type]).defaultTextAttributes = searchBarTextAttributes
+        // Color of the placeholder text in the search bar prior to text entry.
+        
         placePicker.delegate = self;
         self.navigationController?.pushViewController(placePicker, animated: true);
     }
     
-    func readResponse(response : GMSReverseGeocodeResponse?, error : Error?) -> Result<GMSAddress, PickError> {
+    func readResponse(response : GMSReverseGeocodeResponse?, error : Error?) -> Result<WeatherLocation, PickError> {
         if (error != nil || response == nil) {
             print ("Error fetching reverse geocode \(error ?? "" as! Error)")
             return Result.failure(PickError.backendError)
@@ -61,27 +67,30 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
                     return .failure(PickError.notCork)
                 }
                 
-                return Result.success(address)
+                let coordinate = WeatherCoordinate.init(latitude: address.coordinate.latitude, longitude: address.coordinate.longitude)
+                let weather = WeatherLocation.init(coordinate: coordinate, addressLines: address.lines, postcode: address.postalCode)
+                
+                return Result.success(weather)
             }
         }
         
         return Result.failure(PickError.backendError)
     }
     
-    public func pickLocation(location : CLLocationCoordinate2D, callback : @escaping ((_ result : Result<GMSAddress, PickError>) -> Void)) {
+    public func pickLocation(location : CLLocationCoordinate2D, callback : @escaping ((_ result : Result<WeatherLocation, PickError>) -> Void)) {
         geocoder.reverseGeocodeCoordinate(location) { [weak self] response, error in
-        
             callback(self!.readResponse(response: response, error: error))
         }
     }
+  
     
     public func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
         print ("Place \(place)")
+        // TODO: Remove this
         progressView.show(animated: true)
         
         pickLocation(location: place.coordinate) { [weak self] result in
-            
-            self!.addressObtained(result: result)
+            self!.weatherLocationObtained(result: result)
         }
         
         self.navigationController?.popViewController(animated: true)

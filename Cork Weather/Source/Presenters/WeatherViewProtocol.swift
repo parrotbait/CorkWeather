@@ -9,6 +9,9 @@
 import Foundation
 
 protocol WeatherViewProtocol : class {
-    func weatherLoaded(weather : Weather);
-    func weatherLoadFailed();
+    typealias WeatherListResult = Result<[Weather], InitialiseLoadError>
+    func loaded(result : WeatherListResult)
+    
+    typealias WeatherCallback = Result<Weather, WeatherLoadError>
+    func weatherLoaded(result : WeatherCallback)
 }
