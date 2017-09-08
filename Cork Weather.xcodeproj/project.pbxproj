@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1DAB663994C46CC04DC8E2C7 /* Pods_Cork_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E0B3BA1203C7E8EC3698FE /* Pods_Cork_Weather.framework */; };
+		D709AAF41F61E43900CD546B /* LogLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709AAF31F61E43900CD546B /* LogLine.swift */; };
+		D709AAF61F61E49400CD546B /* LogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709AAF51F61E49400CD546B /* LogHandler.swift */; };
+		D709AAF81F61E4D800CD546B /* DefaultLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709AAF71F61E4D800CD546B /* DefaultLogHandler.swift */; };
+		D74A40251F61DB3C007DBCC1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74A40241F61DB3C007DBCC1 /* Log.swift */; };
+		D74A40271F61DB50007DBCC1 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74A40261F61DB50007DBCC1 /* LogLevel.swift */; };
 		D79F485A1F58A5F700E1CB12 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F48591F58A5F700E1CB12 /* Database.swift */; };
 		D79F485C1F58A84C00E1CB12 /* DatabaseFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F485B1F58A84C00E1CB12 /* DatabaseFirebase.swift */; };
 		D79F485E1F58B30300E1CB12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D79F485D1F58B30300E1CB12 /* GoogleService-Info.plist */; };
@@ -45,6 +50,11 @@
 		34E0B3BA1203C7E8EC3698FE /* Pods_Cork_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cork_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		361EF9CBDFBCF3409D941095 /* Pods-Cork Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cork Weather.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cork Weather/Pods-Cork Weather.release.xcconfig"; sourceTree = "<group>"; };
 		60ED2C758B4186B9D40930BA /* Pods-Cork Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cork Weather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cork Weather/Pods-Cork Weather.debug.xcconfig"; sourceTree = "<group>"; };
+		D709AAF31F61E43900CD546B /* LogLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogLine.swift; path = Logs/LogLine.swift; sourceTree = "<group>"; };
+		D709AAF51F61E49400CD546B /* LogHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogHandler.swift; path = Logs/LogHandler.swift; sourceTree = "<group>"; };
+		D709AAF71F61E4D800CD546B /* DefaultLogHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultLogHandler.swift; path = Logs/DefaultLogHandler.swift; sourceTree = "<group>"; };
+		D74A40241F61DB3C007DBCC1 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Log.swift; path = Logs/Log.swift; sourceTree = "<group>"; };
+		D74A40261F61DB50007DBCC1 /* LogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogLevel.swift; path = Logs/LogLevel.swift; sourceTree = "<group>"; };
 		D79F48591F58A5F700E1CB12 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Database.swift; path = Database/Database.swift; sourceTree = "<group>"; };
 		D79F485B1F58A84C00E1CB12 /* DatabaseFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseFirebase.swift; path = Database/DatabaseFirebase.swift; sourceTree = "<group>"; };
 		D79F485D1F58B30300E1CB12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -109,6 +119,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D74A40231F61DB22007DBCC1 /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				D74A40241F61DB3C007DBCC1 /* Log.swift */,
+				D74A40261F61DB50007DBCC1 /* LogLevel.swift */,
+				D709AAF31F61E43900CD546B /* LogLine.swift */,
+				D709AAF51F61E49400CD546B /* LogHandler.swift */,
+				D709AAF71F61E4D800CD546B /* DefaultLogHandler.swift */,
+			);
+			name = Logs;
+			sourceTree = "<group>";
+		};
 		D79F48581F58A5ED00E1CB12 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +186,7 @@
 		D7E39C531F33B2DD00D006AE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D74A40231F61DB22007DBCC1 /* Logs */,
 				D7DF656C1F5F4999008109C7 /* Errors */,
 				D79F48581F58A5ED00E1CB12 /* Database */,
 				D7E39C781F33BB9C00D006AE /* Presenters */,
@@ -367,13 +390,16 @@
 			files = (
 				D7EACFC31F3C4AA5008C9BDE /* MapsProtocol.swift in Sources */,
 				D7DF65721F5F4A20008109C7 /* WeatherLoadError.swift in Sources */,
+				D74A40271F61DB50007DBCC1 /* LogLevel.swift in Sources */,
 				D7E39C711F33BB5F00D006AE /* WeatherFetcher.swift in Sources */,
 				D7E39C801F33C7C900D006AE /* WeatherPresenterProtocol.swift in Sources */,
+				D709AAF81F61E4D800CD546B /* DefaultLogHandler.swift in Sources */,
 				D7AEA79C1F5F3B86001CE3E4 /* WeatherCoordinate.swift in Sources */,
 				D7E39C7C1F33BBE700D006AE /* WeatherPresenter.swift in Sources */,
 				D7E39C621F33B3A400D006AE /* Weather.swift in Sources */,
 				D7DF65701F5F49CD008109C7 /* Result.swift in Sources */,
 				D7DF656F1F5F49CD008109C7 /* PickError.swift in Sources */,
+				D74A40251F61DB3C007DBCC1 /* Log.swift in Sources */,
 				D7EAD0011F3D093B008C9BDE /* GMSAddress+String.swift in Sources */,
 				D7E39C721F33BB5F00D006AE /* WeatherFetcherProtocol.swift in Sources */,
 				D7EACFFF1F3D02EF008C9BDE /* WeatherLocation.swift in Sources */,
@@ -384,7 +410,9 @@
 				D7EACFC11F3C4A46008C9BDE /* MainViewController+GooglePlaces.swift in Sources */,
 				D79F485A1F58A5F700E1CB12 /* Database.swift in Sources */,
 				D7E39C571F33B2DD00D006AE /* AppDelegate.swift in Sources */,
+				D709AAF61F61E49400CD546B /* LogHandler.swift in Sources */,
 				D7E39C751F33BB5F00D006AE /* MainViewController.swift in Sources */,
+				D709AAF41F61E43900CD546B /* LogLine.swift in Sources */,
 				D7E39C7E1F33C29900D006AE /* WeatherJsonParser.swift in Sources */,
 				D7E39C741F33BB5F00D006AE /* WeatherRemoteFetcher.swift in Sources */,
 				D7E39C881F33CF0F00D006AE /* Strings.swift in Sources */,

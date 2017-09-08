@@ -17,7 +17,7 @@ struct WeatherRemoteFetcher : WeatherFetcherProtocol {
         let unitStr = unit.rawValue.isEmpty ? "" : String(format: "&units=%@", unit.rawValue)
         let finalUrl : String = String(format:weatherUrl, location.coordinate.latitude, location.coordinate.longitude, key, unitStr)
         guard let url = URL(string: finalUrl) else {
-            print("Error: cannot create URL")
+            Log.e("Error: cannot create URL")
             return
         }
         let urlRequest = URLRequest(url: url)

@@ -13,7 +13,7 @@ import GoogleMaps
 
 extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegate {
     
-    func initialiseMaps() {
+    func initialiseMapsApi() {
         GMSPlacesClient.provideAPIKey("AIzaSyBCS-5_abYlI5TqCti54rLM8qSym6Qh5js")
         GMSServices.provideAPIKey("AIzaSyBCS-5_abYlI5TqCti54rLM8qSym6Qh5js")
         geocoder = GMSGeocoder.init()
@@ -29,7 +29,7 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
         let config = GMSPlacePickerConfig(viewport: viewport)
         let placePicker = GMSPlacePickerViewController(config: config)
         
-        // TODO: Move this elsewhere
+        // Without setting the search bar color the GMS search field cannot be seen
         let searchBarTextAttributes: [String : AnyObject] = [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: UIFont.systemFontSize)]
 
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.classForCoder() as! UIAppearanceContainer.Type]).defaultTextAttributes = searchBarTextAttributes
@@ -41,7 +41,7 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
     
     func readResponse(response : GMSReverseGeocodeResponse?, error : Error?) -> Result<WeatherLocation, PickError> {
         if (error != nil || response == nil) {
-            print ("Error fetching reverse geocode \(error ?? "" as! Error)")
+            Log.e ("Error fetching reverse geocode \(error ?? "" as! Error)")
             return Result.failure(PickError.backendError)
         } else {
             //print ("address \(response?.firstResult())")
@@ -82,11 +82,8 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
             callback(self!.readResponse(response: response, error: error))
         }
     }
-  
     
     public func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
-        print ("Place \(place)")
-        // TODO: Remove this
         progressView.show(animated: true)
         
         pickLocation(location: place.coordinate) { [weak self] result in
@@ -96,11 +93,9 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
         self.navigationController?.popViewController(animated: true)
     }
     
-    func saveLocation(address : GMSAddress, location: CLLocationCoordinate2D) {
-        
-    }
-    
     public func placePicker(_ viewController: GMSPlacePickerViewController, didFailWithError error: Error) {
-        print ("Error with place picker \(error)")
+        Log.e ("Error with place picker \(error)")
+        
+        progressView.hide(animated: true)
     }
 }

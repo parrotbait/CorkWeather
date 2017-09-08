@@ -28,12 +28,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher(), database: DatabaseFirebase());
-        //(self.weatherList!.collectionViewLayout as! UITableViewFlowLayout).itemSize = CGSize.init(width: UIScreen.main.bounds.width, height: 110)
-        
         presenter.load()
         
-        initialiseMaps()
-        //self.weatherList.register(WeatherListCell.self, forCellWithReuseIdentifier: WeatherCellIdentifier)
+        initialiseMapsApi()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,11 +39,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        //
-        /*self.pickLocation(location: CLLocationCoordinate2D.init(latitude: 51.8960902, longitude: -8.5330897)) { [weak self] result in
-                self!.addressObtained(result: result)
-        }*/
-        
         progressView = MBProgressHUD.showAdded(to: self.view, animated: true)
         progressView.mode = MBProgressHUDMode.indeterminate
         progressView.label.text = Strings.get("Loading")
@@ -74,7 +66,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WeatherCellIdentifier, for: indexPath) as! WeatherListCell
         let weather : Weather = self.presenter.getWeatherAtIndex(index: indexPath.row)!
-        print ("row \(indexPath.row) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)")
+        Log.d("test \(weather.location.coordinate.latitude)")
+        Log.i ("row \(indexPath.row) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)", "MainVC")
         cell.weatherDescription.text = weather.description;
         cell.weatherLocation.text = weather.location.addressLines.flatMap({$0})?.joined(separator: ", ");
         cell.weatherTemp.text = String(format: "%@", presenter.getUnitAsString(weather.temperature));
@@ -127,7 +120,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.weatherList.reloadData()
             break;
         case .failure(let error):
-            print("Failed to load weather with error: \(error)")
+            Log.w("Failed to load weather with error: \(error)")
             progressView.hide(animated: true)
             break;
         }
@@ -140,7 +133,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.weatherList.reloadData()
             break;
         case .failure(let errorType):
-            print("Failed to load weather with error: \(errorType)")
+            Log.w("Failed to load weather with error: \(errorType)")
             break;
         }
     }

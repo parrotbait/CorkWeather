@@ -11,7 +11,7 @@ import CoreLocation
 import GoogleMaps
 
 protocol MapsProtocol {
-    func initialiseMaps()
+    func initialiseMapsApi()
     func showPicker()
 
     func pickLocation(location : CLLocationCoordinate2D, callback : @escaping ((_ result : Result<WeatherLocation, PickError>) -> Void))

@@ -28,7 +28,7 @@ struct WeatherJsonParser {
                 }
                 if (code != 200) {
                     if let message = jsonResult["message"] as? String {
-                        print ("Unable to fetch weather info with code: \(code) and message: \(message)")
+                        Log.w ("Unable to fetch weather info with code: \(code) and message: \(message)")
                     }
                     return nil;
                 }
@@ -47,7 +47,7 @@ struct WeatherJsonParser {
                 return Weather.init(description: weather["description"] as! String, icon: weather["icon"] as! String, id: weather["id"] as! Int, main: weather["main"] as! String, temperature: main["temp"] as! Int, maxTemperature: main["temp_max"] as! Int,minTemperature: main["temp_min"] as! Int, windSpeed: windSpeed, location: location);
             }
         } catch {
-            print("Error!! Unable to parse json")
+            Log.e("Error!! Unable to parse json")
         }
         return nil;
     }
