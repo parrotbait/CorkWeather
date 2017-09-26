@@ -1,6 +1,0 @@
-framework module Pods_Cork_Weather {
-  umbrella header "Pods-Cork Weather-umbrella.h"
-
-  export *
-  module * { export * }
-}

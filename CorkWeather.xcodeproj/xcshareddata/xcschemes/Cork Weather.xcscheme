@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D7E39C371F33B13400D006AE"
-               BuildableName = "Cork Weather.app"
-               BlueprintName = "Cork Weather"
+               BuildableName = "CorkWeather.app"
+               BlueprintName = "CorkWeather"
                ReferencedContainer = "container:Cork Weather.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D7E39C371F33B13400D006AE"
-            BuildableName = "Cork Weather.app"
-            BlueprintName = "Cork Weather"
+            BuildableName = "CorkWeather.app"
+            BlueprintName = "CorkWeather"
             ReferencedContainer = "container:Cork Weather.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D7E39C371F33B13400D006AE"
-            BuildableName = "Cork Weather.app"
-            BlueprintName = "Cork Weather"
+            BuildableName = "CorkWeather.app"
+            BlueprintName = "CorkWeather"
             ReferencedContainer = "container:Cork Weather.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D7E39C371F33B13400D006AE"
-            BuildableName = "Cork Weather.app"
-            BlueprintName = "Cork Weather"
+            BuildableName = "CorkWeather.app"
+            BlueprintName = "CorkWeather"
             ReferencedContainer = "container:Cork Weather.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

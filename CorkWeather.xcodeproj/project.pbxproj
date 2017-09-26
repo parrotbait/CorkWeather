@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2993010D2FCF4E8B30D57E0A /* Pods_Cork_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0785018E2429CA5856BD2D /* Pods_Cork_Weather.framework */; };
+		63D39BFF1D291AC1D30484EA /* Pods_CorkWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8231FF6F923F40633B3C9C /* Pods_CorkWeather.framework */; };
 		D79F485A1F58A5F700E1CB12 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F48591F58A5F700E1CB12 /* Database.swift */; };
 		D79F485C1F58A84C00E1CB12 /* DatabaseFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F485B1F58A84C00E1CB12 /* DatabaseFirebase.swift */; };
 		D79F485E1F58B30300E1CB12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D79F485D1F58B30300E1CB12 /* GoogleService-Info.plist */; };
@@ -59,9 +59,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1B32870C1305DFB09AFD0CC2 /* Pods-Cork Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cork Weather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cork Weather/Pods-Cork Weather.debug.xcconfig"; sourceTree = "<group>"; };
-		9744A41D43245CEC023FFB53 /* Pods-Cork Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cork Weather.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cork Weather/Pods-Cork Weather.release.xcconfig"; sourceTree = "<group>"; };
-		9F0785018E2429CA5856BD2D /* Pods_Cork_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cork_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F8231FF6F923F40633B3C9C /* Pods_CorkWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CorkWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B56203EBBE4934156980023 /* Pods-CorkWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CorkWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CorkWeather/Pods-CorkWeather.debug.xcconfig"; sourceTree = "<group>"; };
 		D79F48591F58A5F700E1CB12 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Database.swift; path = Database/Database.swift; sourceTree = "<group>"; };
 		D79F485B1F58A84C00E1CB12 /* DatabaseFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseFirebase.swift; path = Database/DatabaseFirebase.swift; sourceTree = "<group>"; };
 		D79F485D1F58B30300E1CB12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -75,7 +74,7 @@
 		D7DF656D1F5F49CD008109C7 /* PickError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickError.swift; path = Errors/PickError.swift; sourceTree = "<group>"; };
 		D7DF656E1F5F49CD008109C7 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Errors/Result.swift; sourceTree = "<group>"; };
 		D7DF65711F5F4A20008109C7 /* WeatherLoadError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherLoadError.swift; path = Errors/WeatherLoadError.swift; sourceTree = "<group>"; };
-		D7E39C381F33B13400D006AE /* Cork Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cork Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7E39C381F33B13400D006AE /* CorkWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CorkWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E39C401F33B13400D006AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7E39C421F33B13400D006AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7E39C451F33B13400D006AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		D7EACFC01F3C4A46008C9BDE /* MainViewController+GooglePlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+GooglePlaces.swift"; sourceTree = "<group>"; };
 		D7EACFC21F3C4AA5008C9BDE /* MapsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsProtocol.swift; sourceTree = "<group>"; };
 		D7EACFFE1F3D02EF008C9BDE /* WeatherLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherLocation.swift; sourceTree = "<group>"; };
+		FD4A74B8A8D40B66F1391E0A /* Pods-CorkWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CorkWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-CorkWeather/Pods-CorkWeather.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,28 +106,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2993010D2FCF4E8B30D57E0A /* Pods_Cork_Weather.framework in Frameworks */,
+				63D39BFF1D291AC1D30484EA /* Pods_CorkWeather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1BBAC757F3DFA4766AE558C6 /* Pods */ = {
+		8F3A88E5781164A7EF7693F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1B32870C1305DFB09AFD0CC2 /* Pods-Cork Weather.debug.xcconfig */,
-				9744A41D43245CEC023FFB53 /* Pods-Cork Weather.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		526B6BBC1CE13491CA872F7B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9F0785018E2429CA5856BD2D /* Pods_Cork_Weather.framework */,
+				1F8231FF6F923F40633B3C9C /* Pods_CorkWeather.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B987AE305768DB668FC0D3B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B56203EBBE4934156980023 /* Pods-CorkWeather.debug.xcconfig */,
+				FD4A74B8A8D40B66F1391E0A /* Pods-CorkWeather.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		D79F48581F58A5ED00E1CB12 /* Database */ = {
@@ -163,22 +163,22 @@
 		D7E39C2F1F33B13400D006AE = {
 			isa = PBXGroup;
 			children = (
-				D7E39C3A1F33B13400D006AE /* Cork Weather */,
+				D7E39C3A1F33B13400D006AE /* CorkWeather */,
 				D7E39C391F33B13400D006AE /* Products */,
-				1BBAC757F3DFA4766AE558C6 /* Pods */,
-				526B6BBC1CE13491CA872F7B /* Frameworks */,
+				B987AE305768DB668FC0D3B5 /* Pods */,
+				8F3A88E5781164A7EF7693F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		D7E39C391F33B13400D006AE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D7E39C381F33B13400D006AE /* Cork Weather.app */,
+				D7E39C381F33B13400D006AE /* CorkWeather.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D7E39C3A1F33B13400D006AE /* Cork Weather */ = {
+		D7E39C3A1F33B13400D006AE /* CorkWeather */ = {
 			isa = PBXGroup;
 			children = (
 				D7E39C5A1F33B2EA00D006AE /* Assets */,
@@ -189,7 +189,7 @@
 				D7E39C471F33B13400D006AE /* Info.plist */,
 				D79F485D1F58B30300E1CB12 /* GoogleService-Info.plist */,
 			);
-			path = "Cork Weather";
+			path = CorkWeather;
 			sourceTree = "<group>";
 		};
 		D7E39C531F33B2DD00D006AE /* Source */ = {
@@ -274,25 +274,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D7E39C371F33B13400D006AE /* Cork Weather */ = {
+		D7E39C371F33B13400D006AE /* CorkWeather */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D7E39C4A1F33B13400D006AE /* Build configuration list for PBXNativeTarget "Cork Weather" */;
+			buildConfigurationList = D7E39C4A1F33B13400D006AE /* Build configuration list for PBXNativeTarget "CorkWeather" */;
 			buildPhases = (
-				327394DB42276D60FB1EE616 /* [CP] Check Pods Manifest.lock */,
+				1D57500B07FC07F48B293B89 /* [CP] Check Pods Manifest.lock */,
 				D7E39C341F33B13400D006AE /* Sources */,
 				D7E39C351F33B13400D006AE /* Frameworks */,
 				D7E39C361F33B13400D006AE /* Resources */,
 				D709ABCF1F65CAD700CD546B /* Embed Frameworks */,
-				713284C42CD29B6F036EE151 /* [CP] Embed Pods Frameworks */,
-				B79DD44F2182B22843A96C15 /* [CP] Copy Pods Resources */,
+				5B257CCAD2F1CFA69C2EAF9E /* [CP] Embed Pods Frameworks */,
+				3B13BE2CB6E4BFA2092C8269 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Cork Weather";
-			productName = "Cork Weather";
-			productReference = D7E39C381F33B13400D006AE /* Cork Weather.app */;
+			name = CorkWeather;
+			productName = CorkWeather;
+			productReference = D7E39C381F33B13400D006AE /* CorkWeather.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -312,7 +312,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D7E39C331F33B13400D006AE /* Build configuration list for PBXProject "Cork Weather" */;
+			buildConfigurationList = D7E39C331F33B13400D006AE /* Build configuration list for PBXProject "CorkWeather" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -325,7 +325,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D7E39C371F33B13400D006AE /* Cork Weather */,
+				D7E39C371F33B13400D006AE /* CorkWeather */,
 			);
 		};
 /* End PBXProject section */
@@ -347,7 +347,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		327394DB42276D60FB1EE616 /* [CP] Check Pods Manifest.lock */ = {
+		1D57500B07FC07F48B293B89 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -358,20 +358,40 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Cork Weather-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CorkWeather-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		713284C42CD29B6F036EE151 /* [CP] Embed Pods Frameworks */ = {
+		3B13BE2CB6E4BFA2092C8269 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Cork Weather/Pods-Cork Weather-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-CorkWeather/Pods-CorkWeather-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CorkWeather/Pods-CorkWeather-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B257CCAD2F1CFA69C2EAF9E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CorkWeather/Pods-CorkWeather-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -392,27 +412,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cork Weather/Pods-Cork Weather-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B79DD44F2182B22843A96C15 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Cork Weather/Pods-Cork Weather-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cork Weather/Pods-Cork Weather-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CorkWeather/Pods-CorkWeather-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -582,12 +582,12 @@
 		};
 		D7E39C4B1F33B13400D006AE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B32870C1305DFB09AFD0CC2 /* Pods-Cork Weather.debug.xcconfig */;
+			baseConfigurationReference = 9B56203EBBE4934156980023 /* Pods-CorkWeather.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XFV7ZQHJ8V;
-				INFOPLIST_FILE = "Cork Weather/Info.plist";
+				INFOPLIST_FILE = CorkWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eddielong.Cork-Weather";
@@ -598,12 +598,12 @@
 		};
 		D7E39C4C1F33B13400D006AE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9744A41D43245CEC023FFB53 /* Pods-Cork Weather.release.xcconfig */;
+			baseConfigurationReference = FD4A74B8A8D40B66F1391E0A /* Pods-CorkWeather.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XFV7ZQHJ8V;
-				INFOPLIST_FILE = "Cork Weather/Info.plist";
+				INFOPLIST_FILE = CorkWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eddielong.Cork-Weather";
@@ -615,7 +615,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D7E39C331F33B13400D006AE /* Build configuration list for PBXProject "Cork Weather" */ = {
+		D7E39C331F33B13400D006AE /* Build configuration list for PBXProject "CorkWeather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7E39C481F33B13400D006AE /* Debug */,
@@ -624,7 +624,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D7E39C4A1F33B13400D006AE /* Build configuration list for PBXNativeTarget "Cork Weather" */ = {
+		D7E39C4A1F33B13400D006AE /* Build configuration list for PBXNativeTarget "CorkWeather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7E39C4B1F33B13400D006AE /* Debug */,
