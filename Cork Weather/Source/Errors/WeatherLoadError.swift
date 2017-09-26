@@ -10,4 +10,7 @@ import Foundation
 
 enum WeatherLoadError : Error {
     case backendError
+    case missingKey
+    case badUrl
+    case parseError
 }

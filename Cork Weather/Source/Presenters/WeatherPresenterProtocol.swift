@@ -17,5 +17,6 @@ protocol WeatherPresenter {
     func removeWeatherAtIndex(index : Int)
     func numberOfWeatherItems() -> Int
     func getWeatherAtIndex(index : Int) -> Weather?
-    func load()
+    func isLocationOk(_ coordinate : WeatherCoordinate) -> Bool
+    func loadList()
 }

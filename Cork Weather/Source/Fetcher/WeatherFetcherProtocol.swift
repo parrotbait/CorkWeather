@@ -11,6 +11,6 @@ import Foundation
 protocol WeatherFetcherProtocol {
     
     // Single weather location
-    typealias WeatherCallback = ((_ : Bool, _ : Weather?) -> Void)
+    typealias WeatherCallback = ((_ result : WeatherItemResult) -> Void)
     func fetch(location : WeatherLocation, unit : TemperatureUnit, completion: @escaping WeatherCallback)
 }

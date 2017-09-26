@@ -8,10 +8,10 @@
 
 import Foundation
 
+typealias WeatherItemResult = Result<Weather, WeatherLoadError>
+
 protocol WeatherViewProtocol : class {
-    typealias WeatherListResult = Result<[Weather], InitialiseLoadError>
-    func loaded(result : WeatherListResult)
+    func appLoaded(result : DatabaseResult)
     
-    typealias WeatherCallback = Result<Weather, WeatherLoadError>
-    func weatherLoaded(result : WeatherCallback)
+    func weatherItemLoaded(result : WeatherItemResult)
 }

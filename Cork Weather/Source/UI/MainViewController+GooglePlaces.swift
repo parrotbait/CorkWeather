@@ -10,6 +10,7 @@ import Foundation
 import GooglePlaces
 import GooglePlacePicker
 import GoogleMaps
+import SWLogger
 
 extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegate {
     
@@ -39,7 +40,7 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
         self.navigationController?.pushViewController(placePicker, animated: true);
     }
     
-    func readResponse(response : GMSReverseGeocodeResponse?, error : Error?) -> Result<WeatherLocation, PickError> {
+    func readResponse(response : GMSReverseGeocodeResponse?, error : Error?) -> PickResult {
         if (error != nil || response == nil) {
             Log.e ("Error fetching reverse geocode \(error ?? "" as! Error)")
             return Result.failure(PickError.backendError)
@@ -47,27 +48,17 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
             //print ("address \(response?.firstResult())")
             if let address = response?.firstResult() {
                 if address.country?.contains("Ireland") == false {
-                    DispatchQueue.main.async { [weak self] in
-                        let alert = UIAlertController(title: Strings.get("Error"), message: Strings.get("Not_Even_Ireland"), preferredStyle: .alert)
-                        
-                        let action = UIAlertAction.init(title: Strings.get("Grand"), style: .default, handler: nil)
-                        alert.addAction(action)
-                        self!.present(alert, animated: true, completion: nil)
-                    }
                     return .failure(PickError.notIreland)
                 }
                 else if (address.locality?.contains("Cork") == false && address.administrativeArea?.contains("Cork") == false) {
-                    DispatchQueue.main.async { [weak self] in
-                        let alert = UIAlertController(title: Strings.get("Error"), message: Strings.get("Not_Cork"), preferredStyle: .alert)
-                        let action = UIAlertAction.init(title: Strings.get("Grand"), style: .default, handler: nil)
-                        alert.addAction(action)
-                        self!.present(alert, animated: true, completion: nil)
-                        //return Result.failure(PickError.notCork)
-                    }
                     return .failure(PickError.notCork)
                 }
                 
                 let coordinate = WeatherCoordinate.init(latitude: address.coordinate.latitude, longitude: address.coordinate.longitude)
+                if (!presenter.isLocationOk(coordinate)) {
+                    return .failure(PickError.alreadyPresent)
+                }
+                
                 let weather = WeatherLocation.init(coordinate: coordinate, addressLines: address.lines, postcode: address.postalCode)
                 
                 return Result.success(weather)
@@ -77,7 +68,7 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
         return Result.failure(PickError.backendError)
     }
     
-    public func pickLocation(location : CLLocationCoordinate2D, callback : @escaping ((_ result : Result<WeatherLocation, PickError>) -> Void)) {
+    public func pickLocation(location : CLLocationCoordinate2D, callback : @escaping ((_ result : PickResult) -> Void)) {
         geocoder.reverseGeocodeCoordinate(location) { [weak self] response, error in
             callback(self!.readResponse(response: response, error: error))
         }

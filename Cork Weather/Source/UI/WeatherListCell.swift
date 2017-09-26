@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWLogger
 
 class WeatherListCell : UITableViewCell {
     @IBOutlet weak var weatherLocation: UILabel!

@@ -10,9 +10,11 @@ import Foundation
 import CoreLocation
 import GoogleMaps
 
+typealias PickResult = Result<WeatherLocation, PickError>
+
 protocol MapsProtocol {
     func initialiseMapsApi()
     func showPicker()
 
-    func pickLocation(location : CLLocationCoordinate2D, callback : @escaping ((_ result : Result<WeatherLocation, PickError>) -> Void))
+    func pickLocation(location : CLLocationCoordinate2D, callback : @escaping ((_ result : PickResult) -> Void))
 }

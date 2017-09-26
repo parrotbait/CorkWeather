@@ -12,4 +12,5 @@ target 'Cork Weather' do
   pod 'GooglePlacePicker'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'SWLogger', :path => '/Volumes/Code/personal/SWLogger'
 end

@@ -20,9 +20,10 @@ class DatabaseFirebase : Database {
     }
     
     func save(weatherList: [Weather]) {
+        self.ref.child(weatherKey).removeValue()
         for weather in weatherList {
-            self.ref.child(weatherKey).removeValue()
-            let newChild = self.ref.child(weatherKey).child("\(weather.id)");
+            
+            let newChild = self.ref.child(weatherKey).childByAutoId()
             newChild.setValue(weather.toArray())
         }
     }
@@ -31,7 +32,7 @@ class DatabaseFirebase : Database {
         ref.child(weatherKey).observeSingleEvent(of: DataEventType.value) { (snapshot : DataSnapshot) in
             var weatherList = [Weather]()
             if !snapshot.exists() {
-                callback(false, weatherList)
+                callback(Result.success(weatherList))
                 return
             }
             
@@ -40,7 +41,7 @@ class DatabaseFirebase : Database {
                     weatherList.append(Weather.fromArray(source: childArr))
                 }
             }
-            callback(true, weatherList)
+            callback(Result.success(weatherList))
         }
     }
 }

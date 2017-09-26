@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SWLogger
 
 struct WeatherJsonParser {
     public func parse(location: WeatherLocation, jsonData : NSData) -> Weather! {
@@ -28,6 +29,7 @@ struct WeatherJsonParser {
                 }
                 if (code != 200) {
                     if let message = jsonResult["message"] as? String {
+                        
                         Log.w ("Unable to fetch weather info with code: \(code) and message: \(message)")
                     }
                     return nil;

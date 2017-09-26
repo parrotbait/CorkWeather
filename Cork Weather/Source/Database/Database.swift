@@ -8,8 +8,10 @@
 
 import Foundation
 
+typealias DatabaseResult = Result<[Weather], DatabaseError>
+
 protocol Database {
     func save(weatherList : [Weather])
-    typealias DatabaseCallback = ((_ : Bool, _ : [Weather]) -> Void)
+    typealias DatabaseCallback = ((DatabaseResult) -> Void)
     func load(callback : @escaping DatabaseCallback)
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SWLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

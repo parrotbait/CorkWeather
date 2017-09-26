@@ -15,10 +15,10 @@ struct WeatherLocalFetcher : WeatherFetcherProtocol {
             if let jsonData = NSData(contentsOf: path) {
                 let jsonParser = WeatherJsonParser();
                 if let weather : Weather = jsonParser.parse(location : location, jsonData: jsonData) {
-                    completion(true, weather)
+                    completion(Result.success(weather))
                 }
             }
         }
-        completion(false, nil);
+        completion(Result.failure(WeatherLoadError.backendError));
     }
 }

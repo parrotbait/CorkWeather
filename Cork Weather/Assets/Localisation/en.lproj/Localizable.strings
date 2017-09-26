@@ -11,6 +11,14 @@
 "Max_Temp" = "Min: %@";
 "Wind_Speed" = "Wind: %2.1 m/s";
 "Error" = "Ah Now";
-"Not_Even_Ireland" = "That's not even Ireland like";
+"Not_Even_Ireland" = "That's not even Ireland like (well...the south bit!)";
 "Not_Cork" = "That's not Cork, only Cork places are allowed";
 "Grand" = "Grand";
+"Error_Title" = "Oops";
+"Backend_Error" = "Unable to fetch weather data from provider!";
+"Missing_Key_Error" = "Missing OpenWeather API Key!";
+"Bad_Json_Error" = "Invalid weather json data!";
+"DB_List_Load_Error" = "Unable to load weather list, check your internet connection and try again";
+"Try_Again" = "Try Again";
+"Give_Up" = "Give Up";
+"Already_Present" = "Ah sure, you've already this place (well, somewhere nearby anyway)";

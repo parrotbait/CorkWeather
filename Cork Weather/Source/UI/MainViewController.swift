@@ -10,6 +10,7 @@ import UIKit
 import SDWebImage
 import MBProgressHUD
 import GoogleMaps
+import SWLogger
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WeatherViewProtocol {
 
@@ -28,7 +29,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher(), database: DatabaseFirebase());
-        presenter.load()
+        presenter.loadList()
         
         initialiseMapsApi()
     }
@@ -42,19 +43,26 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         progressView = MBProgressHUD.showAdded(to: self.view, animated: true)
         progressView.mode = MBProgressHUDMode.indeterminate
         progressView.label.text = Strings.get("Loading")
-        progressView.hide(animated: false)
+        progressView.show(animated: true)
     }
 
-    
-    func weatherLocationObtained(result : Result<WeatherLocation, PickError>) {
+    func weatherLocationObtained(result : PickResult) {
         switch result {
         case .success(let location):
             // Add address to list
             self.presenter.fetch(location)
             break
-        default:
+        case .failure(let error):
+            progressView.hide(animated: true)
+            showWeatherPickError(reason: error)
             break
         }
+    }
+    
+    // MARK: IBActions
+    
+    @IBAction func addClicked(sender : UIBarButtonItem) {
+        showPicker()
     }
     
     // MARK: UITableViewDataSource
@@ -77,14 +85,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
+    
     public func numberOfSections(in tableView: UITableView) -> Int {
         return self.presenter.numberOfWeatherItems() > 0 ? 1 : 0
     }
 
-    @IBAction func addClicked(sender : UIBarButtonItem) {
-        showPicker()
-    }
-    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0;
     }
@@ -108,32 +113,31 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    // MARK: UITableViewDelegate
     
     // MARK: WeatherViewProtocol
     
-    func  weatherLoaded(result: WeatherViewProtocol.WeatherCallback) {
+    func  weatherItemLoaded(result: WeatherItemResult) {
+        progressView.hide(animated: true)
         switch result {
-        case .success(let weather):
-            progressView.hide(animated: true)
-            
+        case .success(let _):
             self.weatherList.reloadData()
             break;
         case .failure(let error):
             Log.w("Failed to load weather with error: \(error)")
-            progressView.hide(animated: true)
+            showWeatherFetchFailure(reason: error)
             break;
         }
     }
     
-    func loaded(result: WeatherViewProtocol.WeatherListResult) {
+    func appLoaded(result: DatabaseResult) {
+        progressView.hide(animated: true)
         switch result {
-        case .success(let weatherArray):
-            progressView.hide(animated: true)
+        case .success(let _):
             self.weatherList.reloadData()
             break;
         case .failure(let errorType):
             Log.w("Failed to load weather with error: \(errorType)")
+            showWeatherListLoadFailure(reason: errorType)
             break;
         }
     }

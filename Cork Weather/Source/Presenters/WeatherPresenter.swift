@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SWLogger
 
 class WeatherPresenterImpl : WeatherPresenter {
     
@@ -42,57 +43,70 @@ class WeatherPresenterImpl : WeatherPresenter {
         return self.weatherData[index]
     }
     
-    public func load() {
+    public func loadList() {
         
         self.database.load { [weak self]
-            (result : Bool, resultWeather : [Weather]) in
-            if (result) {
-                self?.weatherData = resultWeather
-                
-                if let presenter = self {
-                    presenter.view?.loaded(result: Result.success(resultWeather))
-                }
-                /*
-                self?.fetcher.fetchMultiple(weather: resultWeather, unit: self!.desiredTemperature, completion: { [weak self]
-                    (multipleFetchResult : Bool) in
-                    
-                })*/
-            } else {
-                
+            (result : DatabaseResult) in
+            switch (result) {
+            case .success(let weatherList):
+                self?.weatherData = weatherList
+                break
+            default:
+                break
             }
             
-            /*DispatchQueue.main.async {
-                [weak self] in
-                self?.weatherData = resultWeather
-                self?.weatherList.reloadData()
-            }*/
+            if let presenter = self {
+                presenter.view?.appLoaded(result: result)
+            }
         }
     }
     
     public func fetch(_ location : WeatherLocation) {
         //fetcher.fetchType = WeatherFetcher.FetcherType.local(WeatherLocalFetcher())
-        fetcher.fetch(location: location, unit: desiredTemperature) { [weak self] (result : Bool, weather : Weather?) in
-            var isOk = false;
-            if result && weather != nil {
+        fetcher.fetch(location: location, unit: desiredTemperature) { [weak self] (result : WeatherItemResult) in
+            switch result {
+            case .success(let weather):
                 DispatchQueue.main.async { [weather] in
-                    if let weatherIn : Weather = weather {
-                        self?.weatherData.append(weatherIn)
-                        // Persist
-                        if let weatherData = self?.weatherData {
-                            self?.database.save(weatherList: weatherData)
-                            self?.view!.weatherLoaded(result: Result.success(weatherIn));
-                        }
+                    self?.weatherData.append(weather)
+                    // Persist
+                    if let weatherData = self?.weatherData {
+                        self?.database.save(weatherList: weatherData)
+                        self?.view?.weatherItemLoaded(result: Result.success(weather));
                     }
                 }
-                isOk = true
-            }
-            
-            if !isOk {
+                break
+            case .failure(let errorType):
                 DispatchQueue.main.async {
-                    self?.view!.weatherLoaded(result: Result.failure(WeatherLoadError.backendError))
+                    self?.view!.weatherItemLoaded(result: Result.failure(errorType))
                 }
+                break
             }
         }
+    }
+    
+    private func getDistanceBetweenPoints(location1 : WeatherCoordinate, location2 : WeatherCoordinate) -> Double {
+        let R = 6371.0; // Radius of the earth in km
+        let diffLatitude = (location2.latitude - location1.latitude).degreesToRadians;
+        let diffLongitude = (location2.longitude - location1.longitude).degreesToRadians;
+        let a =
+            sin(diffLatitude / 2) * sin(diffLatitude / 2) +
+                cos(location1.latitude.degreesToRadians) * cos(location2.latitude.degreesToRadians) *
+                sin(diffLongitude / 2) * sin(diffLongitude / 2)
+        let c = 2.0 * atan2(sqrt(a), sqrt(1 - a))
+        let distance = R * c;
+        return distance
+    }
+    
+    public func isLocationOk(_ coordinate : WeatherCoordinate) -> Bool {
+        for weather in self.weatherData {
+            let distance = getDistanceBetweenPoints(location1: coordinate, location2: weather.location.coordinate)
+            if distance <= 1.0 {
+                Log.e("Coordinate \(coordinate) is too close to \(weather.location.coordinate) - distance \(distance)")
+                return false
+            }
+        }
+        
+        return true
     }
     
     public func getUnitAsString(_ value : Int) -> String {

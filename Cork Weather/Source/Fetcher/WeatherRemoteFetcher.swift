@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SWLogger
 
 struct WeatherRemoteFetcher : WeatherFetcherProtocol {
     
@@ -16,8 +17,15 @@ struct WeatherRemoteFetcher : WeatherFetcherProtocol {
     public func fetch(location : WeatherLocation, unit : TemperatureUnit, completion: @escaping WeatherCallback){
         let unitStr = unit.rawValue.isEmpty ? "" : String(format: "&units=%@", unit.rawValue)
         let finalUrl : String = String(format:weatherUrl, location.coordinate.latitude, location.coordinate.longitude, key, unitStr)
+        
+        if key.isEmpty {
+            completion(Result.failure(WeatherLoadError.missingKey))
+            return
+        }
+        
         guard let url = URL(string: finalUrl) else {
             Log.e("Error: cannot create URL")
+            completion(Result.failure(WeatherLoadError.badUrl))
             return
         }
         let urlRequest = URLRequest(url: url)
@@ -29,13 +37,13 @@ struct WeatherRemoteFetcher : WeatherFetcherProtocol {
         // make the request
         let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
             if (error != nil) {
-                completion(false, nil);
+                completion(Result.failure(WeatherLoadError.backendError));
             } else {
                 let parser = WeatherJsonParser();
                 if let weather : Weather = parser.parse(location: location, jsonData: data! as NSData) {
-                    completion(true, weather);
+                    completion(Result.success(weather));
                 } else {
-                    completion(false, nil);
+                    completion(Result.failure(WeatherLoadError.parseError));
                 }
             }
         })
