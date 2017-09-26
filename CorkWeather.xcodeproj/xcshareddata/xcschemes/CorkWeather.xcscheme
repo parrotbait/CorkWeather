@@ -17,7 +17,7 @@
                BlueprintIdentifier = "D7E39C371F33B13400D006AE"
                BuildableName = "CorkWeather.app"
                BlueprintName = "CorkWeather"
-               ReferencedContainer = "container:Cork Weather.xcodeproj">
+               ReferencedContainer = "container:CorkWeather.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "D7E39C371F33B13400D006AE"
             BuildableName = "CorkWeather.app"
             BlueprintName = "CorkWeather"
-            ReferencedContainer = "container:Cork Weather.xcodeproj">
+            ReferencedContainer = "container:CorkWeather.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "D7E39C371F33B13400D006AE"
             BuildableName = "CorkWeather.app"
             BlueprintName = "CorkWeather"
-            ReferencedContainer = "container:Cork Weather.xcodeproj">
+            ReferencedContainer = "container:CorkWeather.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "D7E39C371F33B13400D006AE"
             BuildableName = "CorkWeather.app"
             BlueprintName = "CorkWeather"
-            ReferencedContainer = "container:Cork Weather.xcodeproj">
+            ReferencedContainer = "container:CorkWeather.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
