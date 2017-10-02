@@ -21,7 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 #if DEBUG
         //Log.setTagFilters(tags: ["MainVC"])
         Log.setLevel(level: .debug)
+    
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            print ("Documents directory: \(dir)")
+        }
 #endif
+        
+        /*let logger = DefaultFileHandler()
+        Log.addHandler(logger)
+        */
         
         // Override point for customization after application launch.
         return true

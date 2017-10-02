@@ -29,7 +29,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Cork_Weather" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="CorkWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -42,7 +42,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="386"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherListCell" rowHeight="100" id="HFf-hl-jnh" customClass="WeatherListCell" customModule="Cork_Weather" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherListCell" rowHeight="100" id="HFf-hl-jnh" customClass="WeatherListCell" customModule="CorkWeather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HFf-hl-jnh" id="F8l-pw-SKm">
@@ -129,8 +129,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="HFC-PH-fOV"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="l7N-n6-LI4"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="E7s-Jf-Osi"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="lo5-eM-k5a"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -153,7 +153,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
-                        <outlet property="weatherList" destination="AOO-WJ-IIv" id="g8Z-XO-kQ9"/>
+                        <outlet property="weatherTableView" destination="AOO-WJ-IIv" id="rg9-0A-0ev"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

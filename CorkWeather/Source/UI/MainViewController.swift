@@ -14,7 +14,7 @@ import SWLogger
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WeatherViewProtocol {
 
-    @IBOutlet weak var weatherList : UITableView!;
+    @IBOutlet weak var weatherTableView : UITableView!;
     
     var progressView = MBProgressHUD()
     var geocoder : GMSGeocoder! = nil
@@ -45,19 +45,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         progressView.label.text = Strings.get("Loading")
         progressView.show(animated: true)
     }
-
-    func weatherLocationObtained(result : PickResult) {
-        switch result {
-        case .success(let location):
-            // Add address to list
-            self.presenter.fetch(location)
-            break
-        case .failure(let error):
-            progressView.hide(animated: true)
-            showWeatherPickError(reason: error)
-            break
-        }
-    }
     
     // MARK: IBActions
     
@@ -69,6 +56,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.presenter.numberOfWeatherItems()
+    }
+    
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return self.presenter.numberOfWeatherItems() > 0 ? 1 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,23 +76,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
-    
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return self.presenter.numberOfWeatherItems() > 0 ? 1 : 0
-    }
-
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0;
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0;
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -114,13 +88,27 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    // MARK: UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0;
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0;
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
     // MARK: WeatherViewProtocol
     
-    func  weatherItemLoaded(result: WeatherItemResult) {
+    func weatherItemLoaded(result: WeatherItemResult) {
         progressView.hide(animated: true)
         switch result {
         case .success(let _):
-            self.weatherList.reloadData()
+            self.weatherTableView.reloadData()
             break;
         case .failure(let error):
             Log.w("Failed to load weather with error: \(error)")
@@ -133,12 +121,28 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         progressView.hide(animated: true)
         switch result {
         case .success(let _):
-            self.weatherList.reloadData()
+            self.weatherTableView.reloadData()
             break;
         case .failure(let errorType):
             Log.w("Failed to load weather with error: \(errorType)")
             showWeatherListLoadFailure(reason: errorType)
             break;
+        }
+    }
+    
+    // MARK: Misc
+    
+    
+    func weatherLocationObtained(result : PickResult) {
+        switch result {
+        case .success(let location):
+            // Add address to list
+            self.presenter.fetch(location)
+            break
+        case .failure(let error):
+            progressView.hide(animated: true)
+            showWeatherPickError(reason: error)
+            break
         }
     }
 }
