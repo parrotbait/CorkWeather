@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 #if DEBUG
         //Log.setTagFilters(tags: ["MainVC"])
-        Log.setLevel(level: .debug)
+        Log.setLevel(.debug)
     
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             print ("Documents directory: \(dir)")

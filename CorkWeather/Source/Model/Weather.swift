@@ -22,7 +22,8 @@ struct Weather {
     var maxTemperature : WeatherTemperature; // Celsius
     var minTemperature : WeatherTemperature; // Celsius
     var windSpeed : WindSpeed; // m/s
-    var location : WeatherLocation;
+    var location : WeatherLocation; // Longitude and latitude
+    var updateDate : Date; // The date the weather was last updated
     
     static let idKey = "id"
     static let descriptionKey = "description"
@@ -36,6 +37,7 @@ struct Weather {
     static let latitudeKey = "latitude"
     static let longitudeKey = "longitude"
     static let addressLinesKey = "address_lines"
+    static let updateDateKey = "update_date"
     static let invalidValueInt = -1
     static let invalidValueDouble = -1.0
     
@@ -52,7 +54,8 @@ struct Weather {
         Weather.postcodeKey : location.postcode ?? "",
         Weather.longitudeKey : location.coordinate.longitude,
         Weather.latitudeKey : location.coordinate.latitude,
-        Weather.addressLinesKey : location.addressLines ?? ""
+        Weather.addressLinesKey : location.addressLines ?? "",
+        Weather.updateDateKey : updateDate.timeIntervalSince1970
         ];
     }
     
@@ -68,6 +71,7 @@ struct Weather {
                 maxTemperature: source[temperatureMaxKey] as? WeatherTemperature ?? invalidValueInt,
                 minTemperature: source[temperatureMinKey] as? WeatherTemperature ?? invalidValueInt,
                 windSpeed: source[windSpeedKey] as? WindSpeed ?? invalidValueDouble,
-                location: location)
+                location: location,
+                updateDate: Date.init(timeIntervalSince1970: source[updateDateKey] as? TimeInterval ?? Date().timeIntervalSince1970))
     }
 }

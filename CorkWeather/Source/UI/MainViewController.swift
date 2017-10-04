@@ -25,6 +25,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var presenter : WeatherPresenter! = nil;
     
+    var loadingWeather = [Weather]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -67,12 +69,22 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let weather : Weather = self.presenter.getWeatherAtIndex(index: indexPath.row)!
         Log.d("test \(weather.location.coordinate.latitude)")
         Log.i ("row \(indexPath.row) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)", "MainVC")
-        cell.weatherDescription.text = weather.description;
+        let isLoading = loadingWeather.contains(weather)
+        cell.weatherLoadingIcon.isHidden = !isLoading
+        cell.weatherIcon.isHidden = isLoading
+        if isLoading {
+            cell.weatherDescription.text = Strings.get("Loading");
+            cell.weatherLoadingIcon.startAnimating()
+        } else {
+            cell.weatherLoadingIcon.stopAnimating()
+            cell.weatherDescription.text = weather.description;
+            cell.weatherIcon.sd_setImage(with: URL(string: String(format: weatherBase, weather.icon)), placeholderImage: nil)
+        }
         cell.weatherLocation.text = weather.location.addressLines.flatMap({$0})?.joined(separator: ", ");
         cell.weatherTemp.text = String(format: "%@", presenter.getUnitAsString(weather.temperature));
         cell.weatherMaxTemp.text = String(format: Strings.get("Max_Temp"), presenter.getUnitAsString(weather.maxTemperature));
         cell.windSpeed.text = String(format: Strings.get("Wind_Speed"), weather.windSpeed);
-        cell.weatherIcon.sd_setImage(with: URL(string: String(format: weatherBase, weather.icon)), placeholderImage: nil)
+        cell.weatherUpdateDate.text = weather.updateDate.weatherDateString()
         
         return cell
     }
@@ -107,7 +119,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func weatherItemLoaded(result: WeatherItemResult) {
         progressView.hide(animated: true)
         switch result {
-        case .success(let _):
+        case .success(let weather):
+            
+            if let index = loadingWeather.index(of: weather) {
+                loadingWeather.remove(at: index)
+            }
+            
+            // TODO: Only refresh the correct row
             self.weatherTableView.reloadData()
             break;
         case .failure(let error):
@@ -117,10 +135,21 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func appLoaded(result: DatabaseResult) {
+    func databaseLoaded(result: DatabaseResult) {
         progressView.hide(animated: true)
         switch result {
-        case .success(let _):
+        case .success(let weatherList):
+            for weather in weatherList {
+                
+                if !loadingWeather.contains(weather) {
+                    loadingWeather.append(weather)
+                }
+                
+                // TODO: Add loading indicator
+                self.presenter.fetch(weather.location) { [weak self] result in
+                    self?.weatherItemLoaded(result: result)
+                }
+            }
             self.weatherTableView.reloadData()
             break;
         case .failure(let errorType):
@@ -137,7 +166,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch result {
         case .success(let location):
             // Add address to list
-            self.presenter.fetch(location)
+            self.presenter.fetch(location) { [weak self] result in
+                self?.weatherItemLoaded(result: result)
+            }
             break
         case .failure(let error):
             progressView.hide(animated: true)

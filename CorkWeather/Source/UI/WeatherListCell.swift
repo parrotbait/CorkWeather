@@ -16,6 +16,8 @@ class WeatherListCell : UITableViewCell {
     @IBOutlet weak var weatherMaxTemp: UILabel!
     @IBOutlet weak var windSpeed: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
+    @IBOutlet weak var weatherLoadingIcon: UIActivityIndicatorView!
+    @IBOutlet weak var weatherUpdateDate: UILabel!
     
     required override init(style: UITableViewCellStyle, reuseIdentifier: String?)
     {
@@ -26,5 +28,4 @@ class WeatherListCell : UITableViewCell {
         super.init(coder: aDecoder)
         Log.v ("init")
     }
-
 }

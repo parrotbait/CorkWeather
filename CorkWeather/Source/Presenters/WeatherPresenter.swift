@@ -56,28 +56,37 @@ class WeatherPresenterImpl : WeatherPresenter {
             }
             
             if let presenter = self {
-                presenter.view?.appLoaded(result: result)
+                presenter.view?.databaseLoaded(result: result)
             }
         }
     }
     
-    public func fetch(_ location : WeatherLocation) {
+    public func fetch(_ location : WeatherLocation, callback : @escaping WeatherItemCallback) {
         //fetcher.fetchType = WeatherFetcher.FetcherType.local(WeatherLocalFetcher())
         fetcher.fetch(location: location, unit: desiredTemperature) { [weak self] (result : WeatherItemResult) in
             switch result {
             case .success(let weather):
                 DispatchQueue.main.async { [weather] in
-                    self?.weatherData.append(weather)
+                    let result = self?.weatherData.contains(weather)
+                    if result == false {
+                        self?.weatherData.append(weather)
+                    } else {
+                        if let index = self?.weatherData.index(of: weather) {
+                            self?.weatherData[index] = weather
+                        }
+                    }
                     // Persist
                     if let weatherData = self?.weatherData {
                         self?.database.save(weatherList: weatherData)
-                        self?.view?.weatherItemLoaded(result: Result.success(weather));
+                    
                     }
+                    callback(Result.success(weather));
+                    
                 }
                 break
             case .failure(let errorType):
                 DispatchQueue.main.async {
-                    self?.view!.weatherItemLoaded(result: Result.failure(errorType))
+                    callback(Result.failure(errorType))
                 }
                 break
             }

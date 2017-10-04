@@ -9,7 +9,8 @@
 import Foundation
 
 protocol WeatherPresenter {
-    func fetch(_ location : WeatherLocation)
+    typealias WeatherItemCallback = ((_ result : WeatherItemResult) -> Void)
+    func fetch(_ location : WeatherLocation, callback : @escaping WeatherItemCallback)
     func getTime() -> String;
     func getUnitAsString(_ value : Int) -> String;
     

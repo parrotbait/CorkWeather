@@ -11,6 +11,5 @@ import Foundation
 typealias WeatherItemResult = Result<Weather, WeatherLoadError>
 
 protocol WeatherViewProtocol : class {
-    func appLoaded(result : DatabaseResult)
-    func weatherItemLoaded(result : WeatherItemResult)
+    func databaseLoaded(result : DatabaseResult)
 }

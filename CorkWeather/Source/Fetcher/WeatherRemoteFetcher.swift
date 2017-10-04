@@ -11,7 +11,7 @@ import SWLogger
 
 struct WeatherRemoteFetcher : WeatherFetcherProtocol {
     
-    private let key : String = ""
+    private let useRandomDelay = false
     private let weatherUrl : String =  "https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&APPID=%@%@"
     
     public func fetch(location : WeatherLocation, unit : TemperatureUnit, completion: @escaping WeatherCallback){
@@ -36,6 +36,14 @@ struct WeatherRemoteFetcher : WeatherFetcherProtocol {
         
         // make the request
         let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+            if self.useRandomDelay {
+                let randLower : UInt32 = 1
+                let randUpper : UInt32 = 50
+                let randDelayTime = arc4random_uniform(randUpper - randLower) + randLower
+                let randDelayTimer = Double(randDelayTime) / 10
+                Thread.sleep(forTimeInterval: randDelayTimer)
+            }
+            
             if (error != nil) {
                 completion(Result.failure(WeatherLoadError.backendError));
             } else {

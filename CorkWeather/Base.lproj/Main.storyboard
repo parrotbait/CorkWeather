@@ -101,29 +101,47 @@
                                                         <constraint firstAttribute="width" constant="50" id="x7J-2J-bKx"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6El-jM-1ef">
+                                                    <rect key="frame" x="257" y="25" width="50" height="50"/>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fk5-IE-T32">
+                                                    <rect key="frame" x="207" y="80" width="95" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="IJS-0S-U5f" firstAttribute="leading" secondItem="uXa-9j-Mhx" secondAttribute="leading" id="6Hh-ew-fW7"/>
                                                 <constraint firstItem="uXa-9j-Mhx" firstAttribute="top" secondItem="F8l-pw-SKm" secondAttribute="topMargin" constant="15" id="7zG-NC-16Y"/>
+                                                <constraint firstItem="6El-jM-1ef" firstAttribute="width" secondItem="gsi-Vk-bie" secondAttribute="width" id="91b-av-kf6"/>
+                                                <constraint firstItem="fk5-IE-T32" firstAttribute="leading" secondItem="gsi-Vk-bie" secondAttribute="leading" constant="-50" id="B2M-Cd-ETJ"/>
                                                 <constraint firstItem="IJS-0S-U5f" firstAttribute="top" secondItem="qsY-Sx-VYz" secondAttribute="bottom" id="Ch0-Iw-kRd"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="gsi-Vk-bie" secondAttribute="trailing" constant="5" id="F3p-wD-1Qz"/>
+                                                <constraint firstItem="6El-jM-1ef" firstAttribute="height" secondItem="gsi-Vk-bie" secondAttribute="height" id="GpC-r6-5ko"/>
                                                 <constraint firstItem="6BE-7e-jO2" firstAttribute="leading" secondItem="uXa-9j-Mhx" secondAttribute="trailing" constant="5" id="IkS-5c-ily"/>
                                                 <constraint firstItem="IJS-0S-U5f" firstAttribute="trailing" secondItem="uXa-9j-Mhx" secondAttribute="trailing" id="O3C-GK-YDk"/>
                                                 <constraint firstItem="qsY-Sx-VYz" firstAttribute="trailing" secondItem="uXa-9j-Mhx" secondAttribute="trailing" id="UdG-hX-pxC"/>
+                                                <constraint firstItem="fk5-IE-T32" firstAttribute="trailing" secondItem="gsi-Vk-bie" secondAttribute="trailing" constant="-5" id="bM2-kO-IoO"/>
                                                 <constraint firstItem="qsY-Sx-VYz" firstAttribute="top" secondItem="uXa-9j-Mhx" secondAttribute="bottom" id="hAA-ct-ca1"/>
+                                                <constraint firstItem="6El-jM-1ef" firstAttribute="centerY" secondItem="gsi-Vk-bie" secondAttribute="centerY" id="hWO-uD-yMs"/>
+                                                <constraint firstItem="fk5-IE-T32" firstAttribute="top" secondItem="gsi-Vk-bie" secondAttribute="bottom" constant="5" id="hgP-mb-S85"/>
                                                 <constraint firstItem="6BE-7e-jO2" firstAttribute="trailing" secondItem="gsi-Vk-bie" secondAttribute="leading" constant="-5" id="i0G-Ph-5Ge"/>
                                                 <constraint firstItem="qsY-Sx-VYz" firstAttribute="leading" secondItem="uXa-9j-Mhx" secondAttribute="leading" id="kCN-Mq-8RK"/>
                                                 <constraint firstItem="gsi-Vk-bie" firstAttribute="centerY" secondItem="F8l-pw-SKm" secondAttribute="centerY" id="lct-s7-mzC"/>
                                                 <constraint firstItem="6BE-7e-jO2" firstAttribute="centerY" secondItem="F8l-pw-SKm" secondAttribute="centerY" id="sTD-CB-J8e"/>
+                                                <constraint firstItem="6El-jM-1ef" firstAttribute="centerX" secondItem="gsi-Vk-bie" secondAttribute="centerX" id="wfG-B3-YgS"/>
                                                 <constraint firstItem="uXa-9j-Mhx" firstAttribute="leading" secondItem="F8l-pw-SKm" secondAttribute="leadingMargin" id="zYg-AA-cID"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="weatherDescription" destination="nHb-S0-fY7" id="51T-9w-tRG"/>
                                             <outlet property="weatherIcon" destination="gsi-Vk-bie" id="pxV-ez-NGP"/>
+                                            <outlet property="weatherLoadingIcon" destination="6El-jM-1ef" id="e8L-uP-Gbq"/>
                                             <outlet property="weatherLocation" destination="77i-6w-BD2" id="L7Z-MG-Vmn"/>
                                             <outlet property="weatherMaxTemp" destination="qsY-Sx-VYz" id="Xr6-eV-9Dz"/>
                                             <outlet property="weatherTemp" destination="uXa-9j-Mhx" id="H5E-I1-Qwx"/>
+                                            <outlet property="weatherUpdateDate" destination="fk5-IE-T32" id="V9i-Yp-ebu"/>
                                             <outlet property="windSpeed" destination="IJS-0S-U5f" id="qhm-Ih-uoH"/>
                                         </connections>
                                     </tableViewCell>
