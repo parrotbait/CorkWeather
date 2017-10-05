@@ -65,11 +65,7 @@ DEPENDENCIES:
   - GooglePlacePicker
   - MBProgressHUD
   - SDWebImage (= 4.1.0)
-  - SWLogger (from `/Volumes/Code/personal/SWLogger`)
-
-EXTERNAL SOURCES:
-  SWLogger:
-    :path: /Volumes/Code/personal/SWLogger
+  - SWLogger
 
 SPEC CHECKSUMS:
   Firebase: 83283761a1ef6dc9846e03d08059f51421afbd65
@@ -87,8 +83,8 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
-  SWLogger: d35dc531485ba7089681f6fd276e3a7d334ac13d
+  SWLogger: 855ec2e40bd3889f50296665b3ff0239acbb4dca
 
-PODFILE CHECKSUM: ede12dfc552c5258302edf9bc289c6b32e49eb58
+PODFILE CHECKSUM: dfa2e45fbad260155eb3f87bca64afbc266fba4e
 
 COCOAPODS: 1.3.1

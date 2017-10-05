@@ -12,14 +12,23 @@ public class Log {
     
     typealias LogHandlers = [LogHandler]
     
+#if DEBUG
+    private static var logLevel : LogLevel = .debug
+#else
     private static var logLevel : LogLevel = .warning
+#endif
+    
     private static var tagFilters = [String]()
     private static var logHandlers = LogHandlers()
     public static var enableDefaultLogHandler = true
     private static let defaultLogHandler = DefaultLogHandler()
     
-    public class func setLevel(level : LogLevel) {
+    public class func setLevel(_ level : LogLevel) {
         logLevel = level;
+    }
+    
+    public class func getLevel() -> LogLevel {
+        return logLevel
     }
     
     public class func setTagFilters(tags : [String]) {
@@ -31,7 +40,11 @@ public class Log {
     }
     
     public class func removeHandler(_ handler : LogHandler) {
-        // TODO: figure this out
+        logHandlers = logHandlers.filter() { $0 !== handler }
+    }
+    
+    public class func hasHandler(_ handler : LogHandler) -> Bool {
+        return !logHandlers.filter() { $0 === handler }.isEmpty
     }
     
     public class func log(message: String,
@@ -70,6 +83,7 @@ public class Log {
         }
     }
 
+    // Verbose
     public class func v(_ message: String,
                  _ tag: String = "",
                  extra : Any = NSNull.init(),
@@ -80,6 +94,7 @@ public class Log {
         Log.log(message: message, level: .verbose, tag: tag, extra: extra, fileName: fileName, line: line, column: column, funcName: funcName)
     }
     
+    // Debug
     public class func d(_ message: String,
                  _ tag: String = "",
                  extra : Any = NSNull.init(),
@@ -90,6 +105,7 @@ public class Log {
         Log.log(message: message, level: .debug, tag: tag, extra: extra, fileName: fileName, line: line, column: column, funcName: funcName)
     }
     
+    // Info
     public class func i(_ message: String,
                  _ tag: String = "",
                  extra : Any = NSNull.init(),
@@ -100,16 +116,7 @@ public class Log {
         Log.log(message: message, level: .info, tag: tag, extra: extra, fileName: fileName, line: line, column: column, funcName: funcName)
     }
     
-    public class func e(_ message: String,
-                 _ tag: String = "",
-                 extra : Any = NSNull.init(),
-                 fileName: String = #file,
-                 line: Int = #line,
-                 column: Int = #column,
-                 funcName: String = #function) {
-        Log.log(message: message, level: .error, tag: tag, extra: extra, fileName: fileName, line: line, column: column, funcName: funcName)
-    }
-
+    // Warning
     public class func w(_ message: String,
                  _ tag: String = "",
                  extra : Any = NSNull.init(),
@@ -119,4 +126,16 @@ public class Log {
                  funcName: String = #function) {
         Log.log(message: message, level: .warning, tag: tag, extra: extra, fileName: fileName, line: line, column: column, funcName: funcName)
     }
+    
+    // Error
+    public class func e(_ message: String,
+                        _ tag: String = "",
+                        extra : Any = NSNull.init(),
+                        fileName: String = #file,
+                        line: Int = #line,
+                        column: Int = #column,
+                        funcName: String = #function) {
+        Log.log(message: message, level: .error, tag: tag, extra: extra, fileName: fileName, line: line, column: column, funcName: funcName)
+    }
+
 }

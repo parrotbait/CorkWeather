@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol LogHandler {
+public protocol LogHandler : class {
     func logMessage(log : LogLine, tag : String, level : LogLevel)
 }

@@ -1,6 +1,7 @@
 # SWLogger
 A simple Swift Logger
-WARNING: This is pretty early in development, stable so far in all tests. 
+
+WARNING: This pod is in active development, stable so far in all tests. 
 See TODO section for more.
 
 # Features
@@ -15,6 +16,7 @@ See TODO section for more.
 # Usage
 
 Log a debug mesaage
+
 ```
 Log.d("My log")
 ```
@@ -34,11 +36,21 @@ Log a message with custom extra data
 Log.i("My message", "TAG", extra:123)
 ```
 
+Log levels available:
+
+* Verbose (Log.v)
+* Debug (Log.d)
+* Info (Log.i)
+* Warning (Log.w)
+* Error (Log.e)
+
 ## Filtering messages
 
-Set the log level for the app to warning (everything less than this will not be logged)
+By default in release only warning messages are allowed though. In debug, debug messages are allowed.
+
+Set the log level for the app to error (everything less than this will not be logged)
 ```
-Log.setLevel(level: .warning)
+Log.setLevel(level: .error)
 ```
 
 Filter logs by tag(s)
@@ -61,6 +73,15 @@ Log functions where the message was logged e.g. tableView(_:cellForRowAt:)
 DefaultLogHandler.logFunc(true)
 ```
 
+## Default File Handler
+
+Provided is another example of a handle, the file handler which enables logging to disk.
+When the handler is created a log file with a timestamp '2017-10-02-09-48-37995.log' is created in the Documents directory. Logs are written to this file as they arrive in. This log handler is NOT enabled by default. Example usage below;
+
+```
+Log.addHandler(DefaultFileHandler())
+```
+
 ## Implement a custom handler
 
 ```
@@ -77,7 +98,7 @@ Register the log handler
 Log.addHandler(MyLogHandler())
 ```
 
-Or remove the log handler (TODO: Implement this)
+Or remove the log handler
 ```
 Log.removeHandler(handler)
 ```
