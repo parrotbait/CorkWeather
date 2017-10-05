@@ -12,6 +12,7 @@ import SWLogger
 struct WeatherRemoteFetcher : WeatherFetcherProtocol {
     
     private let useRandomDelay = false
+    private let key : String = ""
     private let weatherUrl : String =  "https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&APPID=%@%@"
     
     public func fetch(location : WeatherLocation, unit : TemperatureUnit, completion: @escaping WeatherCallback){
