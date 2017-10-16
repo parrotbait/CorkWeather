@@ -7,34 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>683764632208-3q2tp660s8dbkfdofrksn8rapo3jk575.apps.googleusercontent.com</string>
+	<string>139984501213-2a3pj07eidg36msd7ugbtnmdecsh1269.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.683764632208-3q2tp660s8dbkfdofrksn8rapo3jk575</string>
+	<string>com.googleusercontent.apps.139984501213-2a3pj07eidg36msd7ugbtnmdecsh1269</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA11qZcdqEG9DmhmxRDC4adK6dUzZHkHVY</string>
+	<string>AIzaSyB58oRU2au0Z_h5h-q1nRLdWdw1uToEIgM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>683764632208</string>
+	<string>139984501213</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.eddielong.Cork-Weather</string>
 	<key>PROJECT_ID</key>
-	<string>corkweather-c5fc3</string>
+	<string>cork-weather</string>
 	<key>STORAGE_BUCKET</key>
-	<string>corkweather-c5fc3.appspot.com</string>
+	<string>cork-weather.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:683764632208:ios:762a57e18479d956</string>
+	<string>1:139984501213:ios:762a57e18479d956</string>
 	<key>DATABASE_URL</key>
-	<string>https://corkweather-c5fc3.firebaseio.com</string>
+	<string>https://cork-weather.firebaseio.com</string>
 </dict>
 </plist>

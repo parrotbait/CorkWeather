@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import FirebaseAuth
 import FirebaseDatabase
+import SWLogger
 import CoreLocation
 
 class DatabaseFirebase : Database {
@@ -29,19 +31,26 @@ class DatabaseFirebase : Database {
     }
     
     func load(callback : @escaping DatabaseCallback) {
-        ref.child(weatherKey).observeSingleEvent(of: DataEventType.value) { (snapshot : DataSnapshot) in
-            var weatherList = [Weather]()
-            if !snapshot.exists() {
-                callback(Result.success(weatherList))
-                return
-            }
-            
-            for child in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
-                if let childArr = child.value as? [String: Any] {
-                    weatherList.append(Weather.fromArray(source: childArr))
+        Auth.auth().signInAnonymously { [weak self] (user, error) in
+            if let er = error {
+                Log.d(er.localizedDescription)
+            } else {
+                self?.ref.child((self?.weatherKey)!).observeSingleEvent(of: DataEventType.value) { (snapshot : DataSnapshot) in
+                    var weatherList = [Weather]()
+                    if !snapshot.exists() {
+                        callback(Result.success(weatherList))
+                        return
+                    }
+                    
+                    for child in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
+                        if let childArr = child.value as? [String: Any] {
+                            weatherList.append(Weather.fromArray(source: childArr))
+                        }
+                    }
+                    callback(Result.success(weatherList))
                 }
             }
-            callback(Result.success(weatherList))
         }
+        
     }
 }
