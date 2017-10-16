@@ -33,6 +33,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher(), database: DatabaseFirebase());
         presenter.loadList()
         
+        let barButton = UIButton.init(type: .infoLight)
+        barButton.addTarget(self, action: #selector(showInfo), for: .touchUpInside)
+        let barButtonItem = UIBarButtonItem.init(customView: barButton)
+        self.navigationItem.rightBarButtonItem = barButtonItem
+        
+        progressView = MBProgressHUD.showAdded(to: self.view, animated: true)
+        progressView.mode = MBProgressHUDMode.indeterminate
+        progressView.label.text = Strings.get("Loading")
+        progressView.show(animated: true)
+        
         initialiseMapsApi()
     }
 
@@ -42,10 +52,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        progressView = MBProgressHUD.showAdded(to: self.view, animated: true)
-        progressView.mode = MBProgressHUDMode.indeterminate
-        progressView.label.text = Strings.get("Loading")
-        progressView.show(animated: true)
+        super.viewWillAppear(animated)
     }
     
     // MARK: IBActions
@@ -175,6 +182,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             showWeatherPickError(reason: error)
             break
         }
+    }
+    
+    func showInfo() {
+        performSegue(withIdentifier: "ShowInfo", sender: self);
     }
 }
 

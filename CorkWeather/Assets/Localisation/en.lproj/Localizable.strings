@@ -22,3 +22,9 @@
 "Try_Again" = "Try Again";
 "Give_Up" = "Give Up";
 "Already_Present" = "Ah sure, you've already this place (well, somewhere nearby anyway)";
+"Info_Title" = "Info";
+"Info_Developer" = "Developed by Eddie Long\nI do stuff with code";
+"Follow_Twitter" = "Follow me on ";
+"Info_Source" = "All weather data sourced from OpenWeatherMap";
+"No_Email_Setup" = "C'mere, you don't have any email setup like";
+"Contact" = "Contact";

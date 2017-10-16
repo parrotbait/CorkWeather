@@ -46,7 +46,12 @@ struct WeatherJsonParser {
                 if let mainJson : NSDictionary = jsonResult["main"] as? NSDictionary {
                     main = mainJson;
                 }
-                return Weather.init(description: weather["description"] as! String, icon: weather["icon"] as! String, id: weather["id"] as! Int, main: weather["main"] as! String, temperature: main["temp"] as! Int, maxTemperature: main["temp_max"] as! Int,minTemperature: main["temp_min"] as! Int, windSpeed: windSpeed, location: location, updateDate: Date());
+                let weatherId = weather["id"] as! NSNumber
+                let currentTemp = main["temp"] as! NSNumber
+                
+                let maxTemp = main["temp_max"] as! NSNumber
+                let minTemp = main["temp_min"] as! NSNumber
+                return Weather.init(description: weather["description"] as! String, icon: weather["icon"] as! String, id: weatherId.intValue, main: weather["main"] as! String, temperature: currentTemp.intValue, maxTemperature: maxTemp.intValue, minTemperature: minTemp.intValue, windSpeed: windSpeed, location: location, updateDate: Date());
             }
         } catch {
             Log.e("Error!! Unable to parse json")
