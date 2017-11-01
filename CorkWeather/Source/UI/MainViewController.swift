@@ -33,6 +33,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher(), database: DatabaseFirebase());
         
@@ -67,6 +68,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func showOnboarding() {
+        analytics().logEvent(AnalyticsEvents.onboardingShown)
+        
         darkenedOverlay.alpha = 0.0
         step1Background.alpha = 0.0
         arrowButton.alpha = 0.0
@@ -111,10 +114,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: IBActions
     
     @IBAction func onboardingClicked(sender : Any?) {
+        analytics().logEvent(AnalyticsEvents.onboardingClicked)
         hideOnboarding(showPickerOnCompletion: true)
     }
     
     @IBAction func addClicked(sender : UIBarButtonItem) {
+        analytics().logEvent(AnalyticsEvents.addClicked)
         hideOnboarding(showPickerOnCompletion: true)
     }
     
@@ -195,6 +200,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.weatherTableView.reloadData()
             break;
         case .failure(let error):
+            analytics().logEvent(AnalyticsEvents.weatherItemLoadFailure, [AnalyticsEvents.errorInfoDetail: error])
             Log.w("Failed to load weather with error: \(error)")
             showWeatherFetchFailure(reason: error)
             break;
@@ -226,6 +232,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.weatherTableView.reloadData()
             break;
         case .failure(let errorType):
+            analytics().logEvent(AnalyticsEvents.databaseLoadFailure, [AnalyticsEvents.errorInfoDetail: errorType])
             Log.w("Failed to load weather with error: \(errorType)")
             showWeatherListLoadFailure(reason: errorType)
             break;
@@ -244,6 +251,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             break
         case .failure(let error):
+            analytics().logEvent(AnalyticsEvents.weatherLocationFetchFailure, [AnalyticsEvents.errorInfoDetail: error])
             progressView.hide(animated: true)
             showWeatherPickError(reason: error)
             break
@@ -251,6 +259,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func showInfo() {
+        analytics().logEvent(AnalyticsEvents.infoClicked)
         performSegue(withIdentifier: "ShowInfo", sender: self);
     }
 }

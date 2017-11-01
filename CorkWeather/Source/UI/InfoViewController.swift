@@ -35,6 +35,7 @@ class InfoViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func contactClicked(sender: Any?) {
         if MFMailComposeViewController.canSendMail() {
+            analytics().logEvent(AnalyticsEvents.contactClicked)
             let mailVC = MFMailComposeViewController.init()
             mailVC.setSubject("Cork Weather App Feedback")
             mailVC.setToRecipients(["parrotbait@gmail.com"])

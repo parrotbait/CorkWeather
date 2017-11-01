@@ -37,6 +37,7 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
         // Color of the placeholder text in the search bar prior to text entry.
         
         placePicker.delegate = self;
+        analytics().logEvent(AnalyticsEvents.showPlacePicker)
         self.navigationController?.pushViewController(placePicker, animated: true);
     }
     
@@ -76,6 +77,7 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
     
     public func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
         progressView.show(animated: true)
+        analytics().logEvent(AnalyticsEvents.placePicked, [AnalyticsEvents.picked_longitude : place.coordinate.longitude, AnalyticsEvents.picked_latitude : place.coordinate.latitude])
         
         pickLocation(location: place.coordinate) { [weak self] result in
             self!.weatherLocationObtained(result: result)
@@ -86,7 +88,7 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
     
     public func placePicker(_ viewController: GMSPlacePickerViewController, didFailWithError error: Error) {
         Log.e ("Error with place picker \(error)")
-        
+        analytics().logEvent(AnalyticsEvents.placePickedError)
         progressView.hide(animated: true)
     }
 }
