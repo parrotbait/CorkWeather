@@ -28,3 +28,5 @@
 "Info_Source" = "All weather data sourced from OpenWeatherMap";
 "No_Email_Setup" = "C'mere, you don't have any email setup like";
 "Contact" = "Contact";
+"Welcome_Notice" = "Story, welcome to Cork Weather.\nThe weather app built ONLY for Cork.\nTo start add some locations using '+' above. Dowtcha boy!";
+"No_Locations_Selected" = "Sorry like, nawtin' added, hit '+' to add somewhere....in Cork";

@@ -17,6 +17,7 @@ class WeatherPresenterImpl : WeatherPresenter {
     let dateFormatter = DateFormatter()
     let database : Database
     var weatherData = [Weather]()
+    var onboardingUserDefaults = "onboarding"
     
     init (view : WeatherViewProtocol, fetcher : WeatherFetcherProtocol, database : Database) {
         self.view = view;
@@ -25,6 +26,8 @@ class WeatherPresenterImpl : WeatherPresenter {
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .medium
         dateFormatter.timeZone = TimeZone.init(identifier: "Europe/Dublin")
+        
+        UserDefaults.standard.register(defaults: [onboardingUserDefaults: true])
     }
     
     func removeWeatherAtIndex(index: Int) {
@@ -131,5 +134,13 @@ class WeatherPresenterImpl : WeatherPresenter {
     
     public func getTime() -> String {
         return dateFormatter.string(from: Date())
+    }
+    
+    public func showOnboarding(_ force : Bool = false) -> Bool {
+        let shouldShow = UserDefaults.standard.bool(forKey: onboardingUserDefaults)
+        if shouldShow {
+            UserDefaults.standard.set(force, forKey: onboardingUserDefaults)
+        }
+        return shouldShow
     }
 }

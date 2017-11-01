@@ -15,6 +15,10 @@ import SWLogger
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WeatherViewProtocol {
 
     @IBOutlet weak var weatherTableView : UITableView!;
+    @IBOutlet weak var emptyTableView : UIView!;
+    @IBOutlet weak var darkenedOverlay : UIView!;
+    @IBOutlet weak var step1Background : UIView!;
+    @IBOutlet weak var arrowButton : UIView!;
     
     var progressView = MBProgressHUD()
     var geocoder : GMSGeocoder! = nil
@@ -31,21 +35,70 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher(), database: DatabaseFirebase());
-        presenter.loadList()
         
         let barButton = UIButton.init(type: .infoLight)
         barButton.addTarget(self, action: #selector(showInfo), for: .touchUpInside)
         let barButtonItem = UIBarButtonItem.init(customView: barButton)
         self.navigationItem.rightBarButtonItem = barButtonItem
         
+        initialiseMapsApi()
+        
+        weatherTableView.isHidden = true
+        emptyTableView.isHidden = true
+        
+        step1Background.layer.cornerRadius = 10.0
+        
+        if presenter.showOnboarding(false) {
+            showOnboarding()
+        } else {
+           showMainList()
+        }
+    }
+    
+    private func showMainList() {
         progressView = MBProgressHUD.showAdded(to: self.view, animated: true)
         progressView.mode = MBProgressHUDMode.indeterminate
         progressView.label.text = Strings.get("Loading")
-        progressView.show(animated: true)
         
-        initialiseMapsApi()
+        progressView.show(animated: true)
+        presenter.loadList()
+        
+        hideOnboarding(showPickerOnCompletion: false)
     }
 
+    func showOnboarding() {
+        darkenedOverlay.alpha = 0.0
+        step1Background.alpha = 0.0
+        arrowButton.alpha = 0.0
+        self.darkenedOverlay.isHidden = false
+        emptyTableView.isHidden = false
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.darkenedOverlay.alpha = 1.0
+            self.step1Background.alpha = 1.0
+        }) { (_ result : Bool) in
+            if result {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.arrowButton.alpha = 1.0
+                });
+            }
+        }
+        
+        let tapGR = UITapGestureRecognizer()
+        tapGR.addTarget(self, action: #selector(onboardingClicked))
+        darkenedOverlay.addGestureRecognizer(tapGR)
+    }
+    
+    func hideOnboarding(showPickerOnCompletion : Bool) {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.darkenedOverlay.alpha = 0.0
+        }) { (_ result : Bool) in
+            if showPickerOnCompletion {
+                self.showPicker()
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -57,8 +110,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: IBActions
     
+    @IBAction func onboardingClicked(sender : Any?) {
+        hideOnboarding(showPickerOnCompletion: true)
+    }
+    
     @IBAction func addClicked(sender : UIBarButtonItem) {
-        showPicker()
+        hideOnboarding(showPickerOnCompletion: true)
     }
     
     // MARK: UITableViewDataSource
@@ -128,6 +185,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch result {
         case .success(let weather):
             
+            self.emptyTableView.isHidden = true
+            self.weatherTableView.isHidden = false;
             if let index = loadingWeather.index(of: weather) {
                 loadingWeather.remove(at: index)
             }
@@ -146,6 +205,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         progressView.hide(animated: true)
         switch result {
         case .success(let weatherList):
+            if weatherList.isEmpty {
+                self.emptyTableView.isHidden = false
+                self.weatherTableView.isHidden = true;
+            } else {
+                self.emptyTableView.isHidden = true
+                self.weatherTableView.isHidden = false;
+            }
             for weather in weatherList {
                 
                 if !loadingWeather.contains(weather) {

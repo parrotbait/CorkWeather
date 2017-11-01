@@ -20,4 +20,6 @@ protocol WeatherPresenter {
     func getWeatherAtIndex(index : Int) -> Weather?
     func isLocationOk(_ coordinate : WeatherCoordinate) -> Bool
     func loadList()
+    
+    func showOnboarding(_ force : Bool) -> Bool
 }
