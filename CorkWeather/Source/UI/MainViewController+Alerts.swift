@@ -11,36 +11,27 @@ import UIKit
 
 extension MainViewController : MainAlertProtocol {
 
+    func showError(_ errorText : String) {
+        DispatchQueue.main.async { [weak self] in
+            let alertController = UIAlertController(title: Strings.get("Error_Title"), message: errorText, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: Strings.get("Grand"), style: .default, handler: nil))
+            self?.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     func showWeatherFetchFailure(reason: WeatherLoadError) {
         switch (reason) {
         case .backendError:
-            
-            DispatchQueue.main.async { [weak self] in
-                let alertController = UIAlertController(title: Strings.get("Error_Title"), message: Strings.get("Backend_Error"), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: Strings.get("Grand"), style: .default, handler: nil))
-                self?.present(alertController, animated: true, completion: nil)
-            }
+            showError(Strings.get("Backend_Error"))
             break;
         case .badUrl:
-            DispatchQueue.main.async { [weak self] in
-                let alertController = UIAlertController(title: Strings.get("Error_Title"), message: Strings.get("Backend_Error"), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: Strings.get("Grand"), style: .default, handler: nil))
-                self?.present(alertController, animated: true, completion: nil)
-            }
+            showError(Strings.get("Backend_Error"))
             break
         case .missingKey:
-            DispatchQueue.main.async { [weak self] in
-                let alertController = UIAlertController(title: Strings.get("Error_Title"), message: Strings.get("Missing_Key_Error"), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: Strings.get("Grand"), style: .default, handler: nil))
-                self?.present(alertController, animated: true, completion: nil)
-            }
+            showError(Strings.get("Missing_Key_Error"))
             break
         case .parseError:
-            DispatchQueue.main.async { [weak self] in
-                let alertController = UIAlertController(title: Strings.get("Error_Title"), message: Strings.get("Bad_Json_Error"), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: Strings.get("Grand"), style: .default, handler: nil))
-                self?.present(alertController, animated: true, completion: nil)
-            }
+            showError(Strings.get("Bad_Json_Error"))
             break
         }
     }
@@ -64,36 +55,16 @@ extension MainViewController : MainAlertProtocol {
     func showWeatherPickError(reason : PickError) {
         switch (reason) {
         case .notIreland:
-            DispatchQueue.main.async { [weak self] in
-                let alert = UIAlertController(title: Strings.get("Error"), message: Strings.get("Not_Even_Ireland"), preferredStyle: .alert)  
-                let action = UIAlertAction.init(title: Strings.get("Grand"), style: .default, handler: nil)
-                alert.addAction(action)
-                self?.present(alert, animated: true, completion: nil)
-            }
+            showError(Strings.get("Not_Even_Ireland"))
             break
         case .notCork:
-            DispatchQueue.main.async { [weak self] in
-                let alert = UIAlertController(title: Strings.get("Error"), message: Strings.get("Not_Cork"), preferredStyle: .alert)
-                let action = UIAlertAction.init(title: Strings.get("Grand"), style: .default, handler: nil)
-                alert.addAction(action)
-                self?.present(alert, animated: true, completion: nil)
-            }
+            showError(Strings.get("Not_Cork"))
             break
         case .backendError:
-            DispatchQueue.main.async { [weak self] in
-                let alert = UIAlertController(title: Strings.get("Error"), message: Strings.get("Backend_Error"), preferredStyle: .alert)
-                let action = UIAlertAction.init(title: Strings.get("Grand"), style: .default, handler: nil)
-                alert.addAction(action)
-                self?.present(alert, animated: true, completion: nil)
-            }
+            showError(Strings.get("Backend_Error"))
             break
         case .alreadyPresent:
-            DispatchQueue.main.async { [weak self] in
-                let alert = UIAlertController(title: Strings.get("Error"), message: Strings.get("Already_Present"), preferredStyle: .alert)
-                let action = UIAlertAction.init(title: Strings.get("Grand"), style: .default, handler: nil)
-                alert.addAction(action)
-                self?.present(alert, animated: true, completion: nil)
-            }
+            showError(Strings.get("Already_Present"))
             break;
         }
     }

@@ -6,11 +6,12 @@ target 'CorkWeather' do
   use_frameworks!
 
   # Pods for Cork Weather
-  pod 'SDWebImage', '4.1.0'
+  pod 'SDWebImage'
   pod 'MBProgressHUD'
   pod 'GoogleMaps'
   pod 'GooglePlacePicker'
   pod 'Firebase/Auth'
+  pod 'Firebase/Core'
   pod 'Firebase/Database'
   #pod 'SWLogger', :path => '/Volumes/Code/personal/SWLogger'
   pod 'SWLogger'

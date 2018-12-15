@@ -21,12 +21,12 @@ class InfoViewController: UIViewController, UITextViewDelegate {
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
-        let originalText = NSMutableAttributedString.init(string: Strings.get("Follow_Twitter"), attributes: [NSParagraphStyleAttributeName: paragraphStyle])
-        originalText.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSMakeRange(0, originalText.length))
+        let originalText = NSMutableAttributedString.init(string: Strings.get("Follow_Twitter"), attributes: [NSAttributedString.Key.foregroundColor: paragraphStyle])
+        originalText.addAttribute(NSAttributedString.Key.link, value: UIColor.white, range: NSMakeRange(0, originalText.length))
         let text = NSMutableAttributedString.init(string: "Twitter")
-        text.addAttribute(NSLinkAttributeName, value: "http://www.twitter.com/parrotbait", range: NSMakeRange(0, 7))
+        text.addAttribute(NSAttributedString.Key.link, value: sharedConfig.twitterBio, range: NSMakeRange(0, 7))
         originalText.append(text)
-        originalText.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, originalText.length))
+        originalText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, originalText.length))
         
         bioText.textColor = .white
         bioText.delegate = self
@@ -37,8 +37,8 @@ class InfoViewController: UIViewController, UITextViewDelegate {
         if MFMailComposeViewController.canSendMail() {
             analytics().logEvent(AnalyticsEvents.contactClicked)
             let mailVC = MFMailComposeViewController.init()
-            mailVC.setSubject("Cork Weather App Feedback")
-            mailVC.setToRecipients(["parrotbait@gmail.com"])
+            mailVC.setSubject(sharedConfig.feedbackEmailSubject)
+            mailVC.setToRecipients(sharedConfig.feedbackEmailRecipients)
             self.present(mailVC, animated: true, completion: nil)
         } else {
             let alertController = UIAlertController(title: Strings.get("Error_Title"), message: Strings.get("No_Email_Setup"), preferredStyle: .alert)

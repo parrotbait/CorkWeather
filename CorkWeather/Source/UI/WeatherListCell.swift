@@ -19,7 +19,7 @@ class WeatherListCell : UITableViewCell {
     @IBOutlet weak var weatherLoadingIcon: UIActivityIndicatorView!
     @IBOutlet weak var weatherUpdateDate: UILabel!
     
-    required override init(style: UITableViewCellStyle, reuseIdentifier: String?)
+    required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }

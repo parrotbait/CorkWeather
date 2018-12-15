@@ -8,9 +8,9 @@ See TODO section for more.
 
 * Log levels per log
 * Tagging per log
-* Tag filters
+* Runtime tag filtering
 * Log file and function source of log message
-* Global filtering of logs by log level
+* Global runtime filtering of logs by log level
 * Eaay to hook in to receive and process logs
 
 # Usage
@@ -108,7 +108,11 @@ Disable the default log handler if you want to handle all logs yourself
 Log.enableDefaultLogHandler = false
 ```
 
+## Tests
+
+See SWLoggerTests/SwiftTests.swift for tests of the library.
+
 ## TODO
 
 * Thread safety
-* Add tests
+* Provide a way for handlers to have a log level associated that is different to the global log level

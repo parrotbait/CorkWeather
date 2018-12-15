@@ -12,17 +12,16 @@ import SWLogger
 struct WeatherRemoteFetcher : WeatherFetcherProtocol {
     
     private let useRandomDelay = false
-    private let key : String = ""
     private let weatherUrl : String =  "https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&APPID=%@%@"
     
     public func fetch(location : WeatherLocation, unit : TemperatureUnit, completion: @escaping WeatherCallback){
         let unitStr = unit.rawValue.isEmpty ? "" : String(format: "&units=%@", unit.rawValue)
-        let finalUrl : String = String(format:weatherUrl, location.coordinate.latitude, location.coordinate.longitude, key, unitStr)
         
-        if key.isEmpty {
+        if sharedConfig.weatherAPIKey.isEmpty {
             completion(Result.failure(WeatherLoadError.missingKey))
             return
         }
+        let finalUrl : String = String(format:weatherUrl, location.coordinate.latitude, location.coordinate.longitude, sharedConfig.weatherAPIKey, unitStr)
         
         guard let url = URL(string: finalUrl) else {
             Log.e("Error: cannot create URL")

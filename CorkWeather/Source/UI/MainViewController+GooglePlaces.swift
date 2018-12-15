@@ -31,7 +31,9 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
         let placePicker = GMSPlacePickerViewController(config: config)
         
         // Without setting the search bar color the GMS search field cannot be seen
-        let searchBarTextAttributes: [String : AnyObject] = [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: UIFont.systemFontSize)]
+        let searchBarTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        ]
 
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.classForCoder() as! UIAppearanceContainer.Type]).defaultTextAttributes = searchBarTextAttributes
         // Color of the placeholder text in the search bar prior to text entry.

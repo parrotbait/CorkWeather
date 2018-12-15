@@ -23,8 +23,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var progressView = MBProgressHUD()
     var geocoder : GMSGeocoder! = nil
     
-    let weatherBase = "https://openweathermap.org/img/w/%@.png"
-    
     fileprivate let WeatherCellIdentifier = "WeatherListCell"
     
     var presenter : WeatherPresenter! = nil;
@@ -147,7 +145,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             cell.weatherLoadingIcon.stopAnimating()
             cell.weatherDescription.text = weather.description;
-            cell.weatherIcon.sd_setImage(with: URL(string: String(format: weatherBase, weather.icon)), placeholderImage: nil)
+            cell.weatherIcon.sd_setImage(with: URL(string: String(format: sharedConfig.weatherImageBase, weather.icon)), placeholderImage: nil)
         }
         cell.weatherLocation.text = weather.location.addressLines.flatMap({$0})?.joined(separator: ", ");
         cell.weatherTemp.text = String(format: "%@", presenter.getUnitAsString(weather.temperature));
@@ -158,7 +156,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.presenter.removeWeatherAtIndex(index: indexPath.row)
             if (self.presenter.numberOfWeatherItems() == 0) {
@@ -258,7 +256,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func showInfo() {
+    @objc func showInfo() {
         analytics().logEvent(AnalyticsEvents.infoClicked)
         performSegue(withIdentifier: "ShowInfo", sender: self);
     }
