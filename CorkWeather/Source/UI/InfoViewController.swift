@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import MessageUI
 import SafariServices
+import Proteus_UI
 
-class InfoViewController: UIViewController, UITextViewDelegate {
+class InfoViewController: UIViewController, UITextViewDelegate, Storyboarded {
     
     @IBOutlet weak var bioText : UITextView!
     

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hdQ-GA-VTk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hdQ-GA-VTk">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,12 +14,9 @@
             <objects>
                 <navigationController id="hdQ-GA-VTk" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="fQx-rS-3Y6">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="b6h-Ip-tU8"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26p-WK-zQ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -30,12 +25,12 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="CorkWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" customModule="CorkWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -176,7 +171,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPb-Vn-hGW" userLabel="DarkenedOverlay">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="410"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZ2-UW-73v" userLabel="Step1">
                                         <rect key="frame" x="30" y="50" width="260" height="200"/>
@@ -251,17 +246,16 @@
                         <outlet property="emptyTableView" destination="htk-1Z-HsY" id="wqQ-DO-Or1"/>
                         <outlet property="step1Background" destination="rZ2-UW-73v" id="VFE-91-0Zh"/>
                         <outlet property="weatherTableView" destination="AOO-WJ-IIv" id="rg9-0A-0ev"/>
-                        <segue destination="D8H-vF-kyF" kind="show" identifier="ShowInfo" id="3s7-Mq-d1f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="296" y="-84"/>
         </scene>
-        <!--Title-->
+        <!--Info View Controller-->
         <scene sceneID="PFM-c0-KIw">
             <objects>
-                <viewController id="D8H-vF-kyF" customClass="InfoViewController" customModule="CorkWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoViewController" id="D8H-vF-kyF" userLabel="Info View Controller" customClass="InfoViewController" customModule="CorkWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hzJ-CL-xTP"/>
                         <viewControllerLayoutGuide type="bottom" id="RtL-de-FLl"/>
@@ -271,7 +265,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developed by Eddie Long" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVE-ee-tRC" customClass="LocalisedLabel" customModule="CorkWeather" customModuleProvider="target">
-                                <rect key="frame" x="16" y="74" width="288" height="50"/>
+                                <rect key="frame" x="16" y="80" width="288" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="82Y-ff-vdg"/>
                                 </constraints>
@@ -283,7 +277,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Md7-nP-aGb">
-                                <rect key="frame" x="16" y="124" width="288" height="40"/>
+                                <rect key="frame" x="16" y="130" width="288" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="PMl-dr-Mcr"/>
@@ -300,7 +294,7 @@
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cork_flag" translatesAutoresizingMaskIntoConstraints="NO" id="olU-0x-FNT">
-                                <rect key="frame" x="61" y="174" width="198" height="202"/>
+                                <rect key="frame" x="64" y="180" width="192" height="196"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="olU-0x-FNT" secondAttribute="height" multiplier="508:519" id="0cP-X8-rU4"/>
                                 </constraints>
@@ -359,7 +353,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow_onboarding" width="200" height="200"/>
-        <image name="cork_flag" width="254" height="259"/>
+        <image name="arrow_onboarding" width="400" height="400"/>
+        <image name="cork_flag" width="508" height="519"/>
     </resources>
 </document>

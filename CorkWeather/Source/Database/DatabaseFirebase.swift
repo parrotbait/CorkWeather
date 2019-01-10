@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import SWLogger
 import CoreLocation
+import Proteus_Core
 
 class DatabaseFirebase : Database {
     var ref: DatabaseReference!

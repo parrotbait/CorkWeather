@@ -11,9 +11,10 @@ import SDWebImage
 import MBProgressHUD
 import GoogleMaps
 import SWLogger
+import Proteus_UI
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WeatherViewProtocol {
-
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Storyboarded, WeatherViewProtocol {
+   
     @IBOutlet weak var weatherTableView : UITableView!;
     @IBOutlet weak var emptyTableView : UIView!;
     @IBOutlet weak var darkenedOverlay : UIView!;
@@ -22,6 +23,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var progressView = MBProgressHUD()
     var geocoder : GMSGeocoder! = nil
+    var coordinator: MainCoordinator?
     
     fileprivate let WeatherCellIdentifier = "WeatherListCell"
     
@@ -258,7 +260,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func showInfo() {
         analytics().logEvent(AnalyticsEvents.infoClicked)
-        performSegue(withIdentifier: "ShowInfo", sender: self);
+        self.coordinator?.showInfo()
     }
 }
 

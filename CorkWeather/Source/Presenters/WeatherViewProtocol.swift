@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Proteus_Core
 
 typealias WeatherItemResult = Result<Weather, WeatherLoadError>
 

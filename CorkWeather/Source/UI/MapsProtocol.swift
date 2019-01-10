@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import GoogleMaps
+import Proteus_Core
 
 typealias PickResult = Result<WeatherLocation, PickError>
 

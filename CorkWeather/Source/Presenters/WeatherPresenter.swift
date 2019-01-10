@@ -8,6 +8,7 @@
 
 import Foundation
 import SWLogger
+import Proteus_Core
 
 class WeatherPresenterImpl : WeatherPresenter {
     

@@ -11,6 +11,7 @@ import GooglePlaces
 import GooglePlacePicker
 import GoogleMaps
 import SWLogger
+import Proteus_Core
 
 extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegate {
     
@@ -21,26 +22,8 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
     }
     
     func showPicker() {
-        let zoomSize = 0.004
-        let coordinates = ( 51.894981, -8.472618)
-        let center = CLLocationCoordinate2D(latitude: coordinates.0, longitude: coordinates.1)
-        let northEast = CLLocationCoordinate2D(latitude: center.latitude + zoomSize, longitude: center.longitude + zoomSize)
-        let southWest = CLLocationCoordinate2D(latitude: center.latitude - zoomSize, longitude: center.longitude - zoomSize)
-        let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
-        let config = GMSPlacePickerConfig(viewport: viewport)
-        let placePicker = GMSPlacePickerViewController(config: config)
-        
-        // Without setting the search bar color the GMS search field cannot be seen
-        let searchBarTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        ]
-
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.classForCoder() as! UIAppearanceContainer.Type]).defaultTextAttributes = searchBarTextAttributes
-        // Color of the placeholder text in the search bar prior to text entry.
-        
-        placePicker.delegate = self;
         analytics().logEvent(AnalyticsEvents.showPlacePicker)
-        self.navigationController?.pushViewController(placePicker, animated: true);
+        self.coordinator?.showPicker(delegate: self)
     }
     
     func readResponse(response : GMSReverseGeocodeResponse?, error : Error?) -> PickResult {

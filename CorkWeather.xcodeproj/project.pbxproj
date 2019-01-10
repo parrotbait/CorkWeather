@@ -13,10 +13,8 @@
 		D71F93A51F9546300063282D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D71F93A41F9546300063282D /* README.md */; };
 		D71F93A71F9547EF0063282D /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71F93A61F9547EF0063282D /* SafariServices.framework */; };
 		D751C9761F8569140028B890 /* Weather+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D751C9751F8569140028B890 /* Weather+Equatable.swift */; };
-		D79E819721E75EF800DAC211 /* LanguageSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79E819621E75EF800DAC211 /* LanguageSelectorView.swift */; };
-		D79E819D21E7B9FE00DAC211 /* LocalisedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79E819A21E7B9FD00DAC211 /* LocalisedButton.swift */; };
-		D79E819E21E7B9FE00DAC211 /* LocalisedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79E819B21E7B9FD00DAC211 /* LocalisedBarButtonItem.swift */; };
-		D79E819F21E7B9FE00DAC211 /* LocalisedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79E819C21E7B9FD00DAC211 /* LocalisedLabel.swift */; };
+		D79E826421E7FB2E00DAC211 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79E826321E7FB2E00DAC211 /* MainCoordinator.swift */; };
+		D79E826621E7FC3400DAC211 /* MainCoordinator+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79E826521E7FC3400DAC211 /* MainCoordinator+Weather.swift */; };
 		D79F485A1F58A5F700E1CB12 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F48591F58A5F700E1CB12 /* Database.swift */; };
 		D79F485C1F58A84C00E1CB12 /* DatabaseFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F485B1F58A84C00E1CB12 /* DatabaseFirebase.swift */; };
 		D79F485E1F58B30300E1CB12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D79F485D1F58B30300E1CB12 /* GoogleService-Info.plist */; };
@@ -25,11 +23,9 @@
 		D7D1BD2C1F799E0600F1AD6D /* MainViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1BD2B1F799E0600F1AD6D /* MainViewController+Alerts.swift */; };
 		D7D1BD2E1F799E2D00F1AD6D /* MainAlertProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1BD2D1F799E2D00F1AD6D /* MainAlertProtocol.swift */; };
 		D7D1BE2E1F7AF0DD00F1AD6D /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1BE2D1F7AF0DD00F1AD6D /* DatabaseError.swift */; };
-		D7D1BE311F7AF51B00F1AD6D /* DegreesToRadians.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1BE301F7AF51B00F1AD6D /* DegreesToRadians.swift */; };
 		D7D1BE331F7AFCD600F1AD6D /* GMSAddress+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1BE321F7AFCD600F1AD6D /* GMSAddress+String.swift */; };
 		D7DF656B1F5F4990008109C7 /* InitialiseLoadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DF656A1F5F4990008109C7 /* InitialiseLoadError.swift */; };
 		D7DF656F1F5F49CD008109C7 /* PickError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DF656D1F5F49CD008109C7 /* PickError.swift */; };
-		D7DF65701F5F49CD008109C7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DF656E1F5F49CD008109C7 /* Result.swift */; };
 		D7DF65721F5F4A20008109C7 /* WeatherLoadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DF65711F5F4A20008109C7 /* WeatherLoadError.swift */; };
 		D7E0F10A1FAA828A00C90A72 /* AnalyticsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0F1091FAA828A00C90A72 /* AnalyticsProtocol.swift */; };
 		D7E0F10C1FAA82EE00C90A72 /* AnalyticsFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0F10B1FAA82EE00C90A72 /* AnalyticsFirebase.swift */; };
@@ -61,6 +57,51 @@
 		D7EACFFF1F3D02EF008C9BDE /* WeatherLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EACFFE1F3D02EF008C9BDE /* WeatherLocation.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D79E823D21E7F72B00DAC211 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D79E821E21E7F71B00DAC211;
+			remoteInfo = "Proteus-UI";
+		};
+		D79E823F21E7F72B00DAC211 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D79E822721E7F71B00DAC211;
+			remoteInfo = "Proteus-UITests";
+		};
+		D79E824621E7F73400DAC211 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D79E81FA21E7F70E00DAC211;
+			remoteInfo = "Proteus-Core";
+		};
+		D79E824821E7F73400DAC211 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D79E820321E7F70E00DAC211;
+			remoteInfo = "Proteus-CoreTests";
+		};
+		D79E825621E7F77C00DAC211 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D79E81F921E7F70E00DAC211;
+			remoteInfo = "Proteus-Core";
+		};
+		D79E825821E7F77F00DAC211 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D79E821D21E7F71B00DAC211;
+			remoteInfo = "Proteus-UI";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		D709ABCF1F65CAD700CD546B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -82,10 +123,10 @@
 		D71F93A41F9546300063282D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		D71F93A61F9547EF0063282D /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		D751C9751F8569140028B890 /* Weather+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Weather+Equatable.swift"; sourceTree = "<group>"; };
-		D79E819621E75EF800DAC211 /* LanguageSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LanguageSelectorView.swift; path = Views/LanguageSelectorView.swift; sourceTree = "<group>"; };
-		D79E819A21E7B9FD00DAC211 /* LocalisedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalisedButton.swift; path = Views/LocalisedButton.swift; sourceTree = "<group>"; };
-		D79E819B21E7B9FD00DAC211 /* LocalisedBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalisedBarButtonItem.swift; path = Views/LocalisedBarButtonItem.swift; sourceTree = "<group>"; };
-		D79E819C21E7B9FD00DAC211 /* LocalisedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalisedLabel.swift; path = Views/LocalisedLabel.swift; sourceTree = "<group>"; };
+		D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Proteus-UI.xcodeproj"; path = "../Proteus-UI/Proteus-UI.xcodeproj"; sourceTree = "<group>"; };
+		D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Proteus-Core.xcodeproj"; path = "../Proteus-Core/Proteus-Core.xcodeproj"; sourceTree = "<group>"; };
+		D79E826321E7FB2E00DAC211 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainCoordinator.swift; path = Coordinators/MainCoordinator.swift; sourceTree = "<group>"; };
+		D79E826521E7FC3400DAC211 /* MainCoordinator+Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCoordinator+Weather.swift"; sourceTree = "<group>"; };
 		D79F48591F58A5F700E1CB12 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Database.swift; path = Database/Database.swift; sourceTree = "<group>"; };
 		D79F485B1F58A84C00E1CB12 /* DatabaseFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseFirebase.swift; path = Database/DatabaseFirebase.swift; sourceTree = "<group>"; };
 		D79F485D1F58B30300E1CB12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -94,11 +135,9 @@
 		D7D1BD2B1F799E0600F1AD6D /* MainViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+Alerts.swift"; sourceTree = "<group>"; };
 		D7D1BD2D1F799E2D00F1AD6D /* MainAlertProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAlertProtocol.swift; sourceTree = "<group>"; };
 		D7D1BE2D1F7AF0DD00F1AD6D /* DatabaseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseError.swift; path = Errors/DatabaseError.swift; sourceTree = "<group>"; };
-		D7D1BE301F7AF51B00F1AD6D /* DegreesToRadians.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DegreesToRadians.swift; path = Extensions/DegreesToRadians.swift; sourceTree = "<group>"; };
 		D7D1BE321F7AFCD600F1AD6D /* GMSAddress+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GMSAddress+String.swift"; path = "Extensions/GMSAddress+String.swift"; sourceTree = "<group>"; };
 		D7DF656A1F5F4990008109C7 /* InitialiseLoadError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialiseLoadError.swift; path = Errors/InitialiseLoadError.swift; sourceTree = "<group>"; };
 		D7DF656D1F5F49CD008109C7 /* PickError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickError.swift; path = Errors/PickError.swift; sourceTree = "<group>"; };
-		D7DF656E1F5F49CD008109C7 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Errors/Result.swift; sourceTree = "<group>"; };
 		D7DF65711F5F4A20008109C7 /* WeatherLoadError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherLoadError.swift; path = Errors/WeatherLoadError.swift; sourceTree = "<group>"; };
 		D7E0F1091FAA828A00C90A72 /* AnalyticsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyticsProtocol.swift; path = Analytics/AnalyticsProtocol.swift; sourceTree = "<group>"; };
 		D7E0F10B1FAA82EE00C90A72 /* AnalyticsFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyticsFirebase.swift; path = Analytics/AnalyticsFirebase.swift; sourceTree = "<group>"; };
@@ -166,15 +205,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		D79E819221E7599E00DAC211 /* Views */ = {
+		D79E823921E7F72B00DAC211 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D79E819B21E7B9FD00DAC211 /* LocalisedBarButtonItem.swift */,
-				D79E819A21E7B9FD00DAC211 /* LocalisedButton.swift */,
-				D79E819C21E7B9FD00DAC211 /* LocalisedLabel.swift */,
-				D79E819621E75EF800DAC211 /* LanguageSelectorView.swift */,
+				D79E823E21E7F72B00DAC211 /* Proteus_UI.framework */,
+				D79E824021E7F72B00DAC211 /* Proteus-UITests.xctest */,
 			);
-			name = Views;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D79E824221E7F73300DAC211 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D79E824721E7F73400DAC211 /* Proteus_Core.framework */,
+				D79E824921E7F73400DAC211 /* Proteus-CoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D79E826221E7FB0D00DAC211 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				D79E826321E7FB2E00DAC211 /* MainCoordinator.swift */,
+				D79E826521E7FC3400DAC211 /* MainCoordinator+Weather.swift */,
+			);
+			name = Coordinators;
 			sourceTree = "<group>";
 		};
 		D79F48581F58A5ED00E1CB12 /* Database */ = {
@@ -190,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				D7D1BE321F7AFCD600F1AD6D /* GMSAddress+String.swift */,
-				D7D1BE301F7AF51B00F1AD6D /* DegreesToRadians.swift */,
 				D7C23E3D1F85750E005A3DCB /* Date+Displayable.swift */,
 			);
 			name = Extensions;
@@ -200,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				D7DF656D1F5F49CD008109C7 /* PickError.swift */,
-				D7DF656E1F5F49CD008109C7 /* Result.swift */,
 				D7DF656A1F5F4990008109C7 /* InitialiseLoadError.swift */,
 				D7DF65711F5F4A20008109C7 /* WeatherLoadError.swift */,
 				D7D1BE2D1F7AF0DD00F1AD6D /* DatabaseError.swift */,
@@ -222,6 +275,8 @@
 		D7E39C2F1F33B13400D006AE = {
 			isa = PBXGroup;
 			children = (
+				D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */,
+				D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */,
 				D7E39C3A1F33B13400D006AE /* CorkWeather */,
 				D7E39C391F33B13400D006AE /* Products */,
 				B987AE305768DB668FC0D3B5 /* Pods */,
@@ -256,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				D7E0F1081FAA827300C90A72 /* Analytics */,
+				D79E826221E7FB0D00DAC211 /* Coordinators */,
 				D7D1BE2F1F7AF4E300F1AD6D /* Extensions */,
 				D7DF656C1F5F4999008109C7 /* Errors */,
 				D79F48581F58A5ED00E1CB12 /* Database */,
@@ -263,7 +319,6 @@
 				D7E39C6A1F33BB5F00D006AE /* Fetcher */,
 				D7E39C601F33B3A400D006AE /* Model */,
 				D7E39C6F1F33BB5F00D006AE /* UI */,
-				D79E819221E7599E00DAC211 /* Views */,
 				D7E39C871F33CF0F00D006AE /* Strings.swift */,
 				D7E39C541F33B2DD00D006AE /* AppDelegate.swift */,
 				D71BD25221C3A5870093B258 /* Config.swift */,
@@ -355,6 +410,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				D79E825921E7F77F00DAC211 /* PBXTargetDependency */,
+				D79E825721E7F77C00DAC211 /* PBXTargetDependency */,
 			);
 			name = CorkWeather;
 			productName = CorkWeather;
@@ -389,12 +446,53 @@
 			mainGroup = D7E39C2F1F33B13400D006AE;
 			productRefGroup = D7E39C391F33B13400D006AE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D79E824221E7F73300DAC211 /* Products */;
+					ProjectRef = D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */;
+				},
+				{
+					ProductGroup = D79E823921E7F72B00DAC211 /* Products */;
+					ProjectRef = D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D7E39C371F33B13400D006AE /* CorkWeather */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D79E823E21E7F72B00DAC211 /* Proteus_UI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Proteus_UI.framework;
+			remoteRef = D79E823D21E7F72B00DAC211 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D79E824021E7F72B00DAC211 /* Proteus-UITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Proteus-UITests.xctest";
+			remoteRef = D79E823F21E7F72B00DAC211 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D79E824721E7F73400DAC211 /* Proteus_Core.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Proteus_Core.framework;
+			remoteRef = D79E824621E7F73400DAC211 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D79E824921E7F73400DAC211 /* Proteus-CoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Proteus-CoreTests.xctest";
+			remoteRef = D79E824821E7F73400DAC211 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D7E39C361F33B13400D006AE /* Resources */ = {
@@ -493,7 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7EACFC31F3C4AA5008C9BDE /* MapsProtocol.swift in Sources */,
-				D79E819721E75EF800DAC211 /* LanguageSelectorView.swift in Sources */,
+				D79E826621E7FC3400DAC211 /* MainCoordinator+Weather.swift in Sources */,
 				D7E979591F8EB9CA0049E2A6 /* InfoViewController.swift in Sources */,
 				D7DF65721F5F4A20008109C7 /* WeatherLoadError.swift in Sources */,
 				D7E39C711F33BB5F00D006AE /* WeatherFetcher.swift in Sources */,
@@ -502,18 +600,15 @@
 				D7AEA79C1F5F3B86001CE3E4 /* WeatherCoordinate.swift in Sources */,
 				D7E39C7C1F33BBE700D006AE /* WeatherPresenter.swift in Sources */,
 				D7E39C621F33B3A400D006AE /* Weather.swift in Sources */,
-				D7DF65701F5F49CD008109C7 /* Result.swift in Sources */,
 				D7D1BD2E1F799E2D00F1AD6D /* MainAlertProtocol.swift in Sources */,
 				D7DF656F1F5F49CD008109C7 /* PickError.swift in Sources */,
 				D7E39C721F33BB5F00D006AE /* WeatherFetcherProtocol.swift in Sources */,
 				D7EACFFF1F3D02EF008C9BDE /* WeatherLocation.swift in Sources */,
-				D79E819E21E7B9FE00DAC211 /* LocalisedBarButtonItem.swift in Sources */,
 				D7E39C7A1F33BBD400D006AE /* WeatherViewProtocol.swift in Sources */,
 				D7EACFBD1F3BB023008C9BDE /* WeatherListCell.swift in Sources */,
 				D7E39C901F34AF0A00D006AE /* WeatherUnits.swift in Sources */,
 				D7DF656B1F5F4990008109C7 /* InitialiseLoadError.swift in Sources */,
 				D7EACFC11F3C4A46008C9BDE /* MainViewController+GooglePlaces.swift in Sources */,
-				D79E819D21E7B9FE00DAC211 /* LocalisedButton.swift in Sources */,
 				D7C23E3E1F85750E005A3DCB /* Date+Displayable.swift in Sources */,
 				D79F485A1F58A5F700E1CB12 /* Database.swift in Sources */,
 				D7D1BD2C1F799E0600F1AD6D /* MainViewController+Alerts.swift in Sources */,
@@ -521,14 +616,13 @@
 				D7E0F10C1FAA82EE00C90A72 /* AnalyticsFirebase.swift in Sources */,
 				D7E39C571F33B2DD00D006AE /* AppDelegate.swift in Sources */,
 				D7D1BE2E1F7AF0DD00F1AD6D /* DatabaseError.swift in Sources */,
+				D79E826421E7FB2E00DAC211 /* MainCoordinator.swift in Sources */,
 				D7E39C751F33BB5F00D006AE /* MainViewController.swift in Sources */,
 				D7E39C7E1F33C29900D006AE /* WeatherJsonParser.swift in Sources */,
 				D7E39C741F33BB5F00D006AE /* WeatherRemoteFetcher.swift in Sources */,
 				D7E39C881F33CF0F00D006AE /* Strings.swift in Sources */,
 				D71BD25321C3A5870093B258 /* Config.swift in Sources */,
-				D7D1BE311F7AF51B00F1AD6D /* DegreesToRadians.swift in Sources */,
 				D7E0F1101FAA849D00C90A72 /* AnalyticsEvents.swift in Sources */,
-				D79E819F21E7B9FE00DAC211 /* LocalisedLabel.swift in Sources */,
 				D7E0F10E1FAA839000C90A72 /* AnalyticsFactory.swift in Sources */,
 				D751C9761F8569140028B890 /* Weather+Equatable.swift in Sources */,
 				D7E39C731F33BB5F00D006AE /* WeatherLocalFetcher.swift in Sources */,
@@ -537,6 +631,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D79E825721E7F77C00DAC211 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Proteus-Core";
+			targetProxy = D79E825621E7F77C00DAC211 /* PBXContainerItemProxy */;
+		};
+		D79E825921E7F77F00DAC211 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Proteus-UI";
+			targetProxy = D79E825821E7F77F00DAC211 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D7E39C3F1F33B13400D006AE /* Main.storyboard */ = {
