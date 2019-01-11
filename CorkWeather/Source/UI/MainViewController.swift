@@ -12,48 +12,32 @@ import MBProgressHUD
 import GoogleMaps
 import SWLogger
 import Proteus_UI
+import Proteus_Core
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Storyboarded, WeatherViewProtocol {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Storyboarded {
    
-    @IBOutlet weak var weatherTableView : UITableView!;
-    @IBOutlet weak var emptyTableView : UIView!;
-    @IBOutlet weak var darkenedOverlay : UIView!;
-    @IBOutlet weak var step1Background : UIView!;
-    @IBOutlet weak var arrowButton : UIView!;
+    @IBOutlet weak var weatherTableView : UITableView!
+    @IBOutlet weak var emptyTableView : UIView!
+    @IBOutlet weak var onboardingView : OnboardingView!
     
     var progressView = MBProgressHUD()
-    var geocoder : GMSGeocoder! = nil
     var coordinator: MainCoordinator?
+    var viewModel: MainViewModel? = nil
     
-    fileprivate let WeatherCellIdentifier = "WeatherListCell"
-    
-    var presenter : WeatherPresenter! = nil;
-    
-    var loadingWeather = [Weather]()
+    var loadingWeather = WeatherList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        presenter = WeatherPresenterImpl(view: self, fetcher: WeatherFetcher(), database: DatabaseFirebase());
         
         let barButton = UIButton.init(type: .infoLight)
         barButton.addTarget(self, action: #selector(showInfo), for: .touchUpInside)
         let barButtonItem = UIBarButtonItem.init(customView: barButton)
         self.navigationItem.rightBarButtonItem = barButtonItem
         
-        initialiseMapsApi()
-        
         weatherTableView.isHidden = true
         emptyTableView.isHidden = true
         
-        step1Background.layer.cornerRadius = 10.0
-        
-        if presenter.showOnboarding(false) {
-            showOnboarding()
-        } else {
-           showMainList()
-        }
+        showMainList()
     }
     
     private func showMainList() {
@@ -62,44 +46,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         progressView.label.text = Strings.get("Loading")
         
         progressView.show(animated: true)
-        presenter.loadList()
+        self.viewModel!.loadWeatherList(callback: databaseLoaded)
         
-        hideOnboarding(showPickerOnCompletion: false)
+        //hideOnboarding(showPickerOnCompletion: false)
     }
 
-    func showOnboarding() {
+    func shouldShowOnboarding() {
         analytics().logEvent(AnalyticsEvents.onboardingShown)
-        
-        darkenedOverlay.alpha = 0.0
-        step1Background.alpha = 0.0
-        arrowButton.alpha = 0.0
-        self.darkenedOverlay.isHidden = false
         emptyTableView.isHidden = false
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            self.darkenedOverlay.alpha = 1.0
-            self.step1Background.alpha = 1.0
-        }) { (_ result : Bool) in
-            if result {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.arrowButton.alpha = 1.0
-                });
-            }
-        }
-        
-        let tapGR = UITapGestureRecognizer()
-        tapGR.addTarget(self, action: #selector(onboardingClicked))
-        darkenedOverlay.addGestureRecognizer(tapGR)
-    }
-    
-    func hideOnboarding(showPickerOnCompletion : Bool) {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.darkenedOverlay.alpha = 0.0
-        }) { (_ result : Bool) in
-            if showPickerOnCompletion {
-                self.showPicker()
-            }
-        }
+        self.onboardingView.show()
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,58 +68,44 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: IBActions
     
-    @IBAction func onboardingClicked(sender : Any?) {
-        analytics().logEvent(AnalyticsEvents.onboardingClicked)
-        hideOnboarding(showPickerOnCompletion: true)
-    }
-    
     @IBAction func addClicked(sender : UIBarButtonItem) {
         analytics().logEvent(AnalyticsEvents.addClicked)
-        hideOnboarding(showPickerOnCompletion: true)
+        
+        self.onboardingView.hideOnboarding {
+            self.showPicker()
+        }
     }
     
     // MARK: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.presenter.numberOfWeatherItems()
+        return self.viewModel!.numberOfWeatherItems()
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return self.presenter.numberOfWeatherItems() > 0 ? 1 : 0
+        return self.viewModel!.numberOfWeatherItems() > 0 ? 1 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WeatherCellIdentifier, for: indexPath) as! WeatherListCell
-        let weather : Weather = self.presenter.getWeatherAtIndex(index: indexPath.row)!
-        Log.d("test \(weather.location.coordinate.latitude)")
+        let weather : Weather = self.viewModel!.getWeatherAtIndex(index: indexPath.row)!
         Log.i ("row \(indexPath.row) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)", "MainVC")
         let isLoading = loadingWeather.contains(weather)
-        cell.weatherLoadingIcon.isHidden = !isLoading
-        cell.weatherIcon.isHidden = isLoading
-        if isLoading {
-            cell.weatherDescription.text = Strings.get("Loading");
-            cell.weatherLoadingIcon.startAnimating()
-        } else {
-            cell.weatherLoadingIcon.stopAnimating()
-            cell.weatherDescription.text = weather.description;
-            cell.weatherIcon.sd_setImage(with: URL(string: String(format: sharedConfig.weatherImageBase, weather.icon)), placeholderImage: nil)
-        }
-        cell.weatherLocation.text = weather.location.addressLines.flatMap({$0})?.joined(separator: ", ");
-        cell.weatherTemp.text = String(format: "%@", presenter.getUnitAsString(weather.temperature));
-        cell.weatherMaxTemp.text = String(format: Strings.get("Max_Temp"), presenter.getUnitAsString(weather.maxTemperature));
-        cell.windSpeed.text = String(format: Strings.get("Wind_Speed"), weather.windSpeed);
-        cell.weatherUpdateDate.text = weather.updateDate.weatherDateString()
-        
-        return cell
+        let weatherUnit = self.viewModel!.desiredTemperature
+        return WeatherListCell.instantiate(tableView, indexPath, weather, isLoading, weatherUnit)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.presenter.removeWeatherAtIndex(index: indexPath.row)
-            if (self.presenter.numberOfWeatherItems() == 0) {
+            self.viewModel!.removeWeatherAtIndex(index: indexPath.row)
+            if (self.viewModel!.numberOfWeatherItems() == 0) {
                 tableView.deleteSections([indexPath.section], with: .fade)
             } else {
                 tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            if (self.viewModel!.numberOfWeatherItems() == 0) {
+                self.emptyTableView.isHidden = false
+                self.weatherTableView.isHidden = true;
             }
         }
     }
@@ -189,7 +130,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         progressView.hide(animated: true)
         switch result {
         case .success(let weather):
-            
             self.emptyTableView.isHidden = true
             self.weatherTableView.isHidden = false;
             if let index = loadingWeather.index(of: weather) {
@@ -214,18 +154,23 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             if weatherList.isEmpty {
                 self.emptyTableView.isHidden = false
                 self.weatherTableView.isHidden = true;
+                
+                // We get back an empty list on first start
+                if self.viewModel!.shouldShowOnboarding(true) {
+                    self.onboardingView.show()
+                }
             } else {
                 self.emptyTableView.isHidden = true
                 self.weatherTableView.isHidden = false;
             }
+            
             for weather in weatherList {
-                
                 if !loadingWeather.contains(weather) {
                     loadingWeather.append(weather)
                 }
                 
                 // TODO: Add loading indicator
-                self.presenter.fetch(weather.location) { [weak self] result in
+                self.viewModel!.fetch(weather.location) { [weak self] result in
                     self?.weatherItemLoaded(result: result)
                 }
             }
@@ -234,19 +179,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         case .failure(let errorType):
             analytics().logEvent(AnalyticsEvents.databaseLoadFailure, [AnalyticsEvents.errorInfoDetail: errorType])
             Log.w("Failed to load weather with error: \(errorType)")
-            showWeatherListLoadFailure(reason: errorType)
+            showWeatherListLoadFailure(reason: errorType, retryCallback: {
+                self.viewModel!.loadWeatherList(callback: self.databaseLoaded)
+            })
             break;
         }
     }
     
     // MARK: Misc
     
-    
     func weatherLocationObtained(result : PickResult) {
         switch result {
         case .success(let location):
             // Add address to list
-            self.presenter.fetch(location) { [weak self] result in
+            self.viewModel!.fetch(location) { [weak self] result in
                 self?.weatherItemLoaded(result: result)
             }
             break

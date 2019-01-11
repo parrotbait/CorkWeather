@@ -16,9 +16,11 @@ extension MainCoordinator {
     }
     
     func showPicker(delegate: GMSPlacePickerViewControllerDelegate) {
+        
         // TODO: Move these out to constants, remember last location
-        let zoomSize = 0.004
-        let coordinates = ( 51.894981, -8.472618)
+        let zoomSize = AppConfig.defaultZoomSize
+        let coordinates = AppConfig.defaultPickerCoordinate
+        
         let center = CLLocationCoordinate2D(latitude: coordinates.0, longitude: coordinates.1)
         let northEast = CLLocationCoordinate2D(latitude: center.latitude + zoomSize, longitude: center.longitude + zoomSize)
         let southWest = CLLocationCoordinate2D(latitude: center.latitude - zoomSize, longitude: center.longitude - zoomSize)
@@ -36,5 +38,9 @@ extension MainCoordinator {
         
         placePicker.delegate = delegate;
         self.navigationController.pushViewController(placePicker, animated: true)
+    }
+    
+    func hidePicker() {
+        self.navigationController.popViewController(animated: true)
     }
 }

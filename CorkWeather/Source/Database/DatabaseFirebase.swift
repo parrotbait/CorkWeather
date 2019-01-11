@@ -22,7 +22,7 @@ class DatabaseFirebase : Database {
         ref = FirebaseDatabase.Database.database().reference()
     }
     
-    func save(weatherList: [Weather]) {
+    func save(weatherList: WeatherList) {
         self.ref.child(weatherKey).removeValue()
         for weather in weatherList {
             
@@ -37,7 +37,7 @@ class DatabaseFirebase : Database {
                 Log.d(er.localizedDescription)
             } else {
                 self?.ref.child((self?.weatherKey)!).observeSingleEvent(of: DataEventType.value) { (snapshot : DataSnapshot) in
-                    var weatherList = [Weather]()
+                    var weatherList = WeatherList()
                     if !snapshot.exists() {
                         callback(Result.success(weatherList))
                         return

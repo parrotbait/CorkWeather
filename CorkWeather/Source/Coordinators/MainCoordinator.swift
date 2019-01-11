@@ -20,6 +20,8 @@ class MainCoordinator: Coordinator {
     func start() {
         let vc = MainViewController.instantiate()
         vc.coordinator = self
+        vc.viewModel = MainViewModel(fetcher: WeatherFetcher(), database: DatabaseFirebase(), reverseGeocoder: GMSReverseGeocoder())
+        
         self.navigationController.pushViewController(vc, animated: true)
     }
 }

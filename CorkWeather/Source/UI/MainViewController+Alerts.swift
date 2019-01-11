@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Proteus_Core
 
 extension MainViewController : MainAlertProtocol {
 
@@ -36,15 +37,15 @@ extension MainViewController : MainAlertProtocol {
         }
     }
     
-    func showWeatherListLoadFailure(reason : DatabaseError) {
+    func showWeatherListLoadFailure(reason : DatabaseError, retryCallback: @escaping RetryCallback)  {
+        
         switch (reason) {
         case .noData:
             DispatchQueue.main.async { [weak self] in
                 let alertController = UIAlertController(title: Strings.get("Error_Title"), message: Strings.get("Backend_Error"), preferredStyle: .alert)
-                
                 alertController.addAction(UIAlertAction(title: Strings.get("Give_Up"), style: .cancel, handler: nil))
-                alertController.addAction(UIAlertAction(title: Strings.get("Try_Again"), style: .default) { [weak self] action in
-                    self?.presenter.loadList()
+                alertController.addAction(UIAlertAction(title: Strings.get("Try_Again"), style: .default) { action in
+                    retryCallback()
                 })
                 self?.present(alertController, animated: true, completion: nil)
             }

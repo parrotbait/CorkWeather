@@ -9,10 +9,10 @@
 import Foundation
 import Proteus_Core
 
-typealias DatabaseResult = Result<[Weather], DatabaseError>
+typealias DatabaseResult = Result<WeatherList, DatabaseError>
 
 protocol Database {
-    func save(weatherList : [Weather])
+    func save(weatherList : WeatherList)
     typealias DatabaseCallback = ((DatabaseResult) -> Void)
     func load(callback : @escaping DatabaseCallback)
 }

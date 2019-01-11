@@ -11,6 +11,7 @@ import UIKit
 import MessageUI
 import SafariServices
 import Proteus_UI
+import Proteus_Core
 
 class InfoViewController: UIViewController, UITextViewDelegate, Storyboarded {
     

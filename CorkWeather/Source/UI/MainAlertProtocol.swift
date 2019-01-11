@@ -10,6 +10,9 @@ import Foundation
 
 protocol MainAlertProtocol {
     func showWeatherFetchFailure(reason : WeatherLoadError)
-    func showWeatherListLoadFailure(reason : DatabaseError)
+ 
+    typealias RetryCallback = (() -> Void)
+    func showWeatherListLoadFailure(reason : DatabaseError, retryCallback: @escaping RetryCallback)
+    
     func showWeatherPickError(reason : PickError)
 }

@@ -7,31 +7,35 @@
 //
 
 import Foundation
+import Proteus_Core
 
-struct Config {
+class AppConfig {
     
     // Parameter is the 'icon' returned by openweathermap
     // TODO: Don't substitute this at runtime, but do it when we've fetched records back from OWM
     let weatherImageBase = "https://openweathermap.org/img/w/%@.png"
     
+    static let defaultPickerCoordinate = ( 51.894981, -8.472618)
+    static let defaultZoomSize = 0.04
+    
     let weatherAPIKey : String
+    let googleAPIKey: String
+    
+    let config = Config()
     
     init() {
         #if DEBUG
-            guard let path = Bundle.main.path(forResource: "config", ofType: "plist") else {
-                fatalError("Missing config.plist file")
-            }
-            let plist = NSDictionary.init(contentsOfFile: path)
-            guard let api = plist?.object(forKey: "weather_api_key") else {
-                fatalError("Missing weather_api_key in plist config file")
-            }
-            weatherAPIKey = api as! String
+            self.weatherAPIKey = config.getKey(key: "weather_api_key")
+            self.googleAPIKey = config.getKey(key: "google_places_api_key")
         #else
             weatherAPIKey = ""
-        
-        if weatherAPIKey.isEmpty {
-            fatalError("Add weather API key above in distribution")
-        }
+            if weatherAPIKey.isEmpty {
+                fatalError("Add weather API key above in distribution")
+            }
+            googleAPIKey = ""
+            if googleAPIKey.isEmpty {
+                fatalError("Add google places API key above in distribution")
+            }
         #endif
     }
     
@@ -40,4 +44,4 @@ struct Config {
     let feedbackEmailRecipients = ["parrotbait@gmail.com"]
 }
 
-let sharedConfig = Config()
+let sharedConfig = AppConfig()

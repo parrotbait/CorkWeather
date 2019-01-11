@@ -75,3 +75,5 @@ struct Weather {
                 updateDate: Date.init(timeIntervalSince1970: source[updateDateKey] as? TimeInterval ?? Date().timeIntervalSince1970))
     }
 }
+
+typealias WeatherList = [Weather]
