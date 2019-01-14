@@ -23,7 +23,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var progressView = MBProgressHUD()
     var coordinator: MainCoordinator?
     var viewModel: MainViewModel?
-    
     var loadingWeather = WeatherList()
     
     override func viewDidLoad() {
@@ -57,15 +56,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.onboardingView.show()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     // MARK: IBActions
     
     @IBAction func addClicked(sender : UIBarButtonItem) {
@@ -87,11 +77,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let weather : Weather = self.viewModel!.getWeatherAtIndex(index: indexPath.row)!
-        Log.i ("row \(indexPath.row) weather location \(weather.location.coordinate.latitude) \(weather.location.coordinate.longitude)", "MainVC")
-        let isLoading = loadingWeather.contains(weather)
-        let weatherUnit = self.viewModel!.desiredTemperature
-        return WeatherListCell.instantiate(tableView, indexPath, weather, isLoading, weatherUnit)
+        let cell: WeatherListCell = tableView.dequeueReusableCell(for: indexPath)
+        if let viewModel = self.viewModel!.getWeatherViewModelAtIndex(index: indexPath.row) {
+            cell.viewModel = viewModel
+            cell.load(false)
+        }
+        return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

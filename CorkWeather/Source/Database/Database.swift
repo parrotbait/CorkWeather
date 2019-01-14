@@ -15,4 +15,8 @@ protocol Database {
     func save(weatherList : WeatherList)
     typealias DatabaseCallback = ((DatabaseResult) -> Void)
     func load(callback : @escaping DatabaseCallback)
+    
+    // Get the last picked coordinate
+    func lastCoordinatePicked() -> WeatherCoordinate
+    func savePickedCoordinate(_ coord: WeatherCoordinate)
 }

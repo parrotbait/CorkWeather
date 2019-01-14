@@ -9,13 +9,13 @@
 import Foundation
 
 struct AnalyticsFactory {
-    static var analytics = AnalyticsFirebase()
-    
     public static func get() -> AnalyticsProtocol {
-        return analytics
+        return AnalyticsFirebase()
     }
 }
 
+private let analyticsObj = AnalyticsFactory.get()
+
 func analytics() -> AnalyticsProtocol {
-    return AnalyticsFactory.get()
+    return analyticsObj
 }

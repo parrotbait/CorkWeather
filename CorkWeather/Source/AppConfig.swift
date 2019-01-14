@@ -16,7 +16,7 @@ class AppConfig {
     let weatherImageBase = "https://openweathermap.org/img/w/%@.png"
     private let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&APPID=%@%@"
     
-    static let defaultPickerCoordinate = ( 51.894981, -8.472618)
+    static let defaultPickerCoordinate = WeatherCoordinate.init(latitude: 51.894981, longitude: -8.472618)
     static let defaultZoomSize = 0.04
     
     let weatherAPIKey : String

@@ -12,24 +12,10 @@ import Proteus_Core
 import CoreLocation
 
 typealias WeatherItemResult = Result<Weather, WeatherLoadError>
+typealias WeatherItemCallback = ((_ result : WeatherItemResult) -> Void)
+typealias WeatherListCallback = ((_ result: DatabaseResult) -> Void)
 
-protocol WeatherViewModel {
-    typealias WeatherItemCallback = ((_ result : WeatherItemResult) -> Void)
-    func fetch(_ location : WeatherLocation, callback : @escaping WeatherItemCallback)
-    func getTime() -> String
-    
-    // Weather data
-    func removeWeatherAtIndex(index : Int)
-    func numberOfWeatherItems() -> Int
-    func getWeatherAtIndex(index : Int) -> Weather?
-    
-    typealias WeatherListCallback = ((_ result: DatabaseResult) -> Void)
-    func loadWeatherList(callback: @escaping WeatherListCallback)
-    
-    func shouldShowOnboarding(_ force : Bool) -> Bool
-}
-
-class MainViewModel : WeatherViewModel {
+class MainViewModel {
     
     private var fetcher : WeatherFetcherProtocol
     public var desiredTemperature = TemperatureUnit.celsius
@@ -60,12 +46,14 @@ class MainViewModel : WeatherViewModel {
         return self.weatherData.count
     }
     
-    func getWeatherAtIndex(index: Int) -> Weather? {
+    func getWeatherViewModelAtIndex(index: Int) -> WeatherCellViewModel? {
         if (index < 0 || index >= self.weatherData.count) {
             return nil
         }
-        return self.weatherData[index]
+        
+        return WeatherCellViewModel.init(desiredTemperature, weather: self.weatherData[index])
     }
+    
     
     public func loadWeatherList(callback: @escaping WeatherListCallback) {
         self.database.load { [weak self] (result : DatabaseResult) in
@@ -151,4 +139,11 @@ class MainViewModel : WeatherViewModel {
         return true
     }
     
+    public func getLastPickerCoord() -> WeatherCoordinate {
+        return self.database.lastCoordinatePicked()
+    }
+    
+    public func savePickedCoordinate(_ coord: WeatherCoordinate) {
+        self.database.savePickedCoordinate(coord)
+    }
 }

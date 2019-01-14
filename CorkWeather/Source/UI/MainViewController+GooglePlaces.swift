@@ -17,7 +17,7 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
     
     func showPicker() {
         analytics().logEvent(AnalyticsEvents.showPlacePicker)
-        self.coordinator?.showPicker(delegate: self)
+        self.coordinator?.showPicker(coordinate: self.viewModel!.getLastPickerCoord(), delegate: self)
     }
 
     public func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
@@ -25,6 +25,8 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
         analytics().logEvent(AnalyticsEvents.placePicked, [AnalyticsEvents.pickedLongitude : place.coordinate.longitude, AnalyticsEvents.pickedLatitude : place.coordinate.latitude])
         
         self.viewModel!.reverseGeocode(location: place.coordinate) { (result) in
+            // Save the pick location so the map will start in the same place next time
+            self.viewModel!.savePickedCoordinate(WeatherCoordinate.from(coord: place.coordinate))
             self.weatherLocationObtained(result: result)
         }
         

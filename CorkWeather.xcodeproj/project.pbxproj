@@ -11,7 +11,7 @@
 		D708662C21E8A6180000E477 /* GMSReverseGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708662B21E8A6180000E477 /* GMSReverseGeocoder.swift */; };
 		D708662E21E8A62A0000E477 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708662D21E8A62A0000E477 /* MainViewModel.swift */; };
 		D708663921E8BAEF0000E477 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708663821E8BAEF0000E477 /* OnboardingView.swift */; };
-		D708663B21E8BB150000E477 /* MainCoordinator+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708663A21E8BB150000E477 /* MainCoordinator+Weather.swift */; };
+		D708663B21E8BB150000E477 /* MainCoordinator+Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708663A21E8BB150000E477 /* MainCoordinator+Maps.swift */; };
 		D708663D21E8BB240000E477 /* WeatherCoordinate+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708663C21E8BB240000E477 /* WeatherCoordinate+Distance.swift */; };
 		D708664121E8C2930000E477 /* ReverseGeocoderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708664021E8C2930000E477 /* ReverseGeocoderProvider.swift */; };
 		D708664321E8C9880000E477 /* WeatherListCell+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708664221E8C9880000E477 /* WeatherListCell+Weather.swift */; };
@@ -21,6 +21,8 @@
 		D7126B3C21ECD67E007B32D3 /* LocalisedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B3821ECD67D007B32D3 /* LocalisedLabel.swift */; };
 		D7126B3D21ECD67E007B32D3 /* LocalisedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B3921ECD67E007B32D3 /* LocalisedBarButtonItem.swift */; };
 		D7126B3E21ECD67E007B32D3 /* LocalisedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B3A21ECD67E007B32D3 /* LocalisedButton.swift */; };
+		D7126B4021ECD9E7007B32D3 /* GMSPlacePickerConfig+Coords.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B3F21ECD9E7007B32D3 /* GMSPlacePickerConfig+Coords.swift */; };
+		D7126B5321ECF6D5007B32D3 /* WeatherCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B5221ECF6D5007B32D3 /* WeatherCellViewModel.swift */; };
 		D71BD25321C3A5870093B258 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71BD25221C3A5870093B258 /* AppConfig.swift */; };
 		D71F93A51F9546300063282D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D71F93A41F9546300063282D /* README.md */; };
 		D71F93A71F9547EF0063282D /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71F93A61F9547EF0063282D /* SafariServices.framework */; };
@@ -128,7 +130,7 @@
 		D708662B21E8A6180000E477 /* GMSReverseGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GMSReverseGeocoder.swift; path = ViewModels/GMSReverseGeocoder.swift; sourceTree = "<group>"; };
 		D708662D21E8A62A0000E477 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewModel.swift; path = ViewModels/MainViewModel.swift; sourceTree = "<group>"; };
 		D708663821E8BAEF0000E477 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingView.swift; path = Views/OnboardingView.swift; sourceTree = "<group>"; };
-		D708663A21E8BB150000E477 /* MainCoordinator+Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MainCoordinator+Weather.swift"; path = "Coordinators/MainCoordinator+Weather.swift"; sourceTree = "<group>"; };
+		D708663A21E8BB150000E477 /* MainCoordinator+Maps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MainCoordinator+Maps.swift"; path = "Coordinators/MainCoordinator+Maps.swift"; sourceTree = "<group>"; };
 		D708663C21E8BB240000E477 /* WeatherCoordinate+Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WeatherCoordinate+Distance.swift"; path = "Extensions/WeatherCoordinate+Distance.swift"; sourceTree = "<group>"; };
 		D708664021E8C2930000E477 /* ReverseGeocoderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReverseGeocoderProvider.swift; path = ViewModels/ReverseGeocoderProvider.swift; sourceTree = "<group>"; };
 		D708664221E8C9880000E477 /* WeatherListCell+Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherListCell+Weather.swift"; sourceTree = "<group>"; };
@@ -138,6 +140,8 @@
 		D7126B3821ECD67D007B32D3 /* LocalisedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisedLabel.swift; sourceTree = "<group>"; };
 		D7126B3921ECD67E007B32D3 /* LocalisedBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisedBarButtonItem.swift; sourceTree = "<group>"; };
 		D7126B3A21ECD67E007B32D3 /* LocalisedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisedButton.swift; sourceTree = "<group>"; };
+		D7126B3F21ECD9E7007B32D3 /* GMSPlacePickerConfig+Coords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GMSPlacePickerConfig+Coords.swift"; path = "Extensions/GMSPlacePickerConfig+Coords.swift"; sourceTree = "<group>"; };
+		D7126B5221ECF6D5007B32D3 /* WeatherCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherCellViewModel.swift; path = ViewModels/WeatherCellViewModel.swift; sourceTree = "<group>"; };
 		D71BD25221C3A5870093B258 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		D71BD25621C3A87F0093B258 /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = config.plist; path = CorkWeather/config.plist; sourceTree = SOURCE_ROOT; };
 		D71F93A41F9546300063282D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -224,8 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				D708662D21E8A62A0000E477 /* MainViewModel.swift */,
-				D708662B21E8A6180000E477 /* GMSReverseGeocoder.swift */,
-				D708664021E8C2930000E477 /* ReverseGeocoderProvider.swift */,
+				D7126B5221ECF6D5007B32D3 /* WeatherCellViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -236,6 +239,15 @@
 				D708663821E8BAEF0000E477 /* OnboardingView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		D7126B5121ECED34007B32D3 /* Geocoding */ = {
+			isa = PBXGroup;
+			children = (
+				D708664021E8C2930000E477 /* ReverseGeocoderProvider.swift */,
+				D708662B21E8A6180000E477 /* GMSReverseGeocoder.swift */,
+			);
+			name = Geocoding;
 			sourceTree = "<group>";
 		};
 		D79E823921E7F72B00DAC211 /* Products */ = {
@@ -260,7 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				D79E826321E7FB2E00DAC211 /* MainCoordinator.swift */,
-				D708663A21E8BB150000E477 /* MainCoordinator+Weather.swift */,
+				D708663A21E8BB150000E477 /* MainCoordinator+Maps.swift */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -281,6 +293,7 @@
 				D7C23E3D1F85750E005A3DCB /* Date+Displayable.swift */,
 				D708663C21E8BB240000E477 /* WeatherCoordinate+Distance.swift */,
 				D708664421E8CAEE0000E477 /* Int+Weather.swift */,
+				D7126B3F21ECD9E7007B32D3 /* GMSPlacePickerConfig+Coords.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -352,6 +365,7 @@
 				D7DF656C1F5F4999008109C7 /* Errors */,
 				D79F48581F58A5ED00E1CB12 /* Database */,
 				D7E39C6A1F33BB5F00D006AE /* Fetcher */,
+				D7126B5121ECED34007B32D3 /* Geocoding */,
 				D7E39C601F33B3A400D006AE /* Model */,
 				D7E39C6F1F33BB5F00D006AE /* UI */,
 				D708662A21E8A5D30000E477 /* ViewModels */,
@@ -642,7 +656,8 @@
 			files = (
 				D7EACFC31F3C4AA5008C9BDE /* MapsProtocol.swift in Sources */,
 				D7126B3B21ECD67E007B32D3 /* LanguageSelectorView.swift in Sources */,
-				D708663B21E8BB150000E477 /* MainCoordinator+Weather.swift in Sources */,
+				D708663B21E8BB150000E477 /* MainCoordinator+Maps.swift in Sources */,
+				D7126B5321ECF6D5007B32D3 /* WeatherCellViewModel.swift in Sources */,
 				D7E979591F8EB9CA0049E2A6 /* InfoViewController.swift in Sources */,
 				D7126B3E21ECD67E007B32D3 /* LocalisedButton.swift in Sources */,
 				D708664521E8CAEE0000E477 /* Int+Weather.swift in Sources */,
@@ -675,6 +690,7 @@
 				D79E826421E7FB2E00DAC211 /* MainCoordinator.swift in Sources */,
 				D7E39C751F33BB5F00D006AE /* MainViewController.swift in Sources */,
 				D7E39C7E1F33C29900D006AE /* WeatherJsonParser.swift in Sources */,
+				D7126B4021ECD9E7007B32D3 /* GMSPlacePickerConfig+Coords.swift in Sources */,
 				D7E39C741F33BB5F00D006AE /* WeatherRemoteFetcher.swift in Sources */,
 				D71BD25321C3A5870093B258 /* AppConfig.swift in Sources */,
 				D708664121E8C2930000E477 /* ReverseGeocoderProvider.swift in Sources */,

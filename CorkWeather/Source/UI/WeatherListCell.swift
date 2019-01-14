@@ -8,8 +8,9 @@
 
 import UIKit
 import SWLogger
+import Proteus_UI
 
-class WeatherListCell : UITableViewCell {
+class WeatherListCell: UITableViewCell {
     @IBOutlet weak var weatherLocation: UILabel!
     @IBOutlet weak var weatherDescription: UILabel!
     @IBOutlet weak var weatherTemp: UILabel!
@@ -19,12 +20,8 @@ class WeatherListCell : UITableViewCell {
     @IBOutlet weak var weatherLoadingIcon: UIActivityIndicatorView!
     @IBOutlet weak var weatherUpdateDate: UILabel!
     
-    required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        Log.v ("init")
-    }
+    var viewModel: WeatherCellViewModel?
 }
+
+// Allows use of dequeueReusableCell without a string
+extension WeatherListCell: ReusableView {}

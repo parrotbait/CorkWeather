@@ -9,28 +9,24 @@
 import Foundation
 import SWLogger
 import Proteus_Core
+import Proteus_UI
 
 extension WeatherListCell {
-    static func instantiate(_ tableView: UITableView, _ indexPath: IndexPath, _ weather: Weather, _ isLoading: Bool, _ weatherUnit: TemperatureUnit) -> WeatherListCell! {
-        let cellId = tableView.dequeueReusableCell(withIdentifier: String(describing: self), for: indexPath)
-        guard let cell = cellId as? WeatherListCell else {
-            return nil
-        }
-        cell.weatherLoadingIcon.isHidden = !isLoading
-        cell.weatherIcon.isHidden = isLoading
+    func load(_ isLoading: Bool) {
+        //self.weatherLoadingIcon.isHidden = !isLoading
+        //self.weatherIcon.isHidden = isLoading
         if isLoading {
-            cell.weatherDescription.text = Strings.get("Loading")
-            cell.weatherLoadingIcon.startAnimating()
+            self.weatherDescription.text = Strings.get("Loading")
+            self.weatherLoadingIcon.startAnimating()
         } else {
-            cell.weatherLoadingIcon.stopAnimating()
-            cell.weatherDescription.text = weather.description
-            cell.weatherIcon.sd_setImage(with: URL(string: String(format: sharedConfig.weatherImageBase, weather.icon)), placeholderImage: nil)
+            self.weatherLoadingIcon.stopAnimating()
+            self.weatherDescription.text = viewModel!.description
+            self.weatherIcon.sd_setImage(with: URL(string: String(format: sharedConfig.weatherImageBase, viewModel!.icon)), placeholderImage: nil)
         }
-        cell.weatherLocation.text = weather.location.addressLines.flatMap({$0})?.joined(separator: ", ")
-        cell.weatherTemp.text = String(format: "%@", weather.temperature.getAsString(forUnit: weatherUnit))
-        cell.weatherMaxTemp.text = String(format: Strings.get("Max_Temp"), weather.maxTemperature.getAsString(forUnit: weatherUnit))
-        cell.windSpeed.text = String(format: Strings.get("Wind_Speed"), weather.windSpeed)
-        cell.weatherUpdateDate.text = weather.updateDate.weatherDateString()
-        return cell
+        self.weatherLocation.text = viewModel!.locationText
+        self.weatherTemp.text = viewModel!.temperature
+        self.weatherMaxTemp.text = viewModel!.maxTemperature
+        self.windSpeed.text = viewModel!.windSpeed
+        self.weatherUpdateDate.text = viewModel!.date
     }
 }

@@ -10,22 +10,12 @@ import Foundation
 import GooglePlacePicker
 
 extension MainCoordinator {
-    func showInfo() {
-        let viewcontroller = InfoViewController.instantiate()
-        self.navigationController.pushViewController(viewcontroller, animated: true)
-    }
-    
-    func showPicker(delegate: GMSPlacePickerViewControllerDelegate) {
+    func showPicker(coordinate: WeatherCoordinate, delegate: GMSPlacePickerViewControllerDelegate) {
         
         // TODO: Move these out to constants, remember last location
         let zoomSize = AppConfig.defaultZoomSize
-        let coordinates = AppConfig.defaultPickerCoordinate
-        
-        let center = CLLocationCoordinate2D(latitude: coordinates.0, longitude: coordinates.1)
-        let northEast = CLLocationCoordinate2D(latitude: center.latitude + zoomSize, longitude: center.longitude + zoomSize)
-        let southWest = CLLocationCoordinate2D(latitude: center.latitude - zoomSize, longitude: center.longitude - zoomSize)
-        let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
-        let config = GMSPlacePickerConfig(viewport: viewport)
+
+        let config = GMSPlacePickerConfig.create(coordinate: coordinate, zoomSize: zoomSize)
         let placePicker = GMSPlacePickerViewController(config: config)
         
         // Without setting the search bar color the GMS search field cannot be seen

@@ -7,10 +7,17 @@
 //
 
 import Foundation
+import CoreLocation
 
 public typealias LocationDegrees = Double
 
 struct WeatherCoordinate {
     let latitude : LocationDegrees
     let longitude : LocationDegrees
+}
+
+extension WeatherCoordinate {
+    static func from(coord: CLLocationCoordinate2D) -> WeatherCoordinate {
+        return WeatherCoordinate.init(latitude: coord.latitude, longitude: coord.longitude)
+    }
 }

@@ -8,19 +8,19 @@
 
 import Foundation
 
-struct AnalyticsEvents {
-    public static let onboardingShown = "onboarding_shown"
-    public static let onboardingClicked = "onboarding_clicked"
-    public static let addClicked = "add_clicked"
-    public static let infoClicked = "info_clicked"
-    public static let contactClicked = "contact_clicked"
-    public static let showPlacePicker = "show_place_picker"
-    public static let placePicked = "place_picked"
-    public static let pickedLatitude = "picked_latitude"
-    public static let pickedLongitude = "picked_longitude"
-    public static let placePickedError = "place_picked_error"
-    public static let weatherLocationFetchFailure = "failed_fetch_weather_location_info"
-    public static let databaseLoadFailure = "database_load_failure"
-    public static let weatherItemLoadFailure = "weather_item_load_failure"
-    public static let errorInfoDetail = "detail"
+public struct AnalyticsEvents {
+    static let onboardingShown = "onboarding_shown"
+    static let onboardingClicked = "onboarding_clicked"
+    static let addClicked = "add_clicked"
+    static let infoClicked = "info_clicked"
+    static let contactClicked = "contact_clicked"
+    static let showPlacePicker = "show_place_picker"
+    static let placePicked = "place_picked"
+    static let pickedLatitude = "picked_latitude"
+    static let pickedLongitude = "picked_longitude"
+    static let placePickedError = "place_picked_error"
+    static let weatherLocationFetchFailure = "failed_fetch_weather_location_info"
+    static let databaseLoadFailure = "database_load_failure"
+    static let weatherItemLoadFailure = "weather_item_load_failure"
+    static let errorInfoDetail = "detail"
 }

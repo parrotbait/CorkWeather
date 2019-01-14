@@ -25,4 +25,9 @@ class MainCoordinator: Coordinator {
         
         self.navigationController.pushViewController(viewcontroller, animated: true)
     }
+    
+    func showInfo() {
+        let viewcontroller = InfoViewController.instantiate()
+        self.navigationController.pushViewController(viewcontroller, animated: true)
+    }
 }

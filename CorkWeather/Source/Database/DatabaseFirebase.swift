@@ -14,9 +14,10 @@ import CoreLocation
 import Proteus_Core
 
 class DatabaseFirebase : Database {
-    var databaseRef: DatabaseReference!
-    
+    let databaseRef: DatabaseReference
     let weatherKey = "weather"
+    let latKey = "coord_lat"
+    let lonKey = "coord_lon"
     
     init() {
         databaseRef = FirebaseDatabase.Database.database().reference()
@@ -54,6 +55,20 @@ class DatabaseFirebase : Database {
                 }
             }
         }
+    }
+    
+    func lastCoordinatePicked() -> WeatherCoordinate {
+        if UserDefaults.standard.contains(latKey) {
+            return AppConfig.defaultPickerCoordinate
+        }
+        let lat = UserDefaults.standard.double(forKey: latKey)
+        let lon = UserDefaults.standard.double(forKey: lonKey)
+        return WeatherCoordinate.init(latitude: lat, longitude: lon)
         
+    }
+    
+    func savePickedCoordinate(_ coord: WeatherCoordinate) {
+        UserDefaults.standard.set(coord.latitude, forKey: latKey)
+        UserDefaults.standard.set(coord.longitude, forKey: lonKey)
     }
 }
