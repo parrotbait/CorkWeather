@@ -11,8 +11,8 @@ import GooglePlacePicker
 
 extension MainCoordinator {
     func showInfo() {
-        let vc = InfoViewController.instantiate()
-        self.navigationController.pushViewController(vc, animated: true)
+        let viewcontroller = InfoViewController.instantiate()
+        self.navigationController.pushViewController(viewcontroller, animated: true)
     }
     
     func showPicker(delegate: GMSPlacePickerViewControllerDelegate) {
@@ -33,10 +33,11 @@ extension MainCoordinator {
             NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.systemFontSize)
         ]
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.classForCoder() as! UIAppearanceContainer.Type]).defaultTextAttributes = searchBarTextAttributes
-        // Color of the placeholder text in the search bar prior to text entry.
+        if let searchClass = UISearchBar.classForCoder() as? UIAppearanceContainer.Type {
+            UITextField.appearance(whenContainedInInstancesOf: [searchClass]).defaultTextAttributes = searchBarTextAttributes
+        }
         
-        placePicker.delegate = delegate;
+        placePicker.delegate = delegate
         self.navigationController.pushViewController(placePicker, animated: true)
     }
     

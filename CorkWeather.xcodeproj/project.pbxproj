@@ -16,8 +16,12 @@
 		D708664121E8C2930000E477 /* ReverseGeocoderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708664021E8C2930000E477 /* ReverseGeocoderProvider.swift */; };
 		D708664321E8C9880000E477 /* WeatherListCell+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708664221E8C9880000E477 /* WeatherListCell+Weather.swift */; };
 		D708664521E8CAEE0000E477 /* Int+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708664421E8CAEE0000E477 /* Int+Weather.swift */; };
+		D7126B3221ECA3FA007B32D3 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71BD25621C3A87F0093B258 /* config.plist */; };
+		D7126B3B21ECD67E007B32D3 /* LanguageSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B3521ECD67D007B32D3 /* LanguageSelectorView.swift */; };
+		D7126B3C21ECD67E007B32D3 /* LocalisedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B3821ECD67D007B32D3 /* LocalisedLabel.swift */; };
+		D7126B3D21ECD67E007B32D3 /* LocalisedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B3921ECD67E007B32D3 /* LocalisedBarButtonItem.swift */; };
+		D7126B3E21ECD67E007B32D3 /* LocalisedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B3A21ECD67E007B32D3 /* LocalisedButton.swift */; };
 		D71BD25321C3A5870093B258 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71BD25221C3A5870093B258 /* AppConfig.swift */; };
-		D71BD25721C3A87F0093B258 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71BD25621C3A87F0093B258 /* config.plist */; };
 		D71F93A51F9546300063282D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D71F93A41F9546300063282D /* README.md */; };
 		D71F93A71F9547EF0063282D /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71F93A61F9547EF0063282D /* SafariServices.framework */; };
 		D751C9761F8569140028B890 /* Weather+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D751C9751F8569140028B890 /* Weather+Equatable.swift */; };
@@ -129,6 +133,11 @@
 		D708664021E8C2930000E477 /* ReverseGeocoderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReverseGeocoderProvider.swift; path = ViewModels/ReverseGeocoderProvider.swift; sourceTree = "<group>"; };
 		D708664221E8C9880000E477 /* WeatherListCell+Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherListCell+Weather.swift"; sourceTree = "<group>"; };
 		D708664421E8CAEE0000E477 /* Int+Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Int+Weather.swift"; path = "Extensions/Int+Weather.swift"; sourceTree = "<group>"; };
+		D7126B2E21ECA32E007B32D3 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		D7126B3521ECD67D007B32D3 /* LanguageSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectorView.swift; sourceTree = "<group>"; };
+		D7126B3821ECD67D007B32D3 /* LocalisedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisedLabel.swift; sourceTree = "<group>"; };
+		D7126B3921ECD67E007B32D3 /* LocalisedBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisedBarButtonItem.swift; sourceTree = "<group>"; };
+		D7126B3A21ECD67E007B32D3 /* LocalisedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisedButton.swift; sourceTree = "<group>"; };
 		D71BD25221C3A5870093B258 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		D71BD25621C3A87F0093B258 /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = config.plist; path = CorkWeather/config.plist; sourceTree = SOURCE_ROOT; };
 		D71F93A41F9546300063282D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -329,6 +338,7 @@
 				D7E39C471F33B13400D006AE /* Info.plist */,
 				D79F485D1F58B30300E1CB12 /* GoogleService-Info.plist */,
 				D71F93A41F9546300063282D /* README.md */,
+				D7126B2E21ECA32E007B32D3 /* .swiftlint.yml */,
 			);
 			path = CorkWeather;
 			sourceTree = "<group>";
@@ -389,6 +399,10 @@
 		D7E39C6F1F33BB5F00D006AE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D7126B3521ECD67D007B32D3 /* LanguageSelectorView.swift */,
+				D7126B3921ECD67E007B32D3 /* LocalisedBarButtonItem.swift */,
+				D7126B3A21ECD67E007B32D3 /* LocalisedButton.swift */,
+				D7126B3821ECD67D007B32D3 /* LocalisedLabel.swift */,
 				D7E39C701F33BB5F00D006AE /* MainViewController.swift */,
 				D7EACFC01F3C4A46008C9BDE /* MainViewController+GooglePlaces.swift */,
 				D7D1BD2B1F799E0600F1AD6D /* MainViewController+Alerts.swift */,
@@ -417,6 +431,7 @@
 			buildConfigurationList = D7E39C4A1F33B13400D006AE /* Build configuration list for PBXNativeTarget "CorkWeather" */;
 			buildPhases = (
 				1D57500B07FC07F48B293B89 /* [CP] Check Pods Manifest.lock */,
+				D708665021E8FEE80000E477 /* SwiftLint */,
 				D7E39C341F33B13400D006AE /* Sources */,
 				D7E39C351F33B13400D006AE /* Frameworks */,
 				D7E39C361F33B13400D006AE /* Resources */,
@@ -516,11 +531,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7126B3221ECA3FA007B32D3 /* config.plist in Resources */,
 				D7E39C461F33B13400D006AE /* LaunchScreen.storyboard in Resources */,
 				D7E39C431F33B13400D006AE /* Assets.xcassets in Resources */,
 				D7E39C411F33B13400D006AE /* Main.storyboard in Resources */,
 				D71F93A51F9546300063282D /* README.md in Resources */,
-				D71BD25721C3A87F0093B258 /* config.plist in Resources */,
 				D7E39C5C1F33B2EA00D006AE /* CorkResponse.json in Resources */,
 				D7E39C8C1F33D06600D006AE /* Localizable.strings in Resources */,
 				D79F485E1F58B30300E1CB12 /* GoogleService-Info.plist in Resources */,
@@ -600,6 +615,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CorkWeather/Pods-CorkWeather-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D708665021E8FEE80000E477 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -608,8 +641,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7EACFC31F3C4AA5008C9BDE /* MapsProtocol.swift in Sources */,
+				D7126B3B21ECD67E007B32D3 /* LanguageSelectorView.swift in Sources */,
 				D708663B21E8BB150000E477 /* MainCoordinator+Weather.swift in Sources */,
 				D7E979591F8EB9CA0049E2A6 /* InfoViewController.swift in Sources */,
+				D7126B3E21ECD67E007B32D3 /* LocalisedButton.swift in Sources */,
 				D708664521E8CAEE0000E477 /* Int+Weather.swift in Sources */,
 				D7DF65721F5F4A20008109C7 /* WeatherLoadError.swift in Sources */,
 				D7E39C711F33BB5F00D006AE /* WeatherFetcher.swift in Sources */,
@@ -629,6 +664,7 @@
 				D7EACFC11F3C4A46008C9BDE /* MainViewController+GooglePlaces.swift in Sources */,
 				D7C23E3E1F85750E005A3DCB /* Date+Displayable.swift in Sources */,
 				D79F485A1F58A5F700E1CB12 /* Database.swift in Sources */,
+				D7126B3C21ECD67E007B32D3 /* LocalisedLabel.swift in Sources */,
 				D7D1BD2C1F799E0600F1AD6D /* MainViewController+Alerts.swift in Sources */,
 				D708662C21E8A6180000E477 /* GMSReverseGeocoder.swift in Sources */,
 				D708664321E8C9880000E477 /* WeatherListCell+Weather.swift in Sources */,
@@ -646,6 +682,7 @@
 				D7E0F10E1FAA839000C90A72 /* AnalyticsFactory.swift in Sources */,
 				D751C9761F8569140028B890 /* Weather+Equatable.swift in Sources */,
 				D7E39C731F33BB5F00D006AE /* WeatherLocalFetcher.swift in Sources */,
+				D7126B3D21ECD67E007B32D3 /* LocalisedBarButtonItem.swift in Sources */,
 				D79F485C1F58A84C00E1CB12 /* DatabaseFirebase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -811,7 +848,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9B56203EBBE4934156980023 /* Pods-CorkWeather.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XFV7ZQHJ8V;
 				INFOPLIST_FILE = CorkWeather/Info.plist;
@@ -827,7 +863,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD4A74B8A8D40B66F1391E0A /* Pods-CorkWeather.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XFV7ZQHJ8V;
 				INFOPLIST_FILE = CorkWeather/Info.plist;

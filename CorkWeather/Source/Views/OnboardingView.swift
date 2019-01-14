@@ -31,13 +31,13 @@ class OnboardingView: UIView {
         UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 1.0
             self.step1Background.alpha = 1.0
-        }) { (_ result : Bool) in
+        }, completion: { (_ result : Bool) in
             if result {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.arrowButton.alpha = 1.0
-                });
+                })
             }
-        }
+        })
         
         let tapGR = UITapGestureRecognizer()
         tapGR.addTarget(self, action: #selector(onboardingClicked))
@@ -55,9 +55,9 @@ class OnboardingView: UIView {
     func hideOnboarding(_ callback: HideComplete?) {
         UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 0.0
-        }) { (_ result : Bool) in
+        }, completion: { (_ result : Bool) in
             self.isHidden = true
             callback?()
-        }
+        })
     }
 }

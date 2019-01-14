@@ -22,7 +22,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var progressView = MBProgressHUD()
     var coordinator: MainCoordinator?
-    var viewModel: MainViewModel? = nil
+    var viewModel: MainViewModel?
     
     var loadingWeather = WeatherList()
     
@@ -105,7 +105,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if (self.viewModel!.numberOfWeatherItems() == 0) {
                 self.emptyTableView.isHidden = false
-                self.weatherTableView.isHidden = true;
+                self.weatherTableView.isHidden = true
             }
         }
     }
@@ -113,11 +113,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0;
+        return 100.0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0;
+        return 100.0
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -131,19 +131,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch result {
         case .success(let weather):
             self.emptyTableView.isHidden = true
-            self.weatherTableView.isHidden = false;
+            self.weatherTableView.isHidden = false
             if let index = loadingWeather.index(of: weather) {
                 loadingWeather.remove(at: index)
             }
             
             // TODO: Only refresh the correct row
             self.weatherTableView.reloadData()
-            break;
         case .failure(let error):
             analytics().logEvent(AnalyticsEvents.weatherItemLoadFailure, [AnalyticsEvents.errorInfoDetail: error])
             Log.w("Failed to load weather with error: \(error)")
             showWeatherFetchFailure(reason: error)
-            break;
         }
     }
     
@@ -153,7 +151,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         case .success(let weatherList):
             if weatherList.isEmpty {
                 self.emptyTableView.isHidden = false
-                self.weatherTableView.isHidden = true;
+                self.weatherTableView.isHidden = true
                 
                 // We get back an empty list on first start
                 if self.viewModel!.shouldShowOnboarding(true) {
@@ -161,7 +159,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             } else {
                 self.emptyTableView.isHidden = true
-                self.weatherTableView.isHidden = false;
+                self.weatherTableView.isHidden = false
             }
             
             for weather in weatherList {
@@ -175,14 +173,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
             self.weatherTableView.reloadData()
-            break;
         case .failure(let errorType):
             analytics().logEvent(AnalyticsEvents.databaseLoadFailure, [AnalyticsEvents.errorInfoDetail: errorType])
             Log.w("Failed to load weather with error: \(errorType)")
             showWeatherListLoadFailure(reason: errorType, retryCallback: {
                 self.viewModel!.loadWeatherList(callback: self.databaseLoaded)
             })
-            break;
         }
     }
     
@@ -195,12 +191,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.viewModel!.fetch(location) { [weak self] result in
                 self?.weatherItemLoaded(result: result)
             }
-            break
         case .failure(let error):
             analytics().logEvent(AnalyticsEvents.weatherLocationFetchFailure, [AnalyticsEvents.errorInfoDetail: error])
             progressView.hide(animated: true)
             showWeatherPickError(reason: error)
-            break
         }
     }
     
@@ -209,4 +203,3 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.coordinator?.showInfo()
     }
 }
-

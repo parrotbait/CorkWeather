@@ -16,7 +16,7 @@ typealias WeatherItemResult = Result<Weather, WeatherLoadError>
 protocol WeatherViewModel {
     typealias WeatherItemCallback = ((_ result : WeatherItemResult) -> Void)
     func fetch(_ location : WeatherLocation, callback : @escaping WeatherItemCallback)
-    func getTime() -> String;
+    func getTime() -> String
     
     // Weather data
     func removeWeatherAtIndex(index : Int)
@@ -32,7 +32,7 @@ protocol WeatherViewModel {
 class MainViewModel : WeatherViewModel {
     
     private var fetcher : WeatherFetcherProtocol
-    public var desiredTemperature = TemperatureUnit.Celsius
+    public var desiredTemperature = TemperatureUnit.celsius
     private let reverseGeocoder: ReverseGeocoderProvider
     private let dateFormatter = DateFormatter()
     private let database : Database
@@ -40,7 +40,7 @@ class MainViewModel : WeatherViewModel {
     private var onboardingUserDefaults = "onboarding"
     
     init (fetcher : WeatherFetcherProtocol, database : Database, reverseGeocoder: ReverseGeocoderProvider) {
-        self.fetcher = fetcher;
+        self.fetcher = fetcher
         self.database = database
         self.reverseGeocoder = reverseGeocoder
         
@@ -68,13 +68,12 @@ class MainViewModel : WeatherViewModel {
     }
     
     public func loadWeatherList(callback: @escaping WeatherListCallback) {
-        self.database.load { [weak self]
-            (result : DatabaseResult) in
+        self.database.load { [weak self] (result : DatabaseResult) in
             switch (result) {
             case .success(let weatherList):
                 self?.weatherData = weatherList
-                break
             default:
+                // Do nothing
                 break
             }
             
@@ -101,15 +100,13 @@ class MainViewModel : WeatherViewModel {
                         self?.database.save(weatherList: weatherData)
                         
                     }
-                    callback(Result.success(weather));
+                    callback(Result.success(weather))
                     
                 }
-                break
             case .failure(let errorType):
                 DispatchQueue.main.async {
                     callback(Result.failure(errorType))
                 }
-                break
             }
         }
     }
@@ -136,10 +133,8 @@ class MainViewModel : WeatherViewModel {
                 } else {
                     callback(result)
                 }
-                break
-            case .failure(_):
+            case .failure:
                 callback(result)
-                break
             }
         }
     }

@@ -19,16 +19,15 @@ class InfoViewController: UIViewController, UITextViewDelegate, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = Strings.get("Info_Title")
-
+        
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         let originalText = NSMutableAttributedString.init(string: Strings.get("Follow_Twitter"), attributes: [NSAttributedString.Key.foregroundColor: paragraphStyle])
-        originalText.addAttribute(NSAttributedString.Key.link, value: UIColor.white, range: NSMakeRange(0, originalText.length))
+        originalText.addAttribute(NSAttributedString.Key.link, value: UIColor.white, range: NSRange.init(location: 0, length: originalText.length))
         let text = NSMutableAttributedString.init(string: "Twitter")
-        text.addAttribute(NSAttributedString.Key.link, value: sharedConfig.twitterBio, range: NSMakeRange(0, 7))
+        text.addAttribute(NSAttributedString.Key.link, value: sharedConfig.twitterBio, range: NSRange.init(location:0, length: 7))
         originalText.append(text)
-        originalText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, originalText.length))
+        originalText.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSRange.init(location:0, length: originalText.length))
         
         bioText.textColor = .white
         bioText.delegate = self
@@ -50,14 +49,14 @@ class InfoViewController: UIViewController, UITextViewDelegate, Storyboarded {
     }
     
     public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        let vc = SFSafariViewController.init(url: URL)
+        let viewcontroller = SFSafariViewController.init(url: URL)
         if #available(iOS 10.0, *) {
-            vc.preferredBarTintColor = .red
-            vc.preferredControlTintColor = .white
+            viewcontroller.preferredBarTintColor = .red
+            viewcontroller.preferredControlTintColor = .white
         } else {
-            vc.view.tintColor = .red
+            viewcontroller.view.tintColor = .red
         }
-        self.present(vc, animated: true, completion: nil)
+        self.present(viewcontroller, animated: true, completion: nil)
         return false
     }
 }

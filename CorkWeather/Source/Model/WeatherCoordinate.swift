@@ -11,6 +11,6 @@ import Foundation
 public typealias LocationDegrees = Double
 
 struct WeatherCoordinate {
-    let latitude : LocationDegrees;
-    let longitude : LocationDegrees;
+    let latitude : LocationDegrees
+    let longitude : LocationDegrees
 }

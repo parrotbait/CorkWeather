@@ -11,6 +11,6 @@ import Foundation
 extension Weather: Equatable {
     static func == (lhs: Weather, rhs: Weather) -> Bool {
         return lhs.location.coordinate.latitude == rhs.location.coordinate.latitude &&
-            lhs.location.coordinate.longitude == rhs.location.coordinate.longitude;
+            lhs.location.coordinate.longitude == rhs.location.coordinate.longitude
     }
 }

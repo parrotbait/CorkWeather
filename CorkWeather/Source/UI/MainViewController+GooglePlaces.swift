@@ -22,13 +22,13 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
 
     public func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
         progressView.show(animated: true)
-        analytics().logEvent(AnalyticsEvents.placePicked, [AnalyticsEvents.picked_longitude : place.coordinate.longitude, AnalyticsEvents.picked_latitude : place.coordinate.latitude])
+        analytics().logEvent(AnalyticsEvents.placePicked, [AnalyticsEvents.pickedLongitude : place.coordinate.longitude, AnalyticsEvents.pickedLatitude : place.coordinate.latitude])
         
         self.viewModel!.reverseGeocode(location: place.coordinate) { (result) in
             self.weatherLocationObtained(result: result)
         }
         
-        self.coordinator?.hidePicker();
+        self.coordinator?.hidePicker()
     }
     
     public func placePicker(_ viewController: GMSPlacePickerViewController, didFailWithError error: Error) {

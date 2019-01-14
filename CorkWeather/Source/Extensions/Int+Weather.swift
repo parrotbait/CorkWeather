@@ -11,12 +11,12 @@ import Foundation
 extension Int {
     func getAsString(forUnit unit: TemperatureUnit) -> String {
         switch (unit) {
-        case .Celsius:
-            return String(format: "%d °C", self);
-        case .Fahrenheit:
-            return String(format: "%d °F", self);
-        case .Kelvin:
-            return String(format: "%d °K", self);
+        case .celsius:
+            return String(format: "%d °C", self)
+        case .fahrenheit:
+            return String(format: "%d °F", self)
+        case .kelvin:
+            return String(format: "%d °K", self)
         }
     }
 }

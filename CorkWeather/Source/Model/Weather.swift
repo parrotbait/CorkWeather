@@ -56,23 +56,34 @@ struct Weather {
         Weather.latitudeKey : location.coordinate.latitude,
         Weather.addressLinesKey : location.addressLines ?? "",
         Weather.updateDateKey : updateDate.timeIntervalSince1970
-        ];
+        ]
     }
     
-    public static func fromArray(source : [String: Any]) -> Weather {
-        let coords = WeatherCoordinate(latitude: source[latitudeKey] as! Double, longitude: source[longitudeKey] as! Double);
-        let location = WeatherLocation.init(coordinate: coords, addressLines: source[addressLinesKey] as? [String], postcode: source[postcodeKey] as? String)
-        return Weather.init(
-                description: source[descriptionKey] as! String,
-                icon: source[iconKey] as! String,
-                id: source[idKey] as! WeatherID,
-                main: source[mainKey] as! String,
-                temperature: source[temperatureKey] as! WeatherTemperature,
+    public static func fromArray(source : [String: Any]) -> Weather? {
+        if let latitude = source[latitudeKey] as? Double,
+            let longitude = source[longitudeKey] as? Double,
+            let description = source[descriptionKey] as? String,
+            let icon = source[iconKey] as? String,
+            let id = source[idKey] as? WeatherID,
+            let main = source[mainKey] as? String,
+            let temp = source[temperatureKey] as? WeatherTemperature {
+            let coords = WeatherCoordinate(latitude: latitude, longitude: longitude)
+            let location = WeatherLocation.init(coordinate: coords, addressLines: source[addressLinesKey] as? [String], postcode: source[postcodeKey] as? String)
+            return Weather.init(
+                description: description,
+                icon: icon,
+                id: id,
+                main: main,
+                temperature: temp,
                 maxTemperature: source[temperatureMaxKey] as? WeatherTemperature ?? invalidValueInt,
                 minTemperature: source[temperatureMinKey] as? WeatherTemperature ?? invalidValueInt,
                 windSpeed: source[windSpeedKey] as? WindSpeed ?? invalidValueDouble,
                 location: location,
                 updateDate: Date.init(timeIntervalSince1970: source[updateDateKey] as? TimeInterval ?? Date().timeIntervalSince1970))
+        } else {
+            return nil
+        }
+        
     }
 }
 

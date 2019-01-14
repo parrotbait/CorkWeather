@@ -9,7 +9,7 @@
 import Foundation
 
 enum TemperatureUnit : String {
-    case Celsius = "metric"
-    case Kelvin = ""
-    case Fahrenheit = "imperial"
+    case celsius = "metric"
+    case kelvin = ""
+    case fahrenheit = "imperial"
 }

@@ -14,29 +14,29 @@ import CoreLocation
 import Proteus_Core
 
 class DatabaseFirebase : Database {
-    var ref: DatabaseReference!
+    var databaseRef: DatabaseReference!
     
     let weatherKey = "weather"
     
     init() {
-        ref = FirebaseDatabase.Database.database().reference()
+        databaseRef = FirebaseDatabase.Database.database().reference()
     }
     
     func save(weatherList: WeatherList) {
-        self.ref.child(weatherKey).removeValue()
+        self.databaseRef.child(weatherKey).removeValue()
         for weather in weatherList {
             
-            let newChild = self.ref.child(weatherKey).childByAutoId()
+            let newChild = self.databaseRef.child(weatherKey).childByAutoId()
             newChild.setValue(weather.toArray())
         }
     }
     
     func load(callback : @escaping DatabaseCallback) {
-        Auth.auth().signInAnonymously { [weak self] (user, error) in
-            if let er = error {
-                Log.d(er.localizedDescription)
+        Auth.auth().signInAnonymously { [weak self] (_, error) in
+            if let dbError = error {
+                Log.d(dbError.localizedDescription)
             } else {
-                self?.ref.child((self?.weatherKey)!).observeSingleEvent(of: DataEventType.value) { (snapshot : DataSnapshot) in
+                self?.databaseRef.child((self?.weatherKey)!).observeSingleEvent(of: DataEventType.value) { (snapshot : DataSnapshot) in
                     var weatherList = WeatherList()
                     if !snapshot.exists() {
                         callback(Result.success(weatherList))
@@ -45,7 +45,9 @@ class DatabaseFirebase : Database {
                     
                     for child in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
                         if let childArr = child.value as? [String: Any] {
-                            weatherList.append(Weather.fromArray(source: childArr))
+                            if let weather = Weather.fromArray(source: childArr) {
+                                weatherList.append(weather)                                
+                            }
                         }
                     }
                     callback(Result.success(weatherList))

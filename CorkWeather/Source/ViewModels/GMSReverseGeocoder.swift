@@ -24,15 +24,18 @@ struct GMSReverseGeocoder: ReverseGeocoderProvider {
     
     func readResponse(response : GMSReverseGeocodeResponse?, error : Error?) -> PickResult {
         if (error != nil || response == nil) {
-            Log.e ("Error fetching reverse geocode \(error ?? "" as! Error)")
+            if let err = error {
+                Log.e ("Error fetching reverse geocode \(err)")
+            } else {
+                Log.e("Missing geocode response body")
+            }
             return Result.failure(PickError.backendError)
         } else {
             //print ("address \(response?.firstResult())")
             if let address = response?.firstResult() {
                 if address.country?.contains("Ireland") == false {
                     return .failure(PickError.notIreland)
-                }
-                else if (address.locality?.contains("Cork") == false && address.administrativeArea?.contains("Cork") == false) {
+                } else if (address.locality?.contains("Cork") == false && address.administrativeArea?.contains("Cork") == false) {
                     return .failure(PickError.notCork)
                 }
                 

@@ -5,6 +5,7 @@ This app is a bit of a fun/joke app created as a learning experience for myself,
 # TODO
 
 * Tests!
+* Improve UI
 * Offline mode/testing
 * Fastlane integration
 * Documentation
@@ -12,6 +13,8 @@ This app is a bit of a fun/joke app created as a learning experience for myself,
 
 # Features
 
+* MVVM architecture with coordinator for navigation.
+* SwiftLint in place
 * SWLogger - a cocoapod created as part of this exercise for logging
 * OpenWeatherAPI integration for weather data fetching
 * Google Maps and Places for picking of locations

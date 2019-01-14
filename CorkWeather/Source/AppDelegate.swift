@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Log.setTagFilters(tags: ["MainVC"])
         Log.setLevel(.debug)
     
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            print ("Documents directory: \(dir)")
+        if let docDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            print ("Documents directory: \(docDirectory)")
         }
 #endif
         
@@ -70,4 +70,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 }
-
