@@ -1,6 +1,6 @@
-# Cork Weather
+![Badge](https://build.appcenter.ms/v0.1/apps/e7027ca3-de06-426f-9af4-0d73431401b8/branches/master/badge)
 
-[Badge](https://build.appcenter.ms/v0.1/apps/e7027ca3-de06-426f-9af4-0d73431401b8/branches/master/badge)
+# Cork Weather
 
 This app is a bit of a fun/joke app created as a learning experience for myself
 
