@@ -9,8 +9,11 @@ The app allows you to pick a Cork location on a map. When you pick a location th
 ## Goals
 
 Learn Swift and try out some iOS architectures and concepts.
+
 High code coverage for tests.
+
 Attempt to adhere to SRP as much as possible.
+
 Prettiness is not a goal!
 
 ## Architecture
@@ -38,7 +41,7 @@ The app does not include the API keys for OpenWeather or Google Maps in the repo
 * Add tap actions to see weather for the next few days
 * General code cleanup
 * MVVM implementation. I'm still not very comfortable with the MVVM implemented here. For two reasons.
-    1. Mostly because right now it is completely static, the view cannot respond to model changes and vice versa. To make it work we can use closures or delegates but these are potentially error prone and just adding more code into the mix. RxSwift is another option but the size and complexity of it makes me wary about introducing it to any project. This article: https://getpocket.com/a/read/847385006 provides some interesting ways around this problem which I may investigate in future.
+    1. Right now it is completely static, the view cannot respond to model changes and vice versa. To make it work we can use closures or delegates but these are potentially error prone and just adding more code into the mix. RxSwift is another option but the size and complexity of it makes me wary about introducing it to any project. This article: http://five.agency/solving-the-binding-problem-with-swift/ provides some interesting ways around this problem which I may investigate in future.
     2. The view model has too much in it, it does database loading, weather fetching, reverse geocoding amongst other things. This is a very simple app, in a production environment this could get out of control very easily. It does feel a little that stuff has been moved from the VC to the VM as described here: http://khanlou.com/2015/12/mvvm-is-not-very-good/ and http://www.danielhall.io/the-problems-with-mvvm-on-ios I like the idea of separating into Bindings, Data Source and Responder classes. If I add more functionality to this test app I may explore some of these possibilities.
 
 ## Features
