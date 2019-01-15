@@ -56,6 +56,10 @@ The app does not include the API keys for OpenWeather or Google Maps in the repo
 
 ✓ SWLogger - a cocoapod created as part of this exercise for logging
 
+✓ ProteusCore - a utility library to be shared between projects
+
+✓ ProteusUI - a utility UI-based library to be shared between projects
+
 ✓ OpenWeatherAPI integration for weather data fetching
 
 ✓ Google Maps and Places for picking of locations
