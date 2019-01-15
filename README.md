@@ -38,6 +38,7 @@ The app does not include the API keys for OpenWeather or Google Maps in the repo
 * Offline mode/testing
 * Fastlane integration
 * Documentation
+* Use Codeable instead of toArray/fromArray for reading/writing model objects
 * Add tap actions to see weather for the next few days
 * General code cleanup
 * MVVM implementation. I'm still not very comfortable with the MVVM implemented here. For two reasons.

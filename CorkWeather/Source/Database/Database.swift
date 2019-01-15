@@ -10,10 +10,10 @@ import Foundation
 import Proteus_Core
 
 typealias DatabaseResult = Result<WeatherList, DatabaseError>
+typealias DatabaseCallback = ((DatabaseResult) -> Void)
 
 protocol Database {
     func save(weatherList : WeatherList)
-    typealias DatabaseCallback = ((DatabaseResult) -> Void)
     func load(callback : @escaping DatabaseCallback)
     
     // Get the last picked coordinate
