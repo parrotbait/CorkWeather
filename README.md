@@ -1,5 +1,7 @@
 # Cork Weather
 
+[Badge](https://build.appcenter.ms/v0.1/apps/e7027ca3-de06-426f-9af4-0d73431401b8/branches/master/badge)
+
 This app is a bit of a fun/joke app created as a learning experience for myself
 
 The app allows you to pick a Cork location on a map. When you pick a location the app does a reverse geocode on the latitude longitude to get the full address and also looks up the current weather for that location.
@@ -39,14 +41,26 @@ The app does not include the API keys for OpenWeather or Google Maps in the repo
 ## Features
 
 ✓ MVVM architecture with coordinator for navigation.
+
 ✓ SwiftLint code checked
+
 ✓ 100% test code coverage of view models (and other parts of the app). Attempted to get as much code coverage as possible.
+
 ✓ Static cell identifiers (no strings)
+
 ✓ SWLogger - a cocoapod created as part of this exercise for logging
+
 ✓ OpenWeatherAPI integration for weather data fetching
+
 ✓ Google Maps and Places for picking of locations
+
 ✓ Localisation within a single storyboard via user defined runtime attributes and extensions
+
 ✓ Firebase database for record persistance, even between installs
+
 ✓ Analytics via Firebase
+
 ✓ Very simple intro/tutorial & info page
+
 ✓ Continuous integration with Microsoft Mobile Center (for CorkWeather + SWLogger)
+

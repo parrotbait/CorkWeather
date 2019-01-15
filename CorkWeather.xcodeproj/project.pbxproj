@@ -36,6 +36,8 @@
 		D7126B8721EDFBFB007B32D3 /* WeatherCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B8621EDFBFB007B32D3 /* WeatherCellViewModelTests.swift */; };
 		D7126B8921EDFC1D007B32D3 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B8821EDFC1D007B32D3 /* TestUtils.swift */; };
 		D7126B8D21EE0022007B32D3 /* WeatherParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B8C21EE0022007B32D3 /* WeatherParserTests.swift */; };
+		D7126BA621EE17AB007B32D3 /* Proteus_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7126B9421EE1738007B32D3 /* Proteus_Core.framework */; };
+		D7126BA721EE17AE007B32D3 /* Proteus_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7126B9F21EE174F007B32D3 /* Proteus_UI.framework */; };
 		D71BD25321C3A5870093B258 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71BD25221C3A5870093B258 /* AppConfig.swift */; };
 		D71F93A51F9546300063282D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D71F93A41F9546300063282D /* README.md */; };
 		D71F93A71F9547EF0063282D /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71F93A61F9547EF0063282D /* SafariServices.framework */; };
@@ -88,47 +90,47 @@
 			remoteGlobalIDString = D7E39C371F33B13400D006AE;
 			remoteInfo = CorkWeather;
 		};
-		D79E823D21E7F72B00DAC211 /* PBXContainerItemProxy */ = {
+		D7126B9321EE1738007B32D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D79E821E21E7F71B00DAC211;
-			remoteInfo = "Proteus-UI";
-		};
-		D79E823F21E7F72B00DAC211 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D79E822721E7F71B00DAC211;
-			remoteInfo = "Proteus-UITests";
-		};
-		D79E824621E7F73400DAC211 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */;
+			containerPortal = D7126B8E21EE1738007B32D3 /* Proteus-Core.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D79E81FA21E7F70E00DAC211;
 			remoteInfo = "Proteus-Core";
 		};
-		D79E824821E7F73400DAC211 /* PBXContainerItemProxy */ = {
+		D7126B9521EE1738007B32D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */;
+			containerPortal = D7126B8E21EE1738007B32D3 /* Proteus-Core.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D79E820321E7F70E00DAC211;
 			remoteInfo = "Proteus-CoreTests";
 		};
-		D79E825621E7F77C00DAC211 /* PBXContainerItemProxy */ = {
+		D7126B9E21EE174F007B32D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D79E81F921E7F70E00DAC211;
-			remoteInfo = "Proteus-Core";
+			containerPortal = D7126B9921EE174E007B32D3 /* Proteus-UI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D79E821E21E7F71B00DAC211;
+			remoteInfo = "Proteus-UI";
 		};
-		D79E825821E7F77F00DAC211 /* PBXContainerItemProxy */ = {
+		D7126BA021EE174F007B32D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */;
+			containerPortal = D7126B9921EE174E007B32D3 /* Proteus-UI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D79E822721E7F71B00DAC211;
+			remoteInfo = "Proteus-UITests";
+		};
+		D7126BA221EE176A007B32D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7126B9921EE174E007B32D3 /* Proteus-UI.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = D79E821D21E7F71B00DAC211;
 			remoteInfo = "Proteus-UI";
+		};
+		D7126BA421EE176D007B32D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7126B8E21EE1738007B32D3 /* Proteus-Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D79E81F921E7F70E00DAC211;
+			remoteInfo = "Proteus-Core";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -179,13 +181,13 @@
 		D7126B8621EDFBFB007B32D3 /* WeatherCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCellViewModelTests.swift; sourceTree = "<group>"; };
 		D7126B8821EDFC1D007B32D3 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		D7126B8C21EE0022007B32D3 /* WeatherParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherParserTests.swift; sourceTree = "<group>"; };
+		D7126B8E21EE1738007B32D3 /* Proteus-Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Proteus-Core.xcodeproj"; path = "CorkWeather/ProteusCore/Proteus-Core.xcodeproj"; sourceTree = "<group>"; };
+		D7126B9921EE174E007B32D3 /* Proteus-UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Proteus-UI.xcodeproj"; path = "CorkWeather/ProteusUI/Proteus-UI.xcodeproj"; sourceTree = "<group>"; };
 		D71BD25221C3A5870093B258 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		D71BD25621C3A87F0093B258 /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = config.plist; path = CorkWeather/config.plist; sourceTree = SOURCE_ROOT; };
 		D71F93A41F9546300063282D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		D71F93A61F9547EF0063282D /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		D751C9751F8569140028B890 /* Weather+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Weather+Equatable.swift"; sourceTree = "<group>"; };
-		D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Proteus-UI.xcodeproj"; path = "../Proteus-UI/Proteus-UI.xcodeproj"; sourceTree = "<group>"; };
-		D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Proteus-Core.xcodeproj"; path = "../Proteus-Core/Proteus-Core.xcodeproj"; sourceTree = "<group>"; };
 		D79E826321E7FB2E00DAC211 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainCoordinator.swift; path = Coordinators/MainCoordinator.swift; sourceTree = "<group>"; };
 		D79F48591F58A5F700E1CB12 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Database.swift; path = Database/Database.swift; sourceTree = "<group>"; };
 		D79F485B1F58A84C00E1CB12 /* DatabaseFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseFirebase.swift; path = Database/DatabaseFirebase.swift; sourceTree = "<group>"; };
@@ -243,6 +245,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7126BA721EE17AE007B32D3 /* Proteus_UI.framework in Frameworks */,
+				D7126BA621EE17AB007B32D3 /* Proteus_Core.framework in Frameworks */,
 				D71F93A71F9547EF0063282D /* SafariServices.framework in Frameworks */,
 				D7E9795F1F8EC43B0049E2A6 /* MessageUI.framework in Frameworks */,
 				63D39BFF1D291AC1D30484EA /* Pods_CorkWeather.framework in Frameworks */,
@@ -331,20 +335,20 @@
 			path = Localisation;
 			sourceTree = "<group>";
 		};
-		D79E823921E7F72B00DAC211 /* Products */ = {
+		D7126B8F21EE1738007B32D3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D79E823E21E7F72B00DAC211 /* Proteus_UI.framework */,
-				D79E824021E7F72B00DAC211 /* Proteus-UITests.xctest */,
+				D7126B9421EE1738007B32D3 /* Proteus_Core.framework */,
+				D7126B9621EE1738007B32D3 /* Proteus-CoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D79E824221E7F73300DAC211 /* Products */ = {
+		D7126B9A21EE174E007B32D3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D79E824721E7F73400DAC211 /* Proteus_Core.framework */,
-				D79E824921E7F73400DAC211 /* Proteus-CoreTests.xctest */,
+				D7126B9F21EE174F007B32D3 /* Proteus_UI.framework */,
+				D7126BA121EE174F007B32D3 /* Proteus-UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -405,8 +409,8 @@
 		D7E39C2F1F33B13400D006AE = {
 			isa = PBXGroup;
 			children = (
-				D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */,
-				D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */,
+				D7126B9921EE174E007B32D3 /* Proteus-UI.xcodeproj */,
+				D7126B8E21EE1738007B32D3 /* Proteus-Core.xcodeproj */,
 				D7E39C3A1F33B13400D006AE /* CorkWeather */,
 				D7126B5921ECFE42007B32D3 /* CorkWeatherTests */,
 				D7E39C391F33B13400D006AE /* Products */,
@@ -556,8 +560,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				D79E825921E7F77F00DAC211 /* PBXTargetDependency */,
-				D79E825721E7F77C00DAC211 /* PBXTargetDependency */,
+				D7126BA521EE176D007B32D3 /* PBXTargetDependency */,
+				D7126BA321EE176A007B32D3 /* PBXTargetDependency */,
 			);
 			name = CorkWeather;
 			productName = CorkWeather;
@@ -600,12 +604,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = D79E824221E7F73300DAC211 /* Products */;
-					ProjectRef = D79E824121E7F73300DAC211 /* Proteus-Core.xcodeproj */;
+					ProductGroup = D7126B8F21EE1738007B32D3 /* Products */;
+					ProjectRef = D7126B8E21EE1738007B32D3 /* Proteus-Core.xcodeproj */;
 				},
 				{
-					ProductGroup = D79E823921E7F72B00DAC211 /* Products */;
-					ProjectRef = D79E823821E7F72B00DAC211 /* Proteus-UI.xcodeproj */;
+					ProductGroup = D7126B9A21EE174E007B32D3 /* Products */;
+					ProjectRef = D7126B9921EE174E007B32D3 /* Proteus-UI.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -617,32 +621,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		D79E823E21E7F72B00DAC211 /* Proteus_UI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Proteus_UI.framework;
-			remoteRef = D79E823D21E7F72B00DAC211 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D79E824021E7F72B00DAC211 /* Proteus-UITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Proteus-UITests.xctest";
-			remoteRef = D79E823F21E7F72B00DAC211 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D79E824721E7F73400DAC211 /* Proteus_Core.framework */ = {
+		D7126B9421EE1738007B32D3 /* Proteus_Core.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Proteus_Core.framework;
-			remoteRef = D79E824621E7F73400DAC211 /* PBXContainerItemProxy */;
+			remoteRef = D7126B9321EE1738007B32D3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D79E824921E7F73400DAC211 /* Proteus-CoreTests.xctest */ = {
+		D7126B9621EE1738007B32D3 /* Proteus-CoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "Proteus-CoreTests.xctest";
-			remoteRef = D79E824821E7F73400DAC211 /* PBXContainerItemProxy */;
+			remoteRef = D7126B9521EE1738007B32D3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D7126B9F21EE174F007B32D3 /* Proteus_UI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Proteus_UI.framework;
+			remoteRef = D7126B9E21EE174F007B32D3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D7126BA121EE174F007B32D3 /* Proteus-UITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Proteus-UITests.xctest";
+			remoteRef = D7126BA021EE174F007B32D3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -867,15 +871,15 @@
 			target = D7E39C371F33B13400D006AE /* CorkWeather */;
 			targetProxy = D7126B5D21ECFE42007B32D3 /* PBXContainerItemProxy */;
 		};
-		D79E825721E7F77C00DAC211 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Proteus-Core";
-			targetProxy = D79E825621E7F77C00DAC211 /* PBXContainerItemProxy */;
-		};
-		D79E825921E7F77F00DAC211 /* PBXTargetDependency */ = {
+		D7126BA321EE176A007B32D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Proteus-UI";
-			targetProxy = D79E825821E7F77F00DAC211 /* PBXContainerItemProxy */;
+			targetProxy = D7126BA221EE176A007B32D3 /* PBXContainerItemProxy */;
+		};
+		D7126BA521EE176D007B32D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Proteus-Core";
+			targetProxy = D7126BA421EE176D007B32D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

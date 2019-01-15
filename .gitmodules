@@ -1,0 +1,6 @@
+[submodule "CorkWeather/ProteusUI"]
+	path = CorkWeather/ProteusUI
+	url = https://github.com/parrotbait/Proteus-UI.git
+[submodule "CorkWeather/ProteusCore"]
+	path = CorkWeather/ProteusCore
+	url = https://github.com/parrotbait/Proteus-Core.git
