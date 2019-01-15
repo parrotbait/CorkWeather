@@ -20,7 +20,7 @@ The view controller does not know about the model Weather objects by design. It 
 The view model doesn't explicitly know about the UI, in that it doesn't include UIKit. It does format strings for presentation purposes, I feel this is one of the short comings of the MVVM model in my opinion.
 I feel that there should be another layer on top of the view model to massage any data for presentation purposes, but there's a balancing act of too many layers on top. If the UI became more complex and needed more complex UIKit operations then it is likely I would add in a separate presentor on top of the view model, similar to the Presentor in VIPER. 
 
-Routing is done using the Coordinator pattern to decouple knowledge between different view controllers.
+Routing is done using the Coordinator pattern to decouple knowledge between different view controllers (similar to FlowControllers)
 Dependencies are passed into the view model so they can be mocked, stubbed and tested. This has allowed me to have 100% test coverage of the view model. I do not use a formal dependency injection framework as I prefer to keep it as simple as possible.
 
 The database layer is using Firebase, this is useful for cloud persistance. I may add Realm in future but I am not sure I want to take the size hit and have the Realm types invade on the app. 
@@ -37,6 +37,9 @@ The app does not include the API keys for OpenWeather or Google Maps in the repo
 * Documentation
 * Add tap actions to see weather for the next few days
 * General code cleanup
+* MVVM implementation. I'm still not very comfortable with the MVVM implemented here. For two reasons.
+    1. Mostly because right now it is completely static, the view cannot respond to model changes and vice versa. To make it work we can use closures or delegates but these are potentially error prone and just adding more code into the mix. RxSwift is another option but the size and complexity of it makes me wary about introducing it to any project. This article: https://getpocket.com/a/read/847385006 provides some interesting ways around this problem which I may investigate in future.
+    2. The view model has too much in it, it does database loading, weather fetching, reverse geocoding amongst other things. This is a very simple app, in a production environment this could get out of control very easily. It does feel a little that stuff has been moved from the VC to the VM as described here: http://khanlou.com/2015/12/mvvm-is-not-very-good/ and http://www.danielhall.io/the-problems-with-mvvm-on-ios I like the idea of separating into Bindings, Data Source and Responder classes. If I add more functionality to this test app I may explore some of these possibilities.
 
 ## Features
 

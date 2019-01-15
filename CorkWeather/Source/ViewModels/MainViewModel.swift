@@ -15,6 +15,7 @@ typealias WeatherItemResult = Result<Weather, WeatherLoadError>
 typealias WeatherItemCallback = ((_ result : WeatherItemResult) -> Void)
 typealias WeatherListCallback = ((_ result: DatabaseResult) -> Void)
 
+// TODO: This class does too many things: database access, reverse geocoding, weather API fetching, picker coordinates
 class MainViewModel {
     
     private var fetcher : WeatherFetcherProtocol
@@ -66,7 +67,6 @@ class MainViewModel {
     }
     
     public func fetch(_ location : WeatherLocation, callback : @escaping WeatherItemCallback) {
-        //fetcher.fetchType = WeatherFetcher.FetcherType.local(WeatherLocalFetcher())
         fetcher.fetch(location: location, unit: desiredTemperature) { [weak self] (result : WeatherItemResult) in
             switch result {
             case .success(let weather):
