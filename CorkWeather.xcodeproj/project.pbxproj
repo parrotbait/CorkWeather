@@ -802,7 +802,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n    cp -r \"${PROJECT_DIR}/${PRODUCT_NAME}/config.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n    if [ -f \"${PROJECT_DIR}/${PRODUCT_NAME}/config.plist\" ]; then\n        cp -r \"${PROJECT_DIR}/${PRODUCT_NAME}/config.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\n    fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
