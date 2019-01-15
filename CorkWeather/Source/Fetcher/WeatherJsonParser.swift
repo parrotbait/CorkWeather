@@ -28,8 +28,13 @@ struct WeatherJsonParser {
                 if let weatherArrayJson : NSArray = jsonResult["weather"] as? NSArray {
                     if let weatherJson : NSDictionary = weatherArrayJson.object(at: 0) as? NSDictionary {
                         weather = weatherJson
+                    } else {
+                        return nil
                     }
+                } else {
+                    return nil
                 }
+                
                 if let windJson : NSDictionary = jsonResult["wind"] as? NSDictionary {
                     if let speed = windJson["speed"] as? Double {
                         windSpeed = speed
@@ -37,7 +42,10 @@ struct WeatherJsonParser {
                 }
                 if let mainJson : NSDictionary = jsonResult["main"] as? NSDictionary {
                     main = mainJson
+                } else {
+                    return nil
                 }
+                
                 if let weatherId = weather["id"] as? NSNumber,
                     let currentTemp = main["temp"] as? NSNumber,
                     let maxTemp = main["temp_max"] as? NSNumber,
@@ -45,7 +53,7 @@ struct WeatherJsonParser {
                     let icon = weather["icon"] as? String,
                     let description = weather["description"] as? String,
                     let main = weather["main"] as? String {
-                    return Weather.init(description: description, icon: icon, id: weatherId.intValue, main: main, temperature: currentTemp.intValue, maxTemperature: maxTemp.intValue, minTemperature: minTemp.intValue, windSpeed: windSpeed, location: location, updateDate: Date())
+                    return Weather.init(description: description, icon: icon, id: weatherId.intValue, main: main, temperature: WeatherTemperature(round(currentTemp.doubleValue)), maxTemperature: WeatherTemperature(round(maxTemp.doubleValue)), minTemperature: WeatherTemperature(round(minTemp.doubleValue)), windSpeed: windSpeed, location: location, updateDate: Date())
                 } else {
                     return nil
                 }
@@ -56,7 +64,7 @@ struct WeatherJsonParser {
         return nil
     }
     
-    func getStatusCode(json: NSDictionary) -> Int {
+    private func getStatusCode(json: NSDictionary) -> Int {
         var code : Int = 0
         
         // Seems to be an error in the openweather API that misspells 'code'

@@ -11,5 +11,5 @@ import CoreLocation
 
 protocol ReverseGeocoderProvider {
     typealias GeocoderCallback = (_ result : PickResult) -> Void
-    func reverseGeocode(location : CLLocationCoordinate2D, callback : @escaping GeocoderCallback)
+    func reverseGeocode(location : WeatherCoordinate, callback : @escaping GeocoderCallback)
 }

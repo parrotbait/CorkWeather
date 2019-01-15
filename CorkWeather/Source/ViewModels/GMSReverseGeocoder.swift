@@ -22,6 +22,15 @@ struct GMSReverseGeocoder: ReverseGeocoderProvider {
         geocoder = GMSGeocoder.init()
     }
     
+    func handleNonCorkLocation(_ location: String) -> PickResult {
+        switch (location) {
+        case "Dublin":
+            return .failure(PickError.jackeen)
+        default:
+            return .failure(PickError.notCork)
+        }
+    }
+    
     func readResponse(response : GMSReverseGeocodeResponse?, error : Error?) -> PickResult {
         if (error != nil || response == nil) {
             if let err = error {
@@ -35,8 +44,17 @@ struct GMSReverseGeocoder: ReverseGeocoderProvider {
             if let address = response?.firstResult() {
                 if address.country?.contains("Ireland") == false {
                     return .failure(PickError.notIreland)
-                } else if (address.locality?.contains("Cork") == false && address.administrativeArea?.contains("Cork") == false) {
-                    return .failure(PickError.notCork)
+                } else {
+                    if let locality = address.locality {
+                        if !locality.contains("Cork") {
+                            return handleNonCorkLocation(locality)
+                        }
+                    }
+                    if let admin = address.administrativeArea {
+                        if !admin.contains("Cork") {
+                            return handleNonCorkLocation(admin)
+                        }
+                    }
                 }
                 
                 let coordinate = WeatherCoordinate.init(latitude: address.coordinate.latitude, longitude: address.coordinate.longitude)
@@ -49,10 +67,10 @@ struct GMSReverseGeocoder: ReverseGeocoderProvider {
         return Result.failure(PickError.backendError)
     }
     
-    public func reverseGeocode(location : CLLocationCoordinate2D, callback : @escaping ((_ result : PickResult) -> Void)) {
-        geocoder.reverseGeocodeCoordinate(location) { response, error in
+    public func reverseGeocode(location : WeatherCoordinate, callback : @escaping ((_ result : PickResult) -> Void)) {
+        let clCoord = CLLocationCoordinate2D.init(latitude: location.latitude, longitude: location.longitude)
+        geocoder.reverseGeocodeCoordinate(clCoord) { response, error in
             callback(self.readResponse(response: response, error: error))
         }
     }
-    
 }

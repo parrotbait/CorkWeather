@@ -21,3 +21,10 @@ extension WeatherCoordinate {
         return WeatherCoordinate.init(latitude: coord.latitude, longitude: coord.longitude)
     }
 }
+
+extension WeatherCoordinate: Equatable {
+    public static func == (lhs: WeatherCoordinate, rhs: WeatherCoordinate) -> Bool {
+        return rhs.latitude == lhs.latitude &&
+            lhs.longitude == rhs.longitude
+    }
+}

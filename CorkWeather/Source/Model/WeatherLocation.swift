@@ -13,3 +13,11 @@ struct WeatherLocation {
     var addressLines: [String]?
     var postcode : String?
 }
+
+extension WeatherLocation: Equatable {
+    public static func == (lhs: WeatherLocation, rhs: WeatherLocation) -> Bool {
+        return rhs.coordinate == lhs.coordinate &&
+            lhs.addressLines == rhs.addressLines &&
+            lhs.postcode == rhs.postcode
+    }
+}

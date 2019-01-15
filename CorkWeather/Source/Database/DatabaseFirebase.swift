@@ -14,13 +14,15 @@ import CoreLocation
 import Proteus_Core
 
 class DatabaseFirebase : Database {
-    let databaseRef: DatabaseReference
-    let weatherKey = "weather"
-    let latKey = "coord_lat"
-    let lonKey = "coord_lon"
+    private let databaseRef: DatabaseReference
+    private let weatherKey = "weather"
+    private let latKey = "coord_lat"
+    private let lonKey = "coord_lon"
+    private var onboardingUserDefaults = "onboarding"
     
     init() {
         databaseRef = FirebaseDatabase.Database.database().reference()
+        UserDefaults.standard.register(defaults: [onboardingUserDefaults: true])
     }
     
     func save(weatherList: WeatherList) {
@@ -70,5 +72,15 @@ class DatabaseFirebase : Database {
     func savePickedCoordinate(_ coord: WeatherCoordinate) {
         UserDefaults.standard.set(coord.latitude, forKey: latKey)
         UserDefaults.standard.set(coord.longitude, forKey: lonKey)
+    }
+    
+    func shouldShowOnboarding() -> Bool {
+        if UserDefaults.standard.contains(onboardingUserDefaults) {
+            return UserDefaults.standard.bool(forKey: onboardingUserDefaults)
+        }
+        
+        // Default is to show onboarding
+        UserDefaults.standard.set(true, forKey: onboardingUserDefaults)
+        return true
     }
 }

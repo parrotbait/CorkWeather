@@ -15,7 +15,7 @@ struct WeatherLocalFetcher : WeatherFetcherProtocol {
         if let path = Bundle.main.url(forResource: "CorkResponse", withExtension: "json") {
             if let jsonData = NSData(contentsOf: path) {
                 let jsonParser = WeatherJsonParser()
-                if let weather : Weather = jsonParser.parse(location : location, jsonData: jsonData) {
+                if let weather = jsonParser.parse(location : location, jsonData: jsonData) {
                     completion(Result.success(weather))
                 }
             }

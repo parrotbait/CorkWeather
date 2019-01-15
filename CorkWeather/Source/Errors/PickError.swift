@@ -12,5 +12,6 @@ enum PickError : Error {
     case backendError
     case notIreland
     case notCork
+    case jackeen
     case alreadyPresent
 }

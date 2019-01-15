@@ -38,18 +38,14 @@ struct WeatherRemoteFetcher : WeatherFetcherProtocol {
         // make the request
         let task = session.dataTask(with: urlRequest, completionHandler: { (data, _, error) in
             if self.useRandomDelay {
-                let randLower : UInt32 = 1
-                let randUpper : UInt32 = 50
-                let randDelayTime = arc4random_uniform(randUpper - randLower) + randLower
-                let randDelayTimer = Double(randDelayTime) / 10
-                Thread.sleep(forTimeInterval: randDelayTimer)
+                self.applyRandomDelay()
             }
             
             if (error != nil) {
                 completion(Result.failure(WeatherLoadError.backendError))
             } else {
                 let parser = WeatherJsonParser()
-                if let weather : Weather = parser.parse(location: location, jsonData: data! as NSData) {
+                if let weather = parser.parse(location: location, jsonData: data! as NSData) {
                     completion(Result.success(weather))
                 } else {
                     completion(Result.failure(WeatherLoadError.parseError))
@@ -57,5 +53,13 @@ struct WeatherRemoteFetcher : WeatherFetcherProtocol {
             }
         })
         task.resume()
+    }
+    
+    func applyRandomDelay() {
+        let randLower : UInt32 = 1
+        let randUpper : UInt32 = 50
+        let randDelayTime = arc4random_uniform(randUpper - randLower) + randLower
+        let randDelayTimer = Double(randDelayTime) / 10
+        Thread.sleep(forTimeInterval: randDelayTimer)
     }
 }

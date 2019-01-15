@@ -145,7 +145,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.weatherTableView.isHidden = true
                 
                 // We get back an empty list on first start
-                if self.viewModel!.shouldShowOnboarding(true) {
+                if self.viewModel!.shouldShowOnboarding(false) {
                     self.onboardingView.show()
                 }
             } else {

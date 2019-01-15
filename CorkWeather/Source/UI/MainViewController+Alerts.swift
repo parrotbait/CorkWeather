@@ -54,6 +54,8 @@ extension MainViewController : MainAlertProtocol {
             showError(Strings.get("Not_Even_Ireland"))
         case .notCork:
             showError(Strings.get("Not_Cork"))
+        case .jackeen:
+            showError(Strings.get("Dublin"))
         case .backendError:
             showError(Strings.get("Backend_Error"))
         case .alreadyPresent:

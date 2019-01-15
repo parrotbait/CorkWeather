@@ -25,21 +25,21 @@ struct Weather {
     var location : WeatherLocation; // Longitude and latitude
     var updateDate : Date; // The date the weather was last updated
     
-    static let idKey = "id"
-    static let descriptionKey = "description"
-    static let iconKey = "icon"
-    static let mainKey = "main"
-    static let temperatureKey = "temperature"
-    static let temperatureMinKey = "min_temperature"
-    static let temperatureMaxKey = "max_temperature"
-    static let windSpeedKey = "wind_speed"
-    static let postcodeKey = "postcode"
-    static let latitudeKey = "latitude"
-    static let longitudeKey = "longitude"
-    static let addressLinesKey = "address_lines"
-    static let updateDateKey = "update_date"
-    static let invalidValueInt = -1
-    static let invalidValueDouble = -1.0
+    private static let idKey = "id"
+    private static let descriptionKey = "description"
+    private static let iconKey = "icon"
+    private static let mainKey = "main"
+    private static let temperatureKey = "temperature"
+    private static let temperatureMinKey = "min_temperature"
+    private static let temperatureMaxKey = "max_temperature"
+    private static let windSpeedKey = "wind_speed"
+    private static let postcodeKey = "postcode"
+    private static let latitudeKey = "latitude"
+    private static let longitudeKey = "longitude"
+    private static let addressLinesKey = "address_lines"
+    private static let updateDateKey = "update_date"
+    private static let invalidValueInt = -1
+    private static let invalidValueDouble = -1.0
     
     public func toArray() -> [String: Any] {
     return [
@@ -83,7 +83,6 @@ struct Weather {
         } else {
             return nil
         }
-        
     }
 }
 

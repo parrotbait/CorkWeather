@@ -19,25 +19,22 @@ class MainViewModel {
     
     private var fetcher : WeatherFetcherProtocol
     public var desiredTemperature = TemperatureUnit.celsius
+    
     private let reverseGeocoder: ReverseGeocoderProvider
-    private let dateFormatter = DateFormatter()
     private let database : Database
     private var weatherData = WeatherList()
-    private var onboardingUserDefaults = "onboarding"
     
     init (fetcher : WeatherFetcherProtocol, database : Database, reverseGeocoder: ReverseGeocoderProvider) {
         self.fetcher = fetcher
         self.database = database
         self.reverseGeocoder = reverseGeocoder
-        
-        dateFormatter.dateStyle = .none
-        dateFormatter.timeStyle = .medium
-        dateFormatter.timeZone = TimeZone.init(identifier: "Europe/Dublin")
-        
-        UserDefaults.standard.register(defaults: [onboardingUserDefaults: true])
     }
     
     func removeWeatherAtIndex(index: Int) {
+        if index >= self.weatherData.count {
+            fatalError("Invalid index \(index)")
+        }
+        
         self.weatherData.remove(at: index)
         self.database.save(weatherList: self.weatherData)
     }
@@ -53,7 +50,6 @@ class MainViewModel {
         
         return WeatherCellViewModel.init(desiredTemperature, weather: self.weatherData[index])
     }
-    
     
     public func loadWeatherList(callback: @escaping WeatherListCallback) {
         self.database.load { [weak self] (result : DatabaseResult) in
@@ -99,19 +95,11 @@ class MainViewModel {
         }
     }
     
-    public func getTime() -> String {
-        return dateFormatter.string(from: Date())
-    }
-    
     public func shouldShowOnboarding(_ force : Bool = false) -> Bool {
-        let shouldShow = UserDefaults.standard.bool(forKey: onboardingUserDefaults)
-        if shouldShow {
-            UserDefaults.standard.set(force, forKey: onboardingUserDefaults)
-        }
-        return shouldShow || force
+        return self.database.shouldShowOnboarding() || force
     }
     
-    public func reverseGeocode(location : CLLocationCoordinate2D, callback : @escaping ((_ result : PickResult) -> Void)) {
+    public func reverseGeocode(location : WeatherCoordinate, callback : @escaping ((_ result : PickResult) -> Void)) {
         self.reverseGeocoder.reverseGeocode(location: location) { (result) in
             switch (result) {
             case .success(let coordinate):

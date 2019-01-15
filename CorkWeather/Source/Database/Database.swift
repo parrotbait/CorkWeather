@@ -19,4 +19,6 @@ protocol Database {
     // Get the last picked coordinate
     func lastCoordinatePicked() -> WeatherCoordinate
     func savePickedCoordinate(_ coord: WeatherCoordinate)
+    
+    func shouldShowOnboarding() -> Bool
 }
