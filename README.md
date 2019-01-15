@@ -2,7 +2,7 @@
 
 ![Badge](https://build.appcenter.ms/v0.1/apps/e7027ca3-de06-426f-9af4-0d73431401b8/branches/master/badge)
 
-This app is a bit of a fun/joke app created as a learning experience for myself
+This app is a bit of a fun/joke app created as a learning experience for myself.
 
 The app allows you to pick a Cork location on a map. When you pick a location the app does a reverse geocode on the latitude longitude to get the full address and also looks up the current weather for that location.
 
