@@ -765,7 +765,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CorkWeather/Pods-CorkWeather-frameworks.sh\"\n";
+			shellScript = "# https://github.com/CocoaPods/CocoaPods/issues/7708\n# Build failures on AppCenter\nexport EXPANDED_CODE_SIGN_IDENTITY=\"\"\nexport EXPANDED_CODE_SIGN_IDENTITY_NAME=\"\"\nexport EXPANDED_PROVISIONING_PROFILE=\"\"\n\n\"${SRCROOT}/Pods/Target Support Files/Pods-CorkWeather/Pods-CorkWeather-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D708665021E8FEE80000E477 /* SwiftLint */ = {
