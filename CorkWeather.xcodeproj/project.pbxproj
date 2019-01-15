@@ -16,7 +16,6 @@
 		D708664121E8C2930000E477 /* ReverseGeocoderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708664021E8C2930000E477 /* ReverseGeocoderProvider.swift */; };
 		D708664321E8C9880000E477 /* WeatherListCell+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708664221E8C9880000E477 /* WeatherListCell+Weather.swift */; };
 		D708664521E8CAEE0000E477 /* Int+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D708664421E8CAEE0000E477 /* Int+Weather.swift */; };
-		D7126B3221ECA3FA007B32D3 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71BD25621C3A87F0093B258 /* config.plist */; };
 		D7126B4021ECD9E7007B32D3 /* GMSPlacePickerConfig+Coords.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B3F21ECD9E7007B32D3 /* GMSPlacePickerConfig+Coords.swift */; };
 		D7126B5321ECF6D5007B32D3 /* WeatherCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B5221ECF6D5007B32D3 /* WeatherCellViewModel.swift */; };
 		D7126B5B21ECFE42007B32D3 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7126B5A21ECFE42007B32D3 /* MainViewModelTests.swift */; };
@@ -553,6 +552,7 @@
 				D7E39C341F33B13400D006AE /* Sources */,
 				D7E39C351F33B13400D006AE /* Frameworks */,
 				D7E39C361F33B13400D006AE /* Resources */,
+				D7126BA821EE1AF4007B32D3 /* Copy config.plist (DEBUG ONLY) */,
 				D709ABCF1F65CAD700CD546B /* Embed Frameworks */,
 				5B257CCAD2F1CFA69C2EAF9E /* [CP] Embed Pods Frameworks */,
 				3B13BE2CB6E4BFA2092C8269 /* [CP] Copy Pods Resources */,
@@ -663,7 +663,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7126B3221ECA3FA007B32D3 /* config.plist in Resources */,
 				D7E39C461F33B13400D006AE /* LaunchScreen.storyboard in Resources */,
 				D7E39C431F33B13400D006AE /* Assets.xcassets in Resources */,
 				D7E39C411F33B13400D006AE /* Main.storyboard in Resources */,
@@ -786,6 +785,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		D7126BA821EE1AF4007B32D3 /* Copy config.plist (DEBUG ONLY) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy config.plist (DEBUG ONLY)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n    cp -r \"${PROJECT_DIR}/${PRODUCT_NAME}/config.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
