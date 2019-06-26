@@ -5,6 +5,7 @@ disabled_rules: # rule identifiers to exclude from running
   - trailing_whitespace
   - line_length
   - todo
+  - redundant_string_enum_value
 opt_in_rules: # some rules are only opt-in
   - empty_count
   # Find all the available rules by running:
@@ -14,6 +15,7 @@ included: # paths to include during linting. `--path` is ignored if present.
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
+  - CorkWeather/Source/Generated
 # configurable rules can be customized from this configuration file
 # binary rules can set their severity level
 force_cast: warning # implicitly

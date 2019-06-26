@@ -159,8 +159,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 // TODO: Add loading indicator
-                self.viewModel!.fetch(weather.location) { [weak self] result in
-                    self?.weatherItemLoaded(result: result)
+                if let location = weather.location {
+                    self.viewModel!.fetch(location) { [weak self] result in
+                        self?.weatherItemLoaded(result: result)
+                    }
                 }
             }
             self.weatherTableView.reloadData()

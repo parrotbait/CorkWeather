@@ -19,30 +19,30 @@ class WeatherCellViewModel {
     }
     
     var description : String {
-        return weatherItem.description
+        return weatherItem.detail.first?.description ?? ""
     }
     
     var icon: String {
-        return weatherItem.icon
+        return weatherItem.detail.first?.icon ?? ""
     }
     
     var locationText: String {
-        return weatherItem.location.addressLines.flatMap({$0})?.joined(separator: ", ") ?? ""
+        return weatherItem.location?.addressLines.flatMap({$0})?.joined(separator: ", ") ?? ""
     }
     
     var temperature: String {
-        return String(format: "%@", weatherItem.temperature.getAsString(forUnit: desiredUnit))
+        return String(format: "%@", weatherItem.temperature.temperature.getAsString(forUnit: desiredUnit))
     }
     
     var maxTemperature: String {
-        return String(format: Strings.get("Max_Temp"), weatherItem.maxTemperature.getAsString(forUnit: desiredUnit))
+        return String(format: Strings.get("Max_Temp"), weatherItem.temperature.temperatureMax.getAsString(forUnit: desiredUnit))
     }
     
     var windSpeed: String {
-        return String(format: Strings.get("Wind_Speed"), weatherItem.windSpeed)
+        return String(format: Strings.get("Wind_Speed"), weatherItem.wind.speed)
     }
     
     var date: String {
-        return weatherItem.updateDate.weatherDateString()
+        return weatherItem.updateDate?.weatherDateString() ?? ""
     }
 }

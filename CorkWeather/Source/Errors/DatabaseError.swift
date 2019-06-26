@@ -10,4 +10,5 @@ import Foundation
 
 enum DatabaseError : Error {
     case noData
+    case internalError(error: Error)
 }

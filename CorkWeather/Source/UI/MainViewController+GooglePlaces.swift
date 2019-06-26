@@ -24,7 +24,7 @@ extension MainViewController : MapsProtocol, GMSPlacePickerViewControllerDelegat
         progressView.show(animated: true)
         analytics().logEvent(AnalyticsEvents.placePicked, [AnalyticsEvents.pickedLongitude : place.coordinate.longitude, AnalyticsEvents.pickedLatitude : place.coordinate.latitude])
         
-        let coord = WeatherCoordinate.init(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        let coord = WeatherCoordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         self.viewModel!.reverseGeocode(location: coord) { (result) in
             // Save the pick location so the map will start in the same place next time
             self.viewModel!.savePickedCoordinate(WeatherCoordinate.from(coord: place.coordinate))

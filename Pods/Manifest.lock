@@ -1,4 +1,5 @@
 PODS:
+  - CodableFirebase (0.2.1)
   - Firebase/Auth (5.14.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.1.0)
@@ -77,23 +78,37 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - R.swift (5.0.3):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.1)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
   - SWLogger (0.2.0)
 
 DEPENDENCIES:
+  - CodableFirebase
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - GoogleMaps
   - GooglePlacePicker
   - MBProgressHUD
+  - R.swift
+  - RxCocoa (~> 5)
+  - RxSwift (~> 5)
   - SDWebImage
   - SWLogger
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - CodableFirebase
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -110,10 +125,16 @@ SPEC REPOS:
     - leveldb-library
     - MBProgressHUD
     - nanopb
+    - R.swift
+    - R.swift.Library
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SDWebImage
     - SWLogger
 
 SPEC CHECKSUMS:
+  CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
   Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAuth: 4a5cc5fc2d1721e509e24699b93ebc3d94b1e195
@@ -130,9 +151,14 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
+  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SWLogger: 3553c10dc568f48c54760a7dffd78d0636b3110c
 
-PODFILE CHECKSUM: c7a64fc796502c64526a15f88a19a7a473467476
+PODFILE CHECKSUM: ffb4eaf3db8c1107cb52f670cf693216e9ff67b7
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.1

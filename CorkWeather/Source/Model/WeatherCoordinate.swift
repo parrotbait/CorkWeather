@@ -11,9 +11,15 @@ import CoreLocation
 
 public typealias LocationDegrees = Double
 
-struct WeatherCoordinate {
+struct WeatherCoordinate: Codable {
     let latitude : LocationDegrees
     let longitude : LocationDegrees
+    
+    // MARK: - CodingKeys
+    enum CodingKeys: String, CodingKey {
+        case latitude = "lat"
+        case longitude = "lon"
+    }
 }
 
 extension WeatherCoordinate {

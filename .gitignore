@@ -28,6 +28,7 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 
+.DS_Store
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
@@ -67,3 +68,6 @@ fastlane/screenshots
 fastlane/test_output
 
 config.plist
+
+# SwiftLint
+*.generated.swift

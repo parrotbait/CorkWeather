@@ -8,10 +8,17 @@
 
 import Foundation
 
-struct WeatherLocation {
+struct WeatherLocation: Codable {
     var coordinate : WeatherCoordinate
     var addressLines: [String]?
     var postcode : String?
+    
+    // MARK: - CodingKeys
+    enum CodingKeys: String, CodingKey {
+        case coordinate = "coord"
+        case addressLines = "addressLines"
+        case postcode = "postcode"
+    }
 }
 
 extension WeatherLocation: Equatable {

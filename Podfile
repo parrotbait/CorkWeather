@@ -15,9 +15,12 @@ target 'CorkWeather' do
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
-  
+  pod 'R.swift'
   #pod 'SWLogger', :path => '/Volumes/Code/personal/SWLogger'
   pod 'SWLogger'
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+  pod 'CodableFirebase'
   
   target "CorkWeatherTests" do
       inherit! :search_paths

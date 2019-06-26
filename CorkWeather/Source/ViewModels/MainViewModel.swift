@@ -18,15 +18,15 @@ typealias WeatherListCallback = ((_ result: DatabaseResult) -> Void)
 // TODO: This class does too many things: database access, reverse geocoding, weather API fetching, picker coordinates
 class MainViewModel {
     
-    private var fetcher : WeatherFetcherProtocol
+    private var api : APIClient
     public var desiredTemperature = TemperatureUnit.celsius
     
     private let reverseGeocoder: ReverseGeocoderProvider
     private let database : Database
     private var weatherData = WeatherList()
     
-    init (fetcher : WeatherFetcherProtocol, database : Database, reverseGeocoder: ReverseGeocoderProvider) {
-        self.fetcher = fetcher
+    init (api : APIClient, database : Database, reverseGeocoder: ReverseGeocoderProvider) {
+        self.api = api
         self.database = database
         self.reverseGeocoder = reverseGeocoder
     }
@@ -67,10 +67,13 @@ class MainViewModel {
     }
     
     public func fetch(_ location : WeatherLocation, callback : @escaping WeatherItemCallback) {
-        fetcher.fetch(location: location, unit: desiredTemperature) { [weak self] (result : WeatherItemResult) in
+        let request = WeatherRequest.forLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, unit: desiredTemperature)
+        api.perform(request: request) { [weak self] (result) in
             switch result {
-            case .success(let weather):
-                DispatchQueue.main.async { [weather] in
+            case .success(let response):
+                if var weather: Weather = response.toJson() {
+                    weather.updateDate = Date()
+                    weather.location = location
                     let result = self?.weatherData.contains(weather)
                     if result == false {
                         self?.weatherData.append(weather)
@@ -84,12 +87,13 @@ class MainViewModel {
                         self?.database.save(weatherList: weatherData)
                         
                     }
-                    callback(Result.success(weather))
-                    
+                    DispatchQueue.main.async {
+                        callback(Result.success(weather))
+                    }
                 }
-            case .failure(let errorType):
+            case .failure:
                 DispatchQueue.main.async {
-                    callback(Result.failure(errorType))
+                    callback(Result.failure(WeatherLoadError.backendError))
                 }
             }
         }
@@ -117,9 +121,9 @@ class MainViewModel {
     
     private func isLocationAlreadyPresent(_ coordinate : WeatherCoordinate) -> Bool {
         for weather in self.weatherData {
-            let distance = coordinate.distance(other: weather.location.coordinate)
+            let distance = coordinate.distance(other: weather.coordinate)
             if distance <= 1.0 {
-                Log.e("Coordinate \(coordinate) is too close to \(weather.location.coordinate) - distance \(distance)")
+                Log.e("Coordinate \(coordinate) is too close to \(weather.location) - distance \(distance)")
                 return false
             }
         }

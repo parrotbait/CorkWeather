@@ -12,6 +12,7 @@ import FirebaseDatabase
 import SWLogger
 import CoreLocation
 import Proteus_Core
+import CodableFirebase
 
 class DatabaseFirebase : Database {
     private let databaseRef: DatabaseReference
@@ -30,7 +31,13 @@ class DatabaseFirebase : Database {
         for weather in weatherList {
             
             let newChild = self.databaseRef.child(weatherKey).childByAutoId()
-            newChild.setValue(weather.toArray())
+            do {
+                if let data = try? FirebaseEncoder().encode(weather) {
+                    newChild.setValue(data)
+                }
+            } catch {
+                print(error)
+            }
         }
     }
     
@@ -47,10 +54,12 @@ class DatabaseFirebase : Database {
                     }
                     
                     for child in snapshot.children.allObjects as? [DataSnapshot] ?? [] {
-                        if let childArr = child.value as? [String: Any] {
-                            if let weather = Weather.fromArray(source: childArr) {
-                                weatherList.append(weather)                                
-                            }
+                        guard let value = child.value else { return }
+                        do {
+                            let weather = try FirebaseDecoder().decode(Weather.self, from: value)
+                            weatherList.append(weather)
+                        } catch {
+                            callback(.failure(DatabaseError.internalError(error: error)))
                         }
                     }
                     callback(Result.success(weatherList))

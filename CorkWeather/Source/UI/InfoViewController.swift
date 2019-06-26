@@ -13,6 +13,8 @@ import SafariServices
 import Proteus_UI
 import Proteus_Core
 
+import SwiftUI
+
 class InfoViewController: UIViewController, UITextViewDelegate, Storyboarded {
     
     @IBOutlet weak var bioText : UITextView!
@@ -32,6 +34,19 @@ class InfoViewController: UIViewController, UITextViewDelegate, Storyboarded {
         bioText.textColor = .white
         bioText.delegate = self
         bioText.attributedText = originalText
+        
+        let childVC = UIHostingController(rootView: InfoView())
+        childVC.view.translatesAutoresizingMaskIntoConstraints = false
+        childVC.view.backgroundColor = R.color.info_background()
+        self.addChild(childVC)
+        self.view.addSubview(childVC.view)
+        NSLayoutConstraint.activate([
+            childVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            childVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            childVC.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            childVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
+            ])
+        childVC.didMove(toParent: self)
     }
     
     @IBAction func contactClicked(sender: Any?) {
