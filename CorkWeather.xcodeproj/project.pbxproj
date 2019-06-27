@@ -844,7 +844,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/CorkWeather/Source/Generated/R.generated.swift",
+				$SRCROOT/CorkWeather/Source/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1164,6 +1164,7 @@
 			baseConfigurationReference = 9B56203EBBE4934156980023 /* Pods-CorkWeather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = XFV7ZQHJ8V;
 				INFOPLIST_FILE = CorkWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1179,6 +1180,7 @@
 			baseConfigurationReference = FD4A74B8A8D40B66F1391E0A /* Pods-CorkWeather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = XFV7ZQHJ8V;
 				INFOPLIST_FILE = CorkWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
