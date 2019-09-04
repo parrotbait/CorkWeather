@@ -1,5 +1,7 @@
 # Cork Weather
 
+NOTE: I recently started playing around with SwiftUI so this has affects the min OS and the Info page :)
+
 ![Badge](https://build.appcenter.ms/v0.1/apps/e7027ca3-de06-426f-9af4-0d73431401b8/branches/master/badge)
 
 This app is a bit of a fun/joke app created as a learning experience for myself.
